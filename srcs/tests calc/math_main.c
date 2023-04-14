@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/14 17:50:46 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:06:35 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,16 @@ int	wall_position(s_vec2 player, s_mlx map_data)
 			data.perpWallDist = (data.sideDistX - data.deltaDistX);
 		else
 			data.perpWallDist = (data.sideDistY - data.deltaDistY);
+		
+		// Calculate Height of line to draw
+		data.lineHeight = int(height / data.perpWallDist);
+		
+		// Calculate the highest and lowest pixel to draw
+		data.drawStart = (-lineHeight) / 2 + height / 2;
+		if (data.drawStart < 0)
+			data.drawStart = 0;
+		data.drawEnd = data.lineHeight / 2 + height / 2;
+		if (data.drawEnd >= height)
+			data.drawEnd = height -1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/14 16:49:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/14 17:58:08 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef struct s_mat_pos
 	double		deltaDistX;
 	double		deltaDistY;
 	double		perpWallDist;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
 	int			mapX;
 	int			mapY;
 	int			stepX;
