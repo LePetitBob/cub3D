@@ -1,0 +1,124 @@
+
+NEEDS
+Player pos in Px
+Gsize in Px
+View point
+FOV in deg
+
+/////////////////////////////
+/ HORIZONTAL INTERSECTIONS  /
+/////////////////////////////
+
+A is the first cross point
+
+Py = player pos in y pixels
+Gs = grid size in pixels
+Dir = if dir go up -1, else Gs
+
+if ray go up
+A.y = rounded_down(Py / Gs) * (Gs) - Dir
+
+if ray go down
+A.y = rounded_down(Py / Gs) * (Gs) + Dir
+
+ALPHA = FOV in deg
+Px = player pos in x pixels
+
+A.x = Px - (Py - A.y)/tan(ALPHA)
+
+then divide A.x / Gs
+
+(x,y) A point = (A.x, A.y)
+
+Then check if it's a wall
+
+///////////////////////////////////////////
+
+Finding Ya
+
+if facing up
+Ya = -Gs
+
+If facing down
+Ya = Gs
+
+Xa = Gs / tan(Gs)
+
+Find the next point (C)
+
+C.x = A.x + Xa
+C.y = A.y + Ya
+
+C.x = C.x / Gs
+C.y = C.y / Gs
+
+Do that until hit a wall
+
+///////////////////////////
+/ VERTICAL INTERSECTIONS  /
+///////////////////////////
+
+Py = player pos in y pixels
+Px = player pos in x pixels
+Gs = grid size in pixels
+Dir = if dir go left -1, else Gs
+
+if facing right
+B.x = rounded_down(Px / Gs) * (Gs) - Dir
+
+if facing left
+B.x = rounded_down(Px / Gs) * (Gs) + Dir
+
+ALPHA = FOV in deg
+
+A.y = Py + (Px - A.x) * tan(ALPHA)
+
+Xa = Gs
+
+if facing right
+Ya = Gs * tan(Gs)
+
+if facing left
+Ya = - (Gs * tan(Gs))
+
+/////////////////////////////////////////
+
+If there is no wall
+
+Xnew = Xold + Xa
+Ynew = Yold + Ya
+
+1111
+1P01
+1001
+1111
+
+Py = 1 * 64
+Gs = 64
+Dir = 64
+Px = 1 * 64
+ALPHA = 60
+
+A.y = 192
+A.x = 137
+
+Xa = 137 /64 = 2
+
+A.x = 2
+A.y = 3
+
+///////////
+
+B.x = 128
+A.y = 
+
+
+///////////
+
+Xa = 36
+C.x = 173
+C.y = 256
+
+C.x = 2
+C.y = 4
+
