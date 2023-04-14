@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/12 17:40:26 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/13 12:32:46 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ int	key_hook(int keycode, t_mlx *disp)
 	if (keycode == XK_Escape)
 		ft_exit_mlx(disp);
 	if (keycode == XK_a)
-		disp->pos[0] -= ROTSPEED;//TODO set moves and rot
+		disp->pos[0] -= MOVESPEED;//TODO set moves and rot
 	if (keycode == XK_w)
 		disp->pos[1] -= MOVESPEED;
 	if (keycode == XK_d)
-		disp->pos[0] += ROTSPEED;
+		disp->pos[0] += MOVESPEED;
 	if (keycode == XK_s)
 		disp->pos[1] += MOVESPEED;
 	if (keycode == XK_Left)
-		disp->pos[2] -= MOVESPEED;
+		disp->pos[2] -= ROTSPEED;
 	if (keycode == XK_Right)
-		disp->pos[2] += MOVESPEED;
+		disp->pos[2] += ROTSPEED;
 	mlx_clear_window(disp->mlx, disp->win);
 	put_minimap(disp);
 	return (0);
@@ -123,9 +123,12 @@ int	main(int ac, char **av)
 	if (!disp.mlx)
 		return (ft_destroy_exit("Error\nmlx_init failed\n", &disp), 1);
 	disp.win = mlx_new_window(disp.mlx, 800,
-			600, "Cubenstein3D");
+			600, "Triangle2D");
 	if (!disp.win)
 		return (ft_destroy_exit("Error\nmlx_new_window failed\n", &disp), 1);
+	//! TMP v
+	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %d\nC : %d\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
+	//! TMP ^
 	create_imgs(&disp);
 	put_minimap(&disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
