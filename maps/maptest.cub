@@ -4,6 +4,7 @@
 NO    ./images/no.xpm
 SO    ./images/so.xpm
 
+F                                    255,255,25
 
 WE ./images/we.xpm
 
@@ -12,7 +13,6 @@ WE ./images/we.xpm
 
 EA ./images/ea.xpm
 
-F                                    255,255,25
 
 
 
