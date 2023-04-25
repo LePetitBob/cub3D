@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/23 06:06:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/21 18:33:48 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,3 @@ int		check_images(t_mlx *disp)
 		return (get_img_path(disp, &i, &j, &disp->path_EA));
 	return (0);
 }
-

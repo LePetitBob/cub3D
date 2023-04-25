@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/13 12:32:46 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/21 18:34:57 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	main(int ac, char **av)
 	if (!disp.win)
 		return (ft_destroy_exit("Error\nmlx_new_window failed\n", &disp), 1);
 	//! TMP v
-	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %d\nC : %d\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
+	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %X\nC : %X\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
 	//! TMP ^
 	create_imgs(&disp);
 	put_minimap(&disp);
