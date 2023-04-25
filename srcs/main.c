@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/21 18:34:57 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:46:55 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,10 @@ int	main(int ac, char **av)
 	if (!extension_check(".cub", av[1]))
 		ft_exit("Error\nThe map must be a file with a \".cub\" extension\n");
 	disp.mapname = ft_strdup(av[1]);
-	map_check(&disp);
+	disp.tmp = map_check(&disp);
 	disp.mlx = mlx_init();
+	// if (disp.tmp != 0)
+	// 	ft_destroy_exit(ENUM_ERROR_STR, &disp);
 	if (!disp.mlx)
 		return (ft_destroy_exit("Error\nmlx_init failed\n", &disp), 1);
 	disp.win = mlx_new_window(disp.mlx, 800,

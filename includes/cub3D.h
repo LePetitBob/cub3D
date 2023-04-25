@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/13 11:51:14 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:46:59 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define PATH -1
-# define PTHMULTIDEF -2
-# define CLOSED -3
-# define WRCHAR -4
-# define SPAWN_PB -5
-# define AFTERMAP -6
-# define RGB_INVALID -7
+# define PATH
+# define WALL
+# define PTHMULTIDEF
+# define BADMAP
+# define SPAWN_PB
+# define AFTERMAP
+# define RGB_INVALID 
+# define OPEN_FAIL_MAP 
+# define OPEN_FAIL_XPM 
 
 # define MSG_PATH -1
-# define MSG_PTHMULTIDEF -2
-# define MSG_CLOSED -3
-# define MSG_WRCHAR -4
-# define MSG_SPAWN_PB -5
-# define MSG_AFTERMAP -6
+# define WALL "Error\nRequires 4 textures for walls\n"
+# define MSG_PTHMULTIDEF "Error\nPath must be defined once per textures\n"
+# define MSG_BADMAP "Error\nMap is not closed or contains wrong characters\n"
+# define MSG_SPAWN_PB "Error\nThere must be exactly one spawn point\n"
+# define MSG_AFTERMAP -5
 # define MSG_RGB_INVALID "Error\nColors must be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 
 # define FOV 90
@@ -119,14 +121,15 @@ int		extension_check(char *ext, char *file);
 int		ft_exit_mlx(t_mlx *disp);
 int		ft_exit_close(t_mlx *disp);
 
+int		is_charset(char c, char *s);
 int		skip_newlines(t_mlx *disp);
-void	disp_init_values(t_mlx *disp);
-void	map_check(t_mlx *disp);
-void	set_map(t_mlx *disp);
-void	map_requisites(t_mlx *disp);
-void	map_closed(t_mlx *disp);
+int		map_closed(t_mlx *disp);
+int		map_check(t_mlx *disp);
+int		map_requisites(t_mlx *disp);
 int		check_images(t_mlx *disp);
 int		get_img_path(t_mlx *disp, int *i, int *j, char **path);
+void	disp_init_values(t_mlx *disp);
+void	set_map(t_mlx *disp);
 void	ft_problems(t_mlx *disp);
 void	ft_exit(char *strerr);
 void	reading_init(t_mlx *disp);
@@ -138,7 +141,6 @@ void	ft_destroy_exit(char *strerr, t_mlx *disp);
 void	destroy_image(t_mlx *disp);
 void	free_tab(char **map);
 void	resize_map(t_mlx *disp);
-int		is_charset(char c, char *s);
 void	check_closed(t_mlx *disp, int i, int j);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);

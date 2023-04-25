@@ -6,13 +6,13 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/21 18:01:51 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:35:29 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	map_closed(t_mlx *disp)
+int		map_closed(t_mlx *disp)
 {
 	int	i;
 	int	j;
@@ -29,16 +29,14 @@ void	map_closed(t_mlx *disp)
 		}
 		++i;
 	}
-	if (disp->parsing_pb != 0)
-		ft_destroy_exit("Error\nPath must be defined once per textures\n", disp);
 	if (disp->player != 1)
-		ft_destroy_exit("Error\nThere must be exactly one spawn point\n", disp);//TODO more err msg parsing_pb
-	if (disp->map_pb != 0)
-		ft_destroy_exit("Error\nMap is not closed or contains wrong characters\n", disp);//TODO more err msg parsing_pb
+		return (SPAWN_PB);
+	if (disp->map_pb != 0 || disp->parsing_pb != 0)
+		return(BADMAP);
 	resize_map(disp);
 }
 
-void	map_requisites(t_mlx *disp)
+int		map_requisites(t_mlx *disp)
 {
 	int	i;
 	int	j;
@@ -62,10 +60,13 @@ void	map_requisites(t_mlx *disp)
 			}
 		}
 	}
+	// if (disp->parsing_pb != 0)
+	// 	printf("mp_chk.c -> mp_req -> prs_pb = %d\n", disp->parsing_pb);
+	// if (disp->parsing_pb != 0)
+	// 	ft_destroy_exit("File corrupted\nDestroy_exit map_requisites\n", disp);
 	if (disp->parsing_pb != 0)
-		printf("mp_chk.c -> mp_req -> prs_pb = %d\n", disp->parsing_pb);
-	if (disp->parsing_pb != 0)
-		ft_destroy_exit("File corrupted\nDestroy_exit map_requisites\n", disp);//TODO exit with correct message from parsing pb
+		return (printf("mp_chk.c -> mp_req -> prs_pb = %d\n", disp->parsing_pb), BADMAP); //TODO geterrcode
+	return (0);
 }
 
 int		skip_newlines(t_mlx *disp)
@@ -145,7 +146,7 @@ int get_color(t_mlx *disp, int c)
 	return (res[0] << 16 | res[1] << 8 | res[2]);
 }
 
-void	map_check(t_mlx *disp)
+int		map_check(t_mlx *disp)
 {
 	//? 22 v
 	int	imgs;
@@ -236,6 +237,6 @@ void	map_check(t_mlx *disp)
 		printf("map pb = %d\n", disp->map_pb);
 		ft_destroy_exit("Error\nElements are present after the map description\n", disp);
 	}
-	map_requisites(disp);
-	map_closed(disp);
+	return (map_requisites(disp));
+	return (map_closed(disp));
 }
