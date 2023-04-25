@@ -22,6 +22,7 @@ SRC =	exits.c					\
 		ft_atoi.c				\
 		2Dvectors.c				\
 		data_map_resize.c		\
+		wall_find.c				\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
