@@ -23,6 +23,9 @@ SRC =	exits.c					\
 		2Dvectors.c				\
 		data_map_resize.c		\
 		wall_find.c				\
+		create_img.c			\
+		math_main.c				\
+		print_error.c			\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

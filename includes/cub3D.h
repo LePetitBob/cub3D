@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:52:23 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:38:11 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,34 @@
 # define ROTSPEED 1
 # define WIDTH 1200
 # define HEIGHT 800
+
+typedef struct s_mat_pos
+{
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double		cameraX;
+	double		rayDirX;
+	double		rayDirY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	
+}				t_math_pos;
 
 typedef struct s_read
 {
@@ -162,6 +190,13 @@ void	resize_map(t_mlx *disp);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);
 double	get_normy(int x1, int y1, int x2, int y2);
+
+// img/create_img
+void	px_put(t_img_data *img, int x, int y, int color);
+void	create_image(t_mlx *map_data, t_img_data *img);
+
+// math/math_main
+int	wall_printer(t_vec2 player, t_mlx map_data);
 
 //TODO --> remove
 void	print_tab(char **map);
