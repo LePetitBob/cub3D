@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:51:20 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:19:31 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	reading_init(t_mlx *disp)
 int	key_hook(int keycode, t_mlx *disp)
 {
 	if (keycode == XK_Escape)
-		ft_exit_mlx(disp);
+		ft_exit_escape(disp);
 	if (keycode == XK_a)
 		disp->pos[0] -= MOVESPEED;//TODO set moves and rot
 	if (keycode == XK_w)
@@ -116,7 +116,7 @@ int		cub3D(char **av)
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
 	disp.mlx = mlx_init();
-	if (map_check(&disp) || !disp.mlx)
+	if (!map_check(&disp) || !disp.mlx)
 		ft_exit_mlx(&disp);
 	disp.win = mlx_new_window(disp.mlx, 800,
 			600, "Triangle2D");
@@ -136,45 +136,14 @@ int		cub3D(char **av)
 	return (1);
 }
 
-// int	main(int ac, char **av)
-// {
-
-// 	if (ac != 2)
-// 		return (print_error(MSG_ARGS), 1);
-// 	if (!extension_check(".cub", av[1]))
-// 		return (print_error(MSG_EXTENSION), 1);
-// 	if (!cub3D(av))
-// 		return (1);
-// 	return (0);
-// }
-
-void    px_put(t_img_data *img, int x, int y, int color)
+int	main(int ac, char **av)
 {
-    char    *dst;
 
-    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
-}
-
-void    create_img(t_mlx map_data, t_img_data img)
-{
-    img.img = mlx_new_image(map_data.mlx, WIDTH, HEIGHT);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-                                &img.endian);
-}
-
-int    main()
-{
-    t_img_data    img;
-    t_mlx    disp;
-
-    disp = (t_mlx){0};
-    disp.mlx = mlx_init();
-    disp.win = mlx_new_window(disp.mlx, WIDTH, HEIGHT, "Triangle2D");
-    img.img = mlx_new_image(disp.mlx, WIDTH, HEIGHT);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-                                &img.endian);
-    px_put(&img, 5, 5, 0x00FF0000);
-    mlx_put_image_to_window(disp.mlx, disp.win, img.img, 0, 0);
-    mlx_loop(disp.mlx);
+	if (ac != 2)
+		return (print_error(MSG_ARGS), 1);
+	if (!extension_check(".cub", av[1]))
+		return (print_error(MSG_EXTENSION), 1);
+	if (!cub3D(av))
+		return (1);
+	return (0);
 }

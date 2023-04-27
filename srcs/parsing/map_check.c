@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:45:11 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:27:16 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int		map_closed(t_mlx *disp)
 		while (disp->map[i][j])
 		{
 			if (!check_closed(disp, i, j))
-				return (print_error(MSG_OPENMAP), 1);
+				return (print_error(MSG_OPENMAP), 0);
 			++j;
 		}
 		++i;
 	}
 	resize_map(disp);
-	return (0);
+	return (1);
 }
 
 int		map_requisites(t_mlx *disp)
@@ -46,7 +46,7 @@ int		map_requisites(t_mlx *disp)
 		while (disp->map[i] && disp->map[i][++j])
 		{
 			if (!is_charset(disp->map[i][j], "01 \nNSEW"))
-				return (print_error(MSG_BADMAP), 1);
+				return (print_error(MSG_BADMAP), 0);
 			if (is_charset(disp->map[i][j], "NSEW"))
 			{
 				disp->pos[2] = disp->map[i][j];
@@ -57,6 +57,8 @@ int		map_requisites(t_mlx *disp)
 			}
 		}
 	}
+	if (disp->player != 1)
+		return (print_error(MSG_SPAWN_PB), 0);
 	return (1);
 }
 
@@ -162,8 +164,8 @@ int		map_check(t_mlx *disp)
 		disp->height++;
 	}
 	if (imgs != 4)
-		return (print_error(MSG_WALL), 0);
-	if (disp->parsing_pb != 0)
+		return (print_error(MSG_WALL), 0); //TODO Check diff path
+	if (disp->parsing_pb == PTHMULTIDEF)
 		return (print_error(MSG_PTHMULTIDEF), 0);
 	// if (imgs != 4 || disp->parsing_pb != 0)
 	// 	ft_destroy_exit("Error\nRequires 4 textures for walls\n", disp);//TODO msg for multi def and formissig texture
@@ -228,7 +230,7 @@ int		map_check(t_mlx *disp)
 	//TODO clean exit with elements aftermap
 	if (!map_requisites(disp))
 		return (0);
-	if (map_closed(disp))
+	if (!map_closed(disp))
 		return (0);
 	return (1);
 }

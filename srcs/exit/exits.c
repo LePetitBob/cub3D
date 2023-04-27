@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 03:47:07 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:12:22 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,15 @@ void	free_tab(char **map)
 int	ft_exit_mlx(t_mlx *disp)
 {
 	destroy_image(disp);
-	mlx_destroy_window(disp->mlx, disp->win);
+	free(disp->mlx);
+	free_tab(disp->map);
+	free(disp->mapname);
+	exit(1);
+}
+
+int	ft_exit_escape(t_mlx *disp)
+{
+	destroy_image(disp);
 	mlx_destroy_display(disp->mlx);
 	free(disp->mlx);
 	free_tab(disp->map);

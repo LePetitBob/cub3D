@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:27:23 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:23:05 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	if (*path)
 	{
 		disp->parsing_pb = PTHMULTIDEF;
-		return (dprintf(2, MSG_PTHMULTIDEF), 1);
+		return (1);
 	}
 	while (disp->line[*i + 2] && disp->line[*i + 2] == ' ')
 		++*i;

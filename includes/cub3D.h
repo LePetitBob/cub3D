@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:52:23 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 05:12:47 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *s);
 int		extension_check(char *ext, char *file);
 int		ft_exit_mlx(t_mlx *disp);
+int		ft_exit_escape(t_mlx *disp);
 void	print_error(char *str);
 
 int		is_charset(char c, char *s);
