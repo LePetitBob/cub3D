@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/18 13:48:46 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 03:47:07 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,5 @@ int	ft_exit_mlx(t_mlx *disp)
 	free(disp->mlx);
 	free_tab(disp->map);
 	free(disp->mapname);
-	exit(1);
-}
-
-int	ft_exit_close(t_mlx *disp)
-{
-	free(disp->mlx);
 	exit(1);
 }

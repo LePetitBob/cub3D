@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/25 18:46:59 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:52:23 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,36 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define PATH
-# define WALL
-# define PTHMULTIDEF
-# define BADMAP
-# define SPAWN_PB
-# define AFTERMAP
-# define RGB_INVALID 
-# define OPEN_FAIL_MAP 
-# define OPEN_FAIL_XPM 
+# define PATH -1
+# define WALL -2
+# define PTHMULTIDEF -3
+# define BADMAP -4
+# define SPAWN_PB -5
+# define AFTERMAP -6
+# define RGB_INVALID  -7
+# define OPEN_FAIL_MAP  -8
+# define OPEN_FAIL_XPM  -9
 
-# define MSG_PATH -1
-# define WALL "Error\nRequires 4 textures for walls\n"
+# define MSG_PATH "Error\nSprite must be an existing .xpm file\n"
+# define MSG_WALL "Error\nRequires 4 textures for walls\n"
 # define MSG_PTHMULTIDEF "Error\nPath must be defined once per textures\n"
-# define MSG_BADMAP "Error\nMap is not closed or contains wrong characters\n"
+# define MSG_BADMAP "Error\nMap contains wrong characters\n"
+# define MSG_OPENMAP "Error\nMap is not closed\n"
 # define MSG_SPAWN_PB "Error\nThere must be exactly one spawn point\n"
-# define MSG_AFTERMAP -5
+# define MSG_AFTERMAP "Error\nThere must not be anything after the map\n"
 # define MSG_RGB_INVALID "Error\nColors must be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
+# define MSG_OPEN_FAIL_MAP "Error\nFailed ot open map\n"
+# define MSG_OPEN_FAIL_XPM "Error\nMlx_xpm_file_to_image failed\n"
+# define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
+# define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
+# define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
+# define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
 
 # define FOV 90
 # define MOVESPEED 1
 # define ROTSPEED 1
+# define WIDTH 1200
+# define HEIGHT 800
 
 typedef struct s_read
 {
@@ -53,6 +62,14 @@ typedef struct s_read
 	char	*reading;
 	char	*line;
 }				t_read;
+
+typedef struct    s_img_data {
+    void    *img;
+    char    *addr;
+    int        bits_per_pixel;
+    int        line_length;
+    int        endian;
+}                t_img_data;
 
 typedef struct s_vec2
 {
@@ -119,7 +136,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *s);
 int		extension_check(char *ext, char *file);
 int		ft_exit_mlx(t_mlx *disp);
-int		ft_exit_close(t_mlx *disp);
+void	print_error(char *str);
 
 int		is_charset(char c, char *s);
 int		skip_newlines(t_mlx *disp);
@@ -128,6 +145,7 @@ int		map_check(t_mlx *disp);
 int		map_requisites(t_mlx *disp);
 int		check_images(t_mlx *disp);
 int		get_img_path(t_mlx *disp, int *i, int *j, char **path);
+int		check_closed(t_mlx *disp, int i, int j);
 void	disp_init_values(t_mlx *disp);
 void	set_map(t_mlx *disp);
 void	ft_problems(t_mlx *disp);
@@ -141,7 +159,6 @@ void	ft_destroy_exit(char *strerr, t_mlx *disp);
 void	destroy_image(t_mlx *disp);
 void	free_tab(char **map);
 void	resize_map(t_mlx *disp);
-void	check_closed(t_mlx *disp, int i, int j);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);
 double	get_normy(int x1, int y1, int x2, int y2);

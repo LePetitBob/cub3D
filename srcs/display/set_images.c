@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:46:33 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/14 13:35:23 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 00:15:27 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	sprite_check(t_mlx *disp, char *path)
 
 	fd = open(path, O_RDONLY, __O_NOFOLLOW);
 	if (fd < 0 || !extension_check(".xpm", path))
-		err_img("Error\nSprite must be an existing .xpm file\n", disp);
+		err_img(MSG_PATH, disp);
 	close(fd);
 }
 
@@ -68,35 +68,35 @@ void	create_imgs(t_mlx *disp)
 	disp->img_m = mlx_xpm_file_to_image(disp->mlx, disp->pth_m,
 			&img_wdth, &img_h);
 	if (!disp->img_m)
-		err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+		err_img(MSG_OPEN_FAIL_XPM, disp);
 	sprite_check(disp, disp->pth_p);
 	disp->img_p = mlx_xpm_file_to_image(disp->mlx, disp->pth_p,
 			&img_wdth, &img_h);
 	if (!disp->img_p)
-		err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+		err_img(MSG_OPEN_FAIL_XPM, disp);
 	sprite_check(disp, disp->pth_v);
 	disp->img_v = mlx_xpm_file_to_image(disp->mlx, disp->pth_v,
 			&img_wdth, &img_h);
 	if (!disp->img_v)
-		err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+		err_img(MSG_OPEN_FAIL_XPM, disp);
 	// sprite_check(disp, disp->path_NO);
 	// disp->img_n = mlx_xpm_file_to_image(disp->mlx, disp->path_NO,
 			// &img_wdth, &img_h);
 	// if (!disp->img_n)
-	// 	err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+	// 	err_img(MSG_OPEN_FAIL_XPM, disp);
 	// sprite_check(disp, disp->path_SO);
 	// disp->img_s = mlx_xpm_file_to_image(disp->mlx, disp->path_SO,
 			// &img_wdth, &img_h);
 	// if (!disp->img_s)
-	// 	err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+	// 	err_img(MSG_OPEN_FAIL_XPM, disp);
 	// sprite_check(disp, disp->path_WE);
 	// disp->img_w = mlx_xpm_file_to_image(disp->mlx, disp->path_WE,
 			// &img_wdth, &img_h);
 	// if (!disp->img_w)
-	// 	err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+	// 	err_img(MSG_OPEN_FAIL_XPM, disp);
 	// sprite_check(disp, disp->path_EA);
 	// disp->img_e = mlx_xpm_file_to_image(disp->mlx, disp->path_EA,
 			// &img_wdth, &img_h);
 	// if (!disp->img_e)
-	// 	err_img("Error\nMlx_xpm_file_to_image failed\n", disp);
+	// 	err_img(MSG_OPEN_FAIL_XPM, disp);
 }

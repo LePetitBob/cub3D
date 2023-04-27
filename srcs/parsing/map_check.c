@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/25 18:35:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:45:11 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,20 @@ int		map_closed(t_mlx *disp)
 	int	i;
 	int	j;
 
-	// printf("into map_closed\n");
 	i = 0;
 	while (disp->map[i])
 	{
 		j = 0;
 		while (disp->map[i][j])
 		{
-			check_closed(disp, i, j);
+			if (!check_closed(disp, i, j))
+				return (print_error(MSG_OPENMAP), 1);
 			++j;
 		}
 		++i;
 	}
-	if (disp->player != 1)
-		return (SPAWN_PB);
-	if (disp->map_pb != 0 || disp->parsing_pb != 0)
-		return(BADMAP);
 	resize_map(disp);
+	return (0);
 }
 
 int		map_requisites(t_mlx *disp)
@@ -49,7 +46,7 @@ int		map_requisites(t_mlx *disp)
 		while (disp->map[i] && disp->map[i][++j])
 		{
 			if (!is_charset(disp->map[i][j], "01 \nNSEW"))
-				disp->parsing_pb = WRCHAR;
+				return (print_error(MSG_BADMAP), 1);
 			if (is_charset(disp->map[i][j], "NSEW"))
 			{
 				disp->pos[2] = disp->map[i][j];
@@ -60,13 +57,7 @@ int		map_requisites(t_mlx *disp)
 			}
 		}
 	}
-	// if (disp->parsing_pb != 0)
-	// 	printf("mp_chk.c -> mp_req -> prs_pb = %d\n", disp->parsing_pb);
-	// if (disp->parsing_pb != 0)
-	// 	ft_destroy_exit("File corrupted\nDestroy_exit map_requisites\n", disp);
-	if (disp->parsing_pb != 0)
-		return (printf("mp_chk.c -> mp_req -> prs_pb = %d\n", disp->parsing_pb), BADMAP); //TODO geterrcode
-	return (0);
+	return (1);
 }
 
 int		skip_newlines(t_mlx *disp)
@@ -156,7 +147,9 @@ int		map_check(t_mlx *disp)
 	reading_init(disp);
 	disp->fd = open(disp->mapname, O_RDONLY);
 	if (disp->fd < 0)
-		ft_destroy_exit("Error\nFailed to open map_name\n", disp);
+		return (print_error(MSG_OPEN_FAIL_MAP), 0);
+	// if (disp->fd < 0)
+	// 	ft_destroy_exit("Error\nFailed to open map_name\n", disp);
 	set_map(disp);
 	disp->line = get_next_line(disp->fd);
 	disp->height += skip_newlines(disp);
@@ -168,8 +161,12 @@ int		map_check(t_mlx *disp)
 		disp->line = get_next_line(disp->fd);
 		disp->height++;
 	}
-	if (imgs != 4 || disp->parsing_pb != 0)
-		ft_destroy_exit("Error\nRequires 4 textures for walls\n", disp);//TODO msg for multi def and formissig texture
+	if (imgs != 4)
+		return (print_error(MSG_WALL), 0);
+	if (disp->parsing_pb != 0)
+		return (print_error(MSG_PTHMULTIDEF), 0);
+	// if (imgs != 4 || disp->parsing_pb != 0)
+	// 	ft_destroy_exit("Error\nRequires 4 textures for walls\n", disp);//TODO msg for multi def and formissig texture
 	disp->height += skip_newlines(disp);
 	//?     22 ^
 
@@ -194,7 +191,7 @@ int		map_check(t_mlx *disp)
 		disp->line = get_next_line(disp->fd);
 	}
 	if (disp->color_c < 0 || disp->color_f < 0)
-		ft_destroy_exit(MSG_RGB_INVALID, disp);
+		return (print_error(MSG_RGB_INVALID), 0);
 	disp->height += skip_newlines(disp);
 	//? 21 ^
 
@@ -220,10 +217,7 @@ int		map_check(t_mlx *disp)
 	while (disp->line)
 	{
 		if (disp->map_pb == 0 && ft_strcmp(disp->line, "\n"))
-		{
-			printf("enf of map check, if ater map : (%s)\n", disp->line);
-			disp->map_pb = AFTERMAP;
-		}
+			return (print_error(MSG_AFTERMAP), 0);
 		free(disp->line);
 		disp->line = get_next_line(disp->fd);
 	}
@@ -232,11 +226,9 @@ int		map_check(t_mlx *disp)
 	free(disp->line);
 	close(disp->fd);
 	//TODO clean exit with elements aftermap
-	if (disp->map_pb != 0)
-	{
-		printf("map pb = %d\n", disp->map_pb);
-		ft_destroy_exit("Error\nElements are present after the map description\n", disp);
-	}
-	return (map_requisites(disp));
-	return (map_closed(disp));
+	if (!map_requisites(disp))
+		return (0);
+	if (map_closed(disp))
+		return (0);
+	return (1);
 }

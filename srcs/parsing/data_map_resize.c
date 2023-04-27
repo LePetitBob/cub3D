@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:01:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/13 11:53:15 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:47:02 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	resize_map(t_mlx *disp)
 		j = 0;
 		s = malloc(sizeof(char) * (disp->length_map + 1));
 		if (!s)
-			return (ft_destroy_exit("Error\nMap resizing failed\n", disp));
+			ft_destroy_exit(MSG_MALLOC_FAIL, disp);
 		while (disp->map[i][j])
 		{
 			s[j] = disp->map[i][j];
@@ -57,19 +57,20 @@ int		is_charset(char c, char *s)
 	return (0);
 }
 
-void	check_closed(t_mlx *disp, int i, int j)
+int		check_closed(t_mlx *disp, int i, int j)
 {
 	if (disp->map[i][j] == '0')
 	{
 		if (i == 0 || j == 0 || i == disp->height_map - 1 || j == disp->length_map - 1)
-			disp->map_pb = CLOSED;
+			return (print_error(MSG_OPENMAP), 1);
 		if (i > 0 && !is_charset(disp->map[i - 1][j], "01"))
-			disp->map_pb = CLOSED;
+			return (print_error(MSG_OPENMAP), 1);
 		if (i < disp->height_map - 1 && !is_charset(disp->map[i + 1][j], "01"))
-			disp->map_pb = CLOSED;
+			return (print_error(MSG_OPENMAP), 1);
 		if (j > 0 && !is_charset(disp->map[i][j - 1], "01"))
-			disp->map_pb = CLOSED;
+			return (print_error(MSG_OPENMAP), 1);
 		if (j < disp->length_map - 1 && !is_charset(disp->map[i][j + 1], "01"))
-			disp->map_pb = CLOSED;
+			return (print_error(MSG_OPENMAP), 1);
 	}
+	return (1);
 }

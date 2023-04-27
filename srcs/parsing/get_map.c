@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/21 18:33:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:27:23 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_map(t_mlx *disp)
 	disp->height = 1;
 	disp->map = malloc(sizeof(char *) * (disp->height_map + 1));
 	if (!disp->map)
-		return ;
+		ft_destroy_exit(MSG_MALLOC_FAIL, disp);
 	disp->map[disp->height_map] = NULL;
 }
 
@@ -49,7 +49,7 @@ int		get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	if (*path)
 	{
 		disp->parsing_pb = PTHMULTIDEF;
-		return (1);
+		return (dprintf(2, MSG_PTHMULTIDEF), 1);
 	}
 	while (disp->line[*i + 2] && disp->line[*i + 2] == ' ')
 		++*i;

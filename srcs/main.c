@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/25 18:46:55 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:51:20 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	check_setupfile_path(t_mlx *disp)
 	skip_newlines(disp);
 	while (disp->line && data != 6)
 	{
+		//TODO GET ORDER HERE
 		if (disp->line && is_charset(disp->line[0], "NSEWFC"))
 			++data;
 		free(disp->line);
@@ -64,7 +65,7 @@ void	reading_init(t_mlx *disp)
 	disp_set(disp);
 	disp->fd = open(disp->mapname, O_RDONLY);
 	if (disp->fd < 0)
-		ft_destroy_exit("Error\nFailed to open map\n", disp);
+		ft_destroy_exit(MSG_OPEN_FAIL_MAP, disp);
 	disp->line = get_next_line(disp->fd);
 	check_setupfile_path(disp);
 	while (disp->line && disp->line[0] != '\n')
@@ -108,33 +109,72 @@ int	key_hook(int keycode, t_mlx *disp)
 	return (0);
 }
 
-int	main(int ac, char **av)
+int		cub3D(char **av)
 {
 	t_mlx	disp;
 
 	disp = (t_mlx){0};
-	if (ac != 2)
-		ft_exit("Error\nExpected format :\n$> ./cub3D map.cub\n");
-	if (!extension_check(".cub", av[1]))
-		ft_exit("Error\nThe map must be a file with a \".cub\" extension\n");
 	disp.mapname = ft_strdup(av[1]);
-	disp.tmp = map_check(&disp);
 	disp.mlx = mlx_init();
-	// if (disp.tmp != 0)
-	// 	ft_destroy_exit(ENUM_ERROR_STR, &disp);
-	if (!disp.mlx)
-		return (ft_destroy_exit("Error\nmlx_init failed\n", &disp), 1);
+	if (map_check(&disp) || !disp.mlx)
+		ft_exit_mlx(&disp);
 	disp.win = mlx_new_window(disp.mlx, 800,
 			600, "Triangle2D");
 	if (!disp.win)
-		return (ft_destroy_exit("Error\nmlx_new_window failed\n", &disp), 1);
+		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
+
 	//! TMP v
 	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %X\nC : %X\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
 	//! TMP ^
+	
 	create_imgs(&disp);
 	put_minimap(&disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
 	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);
 	mlx_loop(disp.mlx);
-	return (0);
+
+	return (1);
+}
+
+// int	main(int ac, char **av)
+// {
+
+// 	if (ac != 2)
+// 		return (print_error(MSG_ARGS), 1);
+// 	if (!extension_check(".cub", av[1]))
+// 		return (print_error(MSG_EXTENSION), 1);
+// 	if (!cub3D(av))
+// 		return (1);
+// 	return (0);
+// }
+
+void    px_put(t_img_data *img, int x, int y, int color)
+{
+    char    *dst;
+
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+    *(unsigned int *)dst = color;
+}
+
+void    create_img(t_mlx map_data, t_img_data img)
+{
+    img.img = mlx_new_image(map_data.mlx, WIDTH, HEIGHT);
+    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+                                &img.endian);
+}
+
+int    main()
+{
+    t_img_data    img;
+    t_mlx    disp;
+
+    disp = (t_mlx){0};
+    disp.mlx = mlx_init();
+    disp.win = mlx_new_window(disp.mlx, WIDTH, HEIGHT, "Triangle2D");
+    img.img = mlx_new_image(disp.mlx, WIDTH, HEIGHT);
+    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+                                &img.endian);
+    px_put(&img, 5, 5, 0x00FF0000);
+    mlx_put_image_to_window(disp.mlx, disp.win, img.img, 0, 0);
+    mlx_loop(disp.mlx);
 }
