@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 05:38:11 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:10:30 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
 
-# define FOV 90
+# define FOV 75
 # define MOVESPEED 1
 # define ROTSPEED 1
 # define WIDTH 1200
@@ -196,8 +196,13 @@ void	px_put(t_img_data *img, int x, int y, int color);
 void	create_image(t_mlx *map_data, t_img_data *img);
 
 // math/math_main
-int	wall_printer(t_vec2 player, t_mlx map_data);
+int		wall_printer(t_vec2 player, t_mlx map_data);
 
+// utils/fnc_utils
+char	*ft_strchr(const char *s, int c);
+
+// math/2Dverctors
+t_vec2	vec2_generating(t_mlx disp);
 //TODO --> remove
 void	print_tab(char **map);
 

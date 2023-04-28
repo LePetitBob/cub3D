@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 09:21:46 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:47:29 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		cub3D(char **av)
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
 	disp.mlx = mlx_init();
-	if (map_check(&disp) || !disp.mlx)
+	if (!map_check(&disp) || !disp.mlx)
 		ft_exit_mlx(&disp);
 	disp.win = mlx_new_window(disp.mlx, WIDTH,
 			HEIGHT, "Triangle2D");
@@ -126,7 +126,7 @@ int		cub3D(char **av)
 	//! TMP v
 	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %X\nC : %X\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
 	//! TMP ^
-	wall_printer();
+	wall_printer(vec2_generating(disp), disp);
 	// create_imgs(&disp);
 	// put_minimap(&disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);

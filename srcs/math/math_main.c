@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/27 05:41:48 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:00:22 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,20 @@ void	calc_draw_lines(t_math_pos *data, t_img_data *img, int x)
 	data->drawEnd = data->lineHeight / 2 + HEIGHT / 2;
 	if (data->drawEnd >= HEIGHT)
 		data->drawEnd = HEIGHT -1;
-	y = data->drawStart;
+	y = 0;
+	while (y < data->drawStart)
+	{
+		px_put(img, x, y, 0x00333FFF);
+		y++;
+	}
 	while (y < data->drawEnd)
 	{
 		px_put(img, x, y, 0x00FF0000);
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		px_put(img, x, y, 0x00FFFFFF);
 		y++;
 	}
 }
@@ -155,7 +165,7 @@ void	dda_loop(t_math_pos *data, t_mlx *map_data)
 			data->mapY += data->stepY;
 			data->side = 1;
 		}
-		if (map_data->map[data->mapX][data->mapY] == 1)
+		if (map_data->map[data->mapY][data->mapX] == '1')
 			data->hit = 1;
 	}
 }
@@ -186,14 +196,14 @@ void	calc_step_dist(t_math_pos *data)
 
 void	avoid_div_0(t_math_pos *data)
 {
-	if (!(data)->rayDirX)
-		data->deltaDistX = -1;
-	else
-		data->deltaDistX = fabs(1 / data->rayDirX);
-	if (!(data)->rayDirY)
-		data->deltaDistY = -1;
-	else
-		data->deltaDistY = fabs(1 / data->rayDirY);
+	// if (!(data)->rayDirX)
+	// 	data->deltaDistX = -1;
+	// else
+	data->deltaDistX = fabs(1 / data->rayDirX);
+	// if (!(data)->rayDirY)
+	// 	data->deltaDistY = -1;
+	// else
+	data->deltaDistY = fabs(1 / data->rayDirY);
 	data->hit = 0;
 }
 
@@ -209,17 +219,21 @@ void	cam_dir_val(t_math_pos *data, int x)
 void	init_values(t_math_pos *data, t_vec2 player)
 {
 	data->posX = player.x1;
-	data->posY = player.y2;
+	data->posY = player.y1;
 	data->dirX = player.dx;
 	data->dirY = player.dy;
-	if (!(data)->dirX)
-		data->planeX = FOV / 100;
-	else
-		data->planeX = 0;
-	if (!(data)->dirY)
-		data->planeY = FOV / 100;
+	if (data->dirX < 0)
+		data->planeY = FOV / (double)100;
+	else if (data->dirX > 0)
+		data->planeY = FOV / (double)100 * -1;
 	else
 		data->planeY = 0;
+	if (data->dirY < 0)
+		data->planeX = FOV / (double)100;
+	else if (data->dirY > 0)
+		data->planeX = FOV / (double)100 * -1;
+	else
+		data->planeX = 0;
 }
 
 int	wall_printer(t_vec2 player, t_mlx map_data)
