@@ -1,11 +1,11 @@
 NO ./images/no.xpm
 SO ./images/so.xpm
 WE ./images/we.xpm
-
-F 255,55,25 5
-C 1 4 4,14 4,252
-
 EA ./images/ea.xpm
+
+F 255,255,25
+C 144,144,252
+
      111
     11011
    1100011

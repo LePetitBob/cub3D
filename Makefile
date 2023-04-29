@@ -27,6 +27,7 @@ SRC =	exits.c					\
 		math_main.c				\
 		print_error.c			\
 		fnc_utils.c				\
+		moves.c					\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

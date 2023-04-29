@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:37:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/28 18:11:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:01:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	dir_player(char d, t_vec2 *player)
 		player->dx = 1;
 		player->dy = 0;
 	}
-	else if (d == 'S')
+	else if (d == 'W')
 	{
 		player->dx = -1;
 		player->dy = 0;

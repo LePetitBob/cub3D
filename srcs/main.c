@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/28 15:47:29 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:33:51 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,31 +88,10 @@ void	reading_init(t_mlx *disp)
 	disp->height = 1;
 }
 
-int	key_hook(int keycode, t_mlx *disp)
-{
-	if (keycode == XK_Escape)
-		ft_exit_mlx(disp);
-	if (keycode == XK_a)
-		disp->pos[0] -= MOVESPEED;//TODO set moves and rot
-	if (keycode == XK_w)
-		disp->pos[1] -= MOVESPEED;
-	if (keycode == XK_d)
-		disp->pos[0] += MOVESPEED;
-	if (keycode == XK_s)
-		disp->pos[1] += MOVESPEED;
-	if (keycode == XK_Left)
-		disp->pos[2] -= ROTSPEED;
-	if (keycode == XK_Right)
-		disp->pos[2] += ROTSPEED;
-	mlx_clear_window(disp->mlx, disp->win);
-	put_minimap(disp);
-	return (0);
-}
-
 int		cub3D(char **av)
 {
 	t_mlx	disp;
-
+	
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
 	disp.mlx = mlx_init();
@@ -122,17 +101,24 @@ int		cub3D(char **av)
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
-
+	disp.path_EA = "./images/wallE.xpm";
+	disp.path_NO = "./images/wallN.xpm";
+	disp.path_SO = "./images/wallS.xpm";
+	disp.path_WE = "./images/wallW.xpm";
 	//! TMP v
 	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %X\nC : %X\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
 	//! TMP ^
-	wall_printer(vec2_generating(disp), disp);
+	if (create_wall_images(&disp, &(disp.walls)))
+		return (1);
+	if (create_image(&disp, &(disp.data.img)))
+		return (1);
+	init_values(&(disp.data), vec2_generating(disp));
 	// create_imgs(&disp);
 	// put_minimap(&disp);
+	mlx_loop_hook(disp.mlx, &wall_printer, &disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
 	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);
 	mlx_loop(disp.mlx);
-
 	return (1);
 }
 

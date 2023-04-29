@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/28 18:10:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:33:19 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,38 +49,12 @@
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
 
 # define FOV 75
-# define MOVESPEED 1
-# define ROTSPEED 1
+# define MOVESPEED 0.2
+# define ROTSPEED 0.2
 # define WIDTH 1200
 # define HEIGHT 800
-
-typedef struct s_mat_pos
-{
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
-	int			hit;
-	int			side;
-	
-}				t_math_pos;
+# define texHeight 64
+# define texWidth 64
 
 typedef struct s_read
 {
@@ -94,10 +68,20 @@ typedef struct s_read
 typedef struct    s_img_data {
     void    *img;
     char    *addr;
-    int        bits_per_pixel;
-    int        line_length;
-    int        endian;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+	int		height;
+	int		width;
 }                t_img_data;
+
+typedef struct s_pics_add
+{
+	t_img_data	wallN;
+	t_img_data	wallS;
+	t_img_data	wallE;
+	t_img_data	wallW;
+}				t_pics_add;
 
 typedef struct s_vec2
 {
@@ -110,6 +94,43 @@ typedef struct s_vec2
 	double	len;
 	double	norm[2];
 }				t_vec2;
+
+typedef struct s_mat_pos
+{
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		oldDirX;
+	double		dirY;
+	double		planeX;
+	double		oldPlaneX;
+	double		planeY;
+	double		cameraX;
+	double		rayDirX;
+	double		rayDirY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	double		wallX;
+	double		step;
+	double		texPos;
+	int			texNum;
+	int			texY;
+	int			texX;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	t_img_data	img;
+	t_img_data	img_printed;
+}				t_math_pos;
 
 typedef struct s_mlx
 {
@@ -147,6 +168,8 @@ typedef struct s_mlx
 	int		parsing_pb;
 	int		map_pb;
 	int		map_begin;
+	t_math_pos	data;
+	t_pics_add	walls;
 }				t_mlx;
 
 char	*get_next_line(int fd);
@@ -193,16 +216,23 @@ double	get_normy(int x1, int y1, int x2, int y2);
 
 // img/create_img
 void	px_put(t_img_data *img, int x, int y, int color);
-void	create_image(t_mlx *map_data, t_img_data *img);
+int		create_image(t_mlx *map_data, t_img_data *img);
+int		create_wall_images(t_mlx *disp, t_pics_add *walls);
+unsigned int px_extract(t_img_data *img, int x, int y);
 
 // math/math_main
-int		wall_printer(t_vec2 player, t_mlx map_data);
+int		wall_printer(t_mlx *map_data);
+void	init_values(t_math_pos *data, t_vec2 player);
 
 // utils/fnc_utils
 char	*ft_strchr(const char *s, int c);
 
 // math/2Dverctors
 t_vec2	vec2_generating(t_mlx disp);
+
+// player/moves
+int		key_hook(int keycode, t_mlx *disp);
+
 //TODO --> remove
 void	print_tab(char **map);
 
