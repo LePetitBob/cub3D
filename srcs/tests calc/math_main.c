@@ -6,15 +6,11 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/25 18:42:07 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/27 04:07:27 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-#define gs = 60;
-#define width = 320;
-#define height = 320;
 
 // int	wall_position(s_vec2 player, t_mlx map_data)
 // {
@@ -126,13 +122,13 @@ void	calc_draw_lines(s_mat_pos *data)
 		data->perpWallDist = (data->sideDistX - data->deltaDistX);
 	else
 		data->perpWallDist = (data->sideDistY - data->deltaDistY);
-	data->lineHeight = int(height / data->perpWallDist);
-	data->drawStart = (-(data->lineHeight)) / 2 + height / 2;
+	data->lineHeight = int(HEIGHT / data->perpWallDist);
+	data->drawStart = (-(data->lineHeight)) / 2 + HEIGHT / 2;
 	if (data->drawStart < 0)
 		data->drawStart = 0;
-	data->drawEnd = data->lineHeight / 2 + height / 2;
-	if (data->drawEnd >= height)
-		data->drawEnd = height -1;
+	data->drawEnd = data->lineHeight / 2 + HEIGHT / 2;
+	if (data->drawEnd >= HEIGHT)
+		data->drawEnd = HEIGHT -1;
 }
 
 void	dda_loop(s_mat_pos *data)
@@ -195,7 +191,7 @@ void	avoid_div_0(s_mat_pos *data)
 
 void	cam_dir_val(s_mat_pos *data)
 {
-	data->cameraX = 2 * x / double(width) - 1;
+	data->cameraX = 2 * x / double(WIDTH) - 1;
 	data->rayDirX = data->dirX + data->planeX * data->cameraX;
 	data->rayDirY = data->dirY + data->planeY * data->cameraX;
 	data.mapX = int(data.posX);
@@ -209,23 +205,24 @@ void	init_values(s_mat_pos *data, s_vec2 player)
 	data->dirX = player.dx;
 	data->dirY = player.dy;
 	if (!(data)->dirX)
-		data->planeX = gs / 100;
+		data->planeX = FOV / 100;
 	else
 		data->planeX = 0;
 	if (!(data)->dirY)
-		data->planeY = gs / 100;
+		data->planeY = FOV / 100;
 	else
 		data->planeY = 0;
 }
 
 int	wall_printer(s_vec2 player, t_mlx map_data)
 {
-	s_mat_pos	data;
+	t_mat_pos	data;
+	t_img		img;
 	int			x;
 	
 	init_values(&data, player);
 	x = 0;
-	while (x < width) //TODO Mettre une vraie variable pour width
+	while (x < WIDTH)
 	{
 		cam_dir_val(&data);
 		x++;
