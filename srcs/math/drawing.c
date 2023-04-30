@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:47:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/30 08:33:13 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 11:09:49 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	calc_draw_lines(t_math_pos *data)
 		data->drawEnd = HEIGHT -1;
 }
 
-void	copy_img_add(t_img_data	*img, t_img_data *img_printed)
-{
-	img_printed->img = img->img;
-}
+// void	copy_img_add(t_img_data	*img, t_img_data *img_printed)
+// {
+// 	img_printed->img = img->img;
+// }
