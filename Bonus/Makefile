@@ -32,6 +32,9 @@ SRC =	exits.c					\
 		init.c					\
 		drawing.c				\
 		rotations.c				\
+		checks.c				\
+		utils.c					\
+		map.c					\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

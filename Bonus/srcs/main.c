@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 10:50:04 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 14:47:36 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ int		cub3D(char **av)
 	
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
+	if (!disp.mapname)
+		return (print_error(MSG_MALLOC_FAIL), 0);
 	disp.mlx = mlx_init();
 	if (!map_check(&disp) || !disp.mlx)
 		ft_exit_mlx(&disp);
+	exit(1);
 	disp.win = mlx_new_window(disp.mlx, WIDTH,
 			HEIGHT, "Triangle2D");
 	if (!disp.win)

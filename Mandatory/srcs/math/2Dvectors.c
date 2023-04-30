@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:37:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/29 16:01:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 15:03:52 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_vec2	vec2_generating(t_mlx disp)
 	t_vec2	player;
 
 	player.x1 = (double)(disp.pos)[0] / 10 + 0.5;
-	player.y1 = (double)(disp.pos)[0] / 10 + 0.5;
+	player.y1 = (double)(disp.pos)[1] / 10 + 0.5;
 	dir_player((disp.pos)[2], &player);
 	return (player);
 }

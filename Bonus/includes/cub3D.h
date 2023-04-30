@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 08:48:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 16:35:15 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@
 # define MSG_SPAWN_PB "Error\nThere must be exactly one spawn point\n"
 # define MSG_AFTERMAP "Error\nThere must not be anything after the map\n"
 # define MSG_RGB_INVALID "Error\nColors must be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
-# define MSG_OPEN_FAIL_MAP "Error\nFailed ot open map\n"
+# define MSG_OPEN_FAIL_MAP "Error\nFailed to open map\n"
 # define MSG_OPEN_FAIL_XPM "Error\nMlx_xpm_file_to_image failed\n"
 # define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
 # define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
 # define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
 # define MSG_IMG_FAIL "Error\nImage Failure\n"
+# define MSG_WALL_1 "Error\nBorder walls must be 1\n"
+# define MSG_CHAR "Error\nCharacters must be 1 / 0 / N / S / W / E\n"
 
 # define FOV 75
 # define MOVESPEED 0.2
@@ -247,6 +249,21 @@ int		key_hook(int keycode, t_mlx *disp);
 // player/rotations
 void	rt_right(t_math_pos *data);
 void	rt_left(t_math_pos *data);
+
+// utils/utils
+char	*ft_calloc_so(size_t nmemb, size_t size);
+char	*gnl_corrector(char *str);
+int		is_in(char *str, char c);
+
+// *********************
+// *       BONUS       *
+// *********************
+
+// parsing/checkings/checks
+int		can_open(t_mlx *disp);
+
+// parsing/checkings/checks
+int		initialize_map(t_mlx *disp);
 
 //TODO --> remove
 void	print_tab(char **map);
