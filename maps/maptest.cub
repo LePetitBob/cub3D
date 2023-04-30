@@ -1,16 +1,7 @@
-
-
-
-NO    ./images/no.xpm
-SO    ./images/so.xpm
-
-
-WE ./images/we.xpm
-
-
-
-
-EA ./images/ea.xpm
+NO ./images/wallN.xpm
+SO ./images/wallS.xpm
+WE ./images/wallW.xpm
+EA ./images/wallE.xpm
 
 
 

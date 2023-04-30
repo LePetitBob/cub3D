@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 08:43:21 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 10:31:37 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		get_img_path(t_mlx *disp, int *i, int *j, char **path)
 		++*j;
 	if (!disp->line[*i + *j + 2] || disp->line[*i + *j + 2] == '\n')
 	{
-		*path = ft_strndup(disp->line + *i + 2, *j - 1);
+		*path = ft_strndup(disp->line + *i + 2, *j);
 		return (1);
 	}
 	return (0);

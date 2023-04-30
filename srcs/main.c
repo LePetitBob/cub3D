@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 08:38:50 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 10:11:34 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,6 @@ int		cub3D(char **av)
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
-	disp.path_EA = "./images/wallE.xpm";
-	disp.path_NO = "./images/wallN.xpm";
-	disp.path_SO = "./images/wallS.xpm";
-	disp.path_WE = "./images/wallW.xpm";
 	if (!create_wall_images(&disp, &(disp.walls)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp, &(disp.data.img)))
