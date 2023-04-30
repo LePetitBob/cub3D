@@ -28,6 +28,10 @@ SRC =	exits.c					\
 		print_error.c			\
 		fnc_utils.c				\
 		moves.c					\
+		textures.c				\
+		init.c					\
+		drawing.c				\
+		rotations.c				\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

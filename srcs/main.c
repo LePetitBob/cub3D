@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/29 19:33:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 08:38:50 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,11 @@ int		cub3D(char **av)
 	disp.path_NO = "./images/wallN.xpm";
 	disp.path_SO = "./images/wallS.xpm";
 	disp.path_WE = "./images/wallW.xpm";
-	//! TMP v
-	printf("NO : %s\nSO : %s\nWE : %s\nEA : %s\n\nF : %X\nC : %X\n", disp.path_NO, disp.path_SO, disp.path_WE, disp.path_EA, disp.color_f, disp.color_c);
-	//! TMP ^
-	if (create_wall_images(&disp, &(disp.walls)))
-		return (1);
-	if (create_image(&disp, &(disp.data.img)))
-		return (1);
+	if (!create_wall_images(&disp, &(disp.walls)))
+		ft_destroy_exit(MSG_IMG_FAIL, &disp);
+	if (!create_image(&disp, &(disp.data.img)))
+		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	init_values(&(disp.data), vec2_generating(disp));
-	// create_imgs(&disp);
-	// put_minimap(&disp);
 	mlx_loop_hook(disp.mlx, &wall_printer, &disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
 	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/29 19:33:19 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 08:48:36 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
 # define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
+# define MSG_IMG_FAIL "Error\nImage Failure\n"
 
 # define FOV 75
 # define MOVESPEED 0.2
@@ -207,7 +208,7 @@ void	sprite_check(t_mlx *disp, char *path);
 void	create_imgs(t_mlx *disp);
 void	put_minimap(t_mlx *disp);
 void	ft_destroy_exit(char *strerr, t_mlx *disp);
-void	destroy_image(t_mlx *disp);
+void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls);
 void	free_tab(char **map);
 void	resize_map(t_mlx *disp);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
@@ -218,10 +219,12 @@ double	get_normy(int x1, int y1, int x2, int y2);
 void	px_put(t_img_data *img, int x, int y, int color);
 int		create_image(t_mlx *map_data, t_img_data *img);
 int		create_wall_images(t_mlx *disp, t_pics_add *walls);
-unsigned int px_extract(t_img_data *img, int x, int y);
+unsigned int px_ext(t_img_data *img, int x, int y);
 
 // math/math_main
 int		wall_printer(t_mlx *map_data);
+
+// init/init
 void	init_values(t_math_pos *data, t_vec2 player);
 
 // utils/fnc_utils
@@ -230,8 +233,20 @@ char	*ft_strchr(const char *s, int c);
 // math/2Dverctors
 t_vec2	vec2_generating(t_mlx disp);
 
+// math/textures
+void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x);
+void	tex_calc(t_math_pos *data);
+
+// math/drawing
+void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x);
+void	calc_draw_lines(t_math_pos *data);
+
 // player/moves
 int		key_hook(int keycode, t_mlx *disp);
+
+// player/rotations
+void	rt_right(t_math_pos *data);
+void	rt_left(t_math_pos *data);
 
 //TODO --> remove
 void	print_tab(char **map);
