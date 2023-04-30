@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 08:50:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/04/30 10:55:46 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 		mlx_destroy_image(disp->mlx, walls->wallW.img);
 	// if (data->img_printed.img)
 	// 	mlx_destroy_image(disp->mlx, data->img_printed.img);
-	// if (disp->path_NO)
-	// 	free(disp->path_NO);
-	// if (disp->path_SO)
-	// 	free(disp->path_SO);
-	// if (disp->path_EA)
-	// 	free(disp->path_EA);
-	// if (disp->path_WE)
-	// 	free(disp->path_WE);
+	if (disp->path_NO)
+		free(disp->path_NO);
+	if (disp->path_SO)
+		free(disp->path_SO);
+	if (disp->path_EA)
+		free(disp->path_EA);
+	if (disp->path_WE)
+		free(disp->path_WE);
 }
 
 void	free_tab(char **map)
