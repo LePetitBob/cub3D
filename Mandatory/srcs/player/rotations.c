@@ -6,13 +6,13 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:01:54 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/29 20:04:24 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/02 19:34:08 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	rt_right(t_math_pos *data)
+void	rt_left(t_math_pos *data)
 {
 	data->oldDirX = data->dirX;
 	data->dirX = (data->dirX) * cos(ROTSPEED) - (data->dirY) * sin(ROTSPEED);
@@ -24,7 +24,7 @@ void	rt_right(t_math_pos *data)
 		(data->planeY) * cos(ROTSPEED);
 }
 
-void	rt_left(t_math_pos *data)
+void	rt_right(t_math_pos *data)
 {
 	data->oldDirX = data->dirX;
 	data->dirX = (data->dirX) * cos(-ROTSPEED) - (data->dirY) * sin(-ROTSPEED);

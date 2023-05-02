@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:52:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/30 17:27:55 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:42:17 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	block_wrong_file(char *str)
 int	set_map_data(t_mlx *disp)
 {
 	char	*str;
-	
+
 	disp->height_map = 0;
 	disp->length_map = 0;
 	str = gnl_corrector(get_next_line(disp->fd));

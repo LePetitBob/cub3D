@@ -6,16 +6,16 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 14:47:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/02 19:12:25 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		cub3D(char **av)
+int	cub3d(char **av)
 {
 	t_mlx	disp;
-	
+
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
 	if (!disp.mapname)
@@ -23,11 +23,14 @@ int		cub3D(char **av)
 	disp.mlx = mlx_init();
 	if (!map_check(&disp) || !disp.mlx)
 		ft_exit_mlx(&disp);
-	exit(1);
 	disp.win = mlx_new_window(disp.mlx, WIDTH,
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
+	disp.path_EA = "images/wallE.xpm";
+	disp.path_SO = "images/wallS.xpm";
+	disp.path_NO = "images/wallN.xpm";
+	disp.path_WE = "images/wallW.xpm";
 	if (!create_wall_images(&disp, &(disp.walls)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp, &(disp.data.img)))
@@ -46,7 +49,7 @@ int	main(int ac, char **av)
 		return (print_error(MSG_ARGS), 1);
 	if (!extension_check(".cub", av[1]))
 		return (print_error(MSG_EXTENSION), 1);
-	if (!cub3D(av))
+	if (!cub3d(av))
 		return (1);
 	return (0);
 }

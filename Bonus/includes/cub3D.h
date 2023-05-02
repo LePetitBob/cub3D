@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 16:35:15 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/02 20:17:49 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,16 @@ typedef struct s_vec2
 
 typedef struct s_mat_pos
 {
+	float		rayDirX0;
+	float		rayDirX1;
+	float		rayDirY0;
+	float		rayDirY1;
+	float		posZ;
+	float		rowDistance;
+	float		floorStepX;
+	float		floorStepY;
+	float		floorY;
+	float		floorX;
 	double		posX;
 	double		posY;
 	double		dirX;
@@ -119,7 +129,12 @@ typedef struct s_mat_pos
 	double		wallX;
 	double		step;
 	double		texPos;
+	int			cellX;
+	int			cellY;
+	int			tx;
+	int			ty;
 	int			texNum;
+	int			pos;
 	int			texY;
 	int			texX;
 	int			lineHeight;
@@ -264,6 +279,12 @@ int		can_open(t_mlx *disp);
 
 // parsing/checkings/checks
 int		initialize_map(t_mlx *disp);
+
+// parsing/checkings/map_borders
+int		borders(t_mlx *disp, int x, int y);
+
+// parsing/checkings/player_pos
+void	player_pos(t_mlx *disp);
 
 //TODO --> remove
 void	print_tab(char **map);
