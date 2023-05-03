@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:41:38 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 04:38:12 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:08:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,35 @@
 
 void	put_minimap(t_mlx *disp)
 {
+	int	y;
+	int	x;
 	int	i;
 	int	j;
 
-	i = 0;
+	y = -1;
 	create_imgs(disp);
-	while (disp->map[i])
+	while (disp->map[++y])
 	{
-		j = 0;
-		while (disp->map[i][j])
+		x = -1;
+		while (disp->map[y][++x])
 		{
-			if (disp->map[i][j] == '1')
-				mlx_put_image_to_window(disp->mlx, disp->win
-					, disp->img_m, j * 10, i * 10);
-			++j;
+			if (disp->map[y][x] == '1')
+			{
+				i = -1;
+				while (++i < 10)
+				{
+					j = -1;
+					while (++j < 10)
+						px_put(&(disp->data.img), 10 * x + i, 10 * y + j, 255);
+				}
+			}
 		}
-		++i;
 	}
-	mlx_put_image_to_window(disp->mlx, disp->win, disp->img_p,
-			disp->pos[0], disp->pos[1]);
+	i = -1;
+	while (++i < 10)
+	{
+		j = -1;
+		while (++j < 10)
+			px_put(&(disp->data.img), 10 * (int)disp->data.posX + i, 10 * (int)disp->data.posY + j, 0xFF0000);
+	}
 }
