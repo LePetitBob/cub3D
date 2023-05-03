@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:45:11 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/03 03:15:43 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		map_requisites(t_mlx *disp)
 	int	i;
 	int	j;
 
-	// printf("into map_requisites\n");
 	i = -1; //TODO = disp->map_begin;
 	while (disp->map[++i] && ft_strcmp(disp->map[i], "\n"))
 	{

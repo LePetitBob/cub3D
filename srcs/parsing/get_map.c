@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 10:31:37 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 03:15:14 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,6 @@ void	set_map(t_mlx *disp)
 	if (!disp->map)
 		ft_destroy_exit(MSG_MALLOC_FAIL, disp);
 	disp->map[disp->height_map] = NULL;
-}
-
-void	disp_init_values(t_mlx *disp)
-{
-	disp->line = NULL;
-	disp->path_NO = NULL;
-	disp->path_SO = NULL;
-	disp->path_WE = NULL;
-	disp->path_EA = NULL;
-	disp->pth_m = "./images/bs10.xpm";
-	disp->pth_p = "./images/rs10.xpm";
-	disp->pth_v = "./images/nothingness10.xpm";
-	disp->player = 0;
-	disp->height = 1;
-	disp->length = 0;
-	disp->length_map = 0;
-	disp->height_map = 0;
-	disp->tmp = 0;
-	disp->is_floor = 0;
-	disp->is_ceiling = 0;
-	disp->parsing_pb = 0;
-	disp->map_pb = 0;
-	disp->map_begin = 0;
 }
 
 int		get_img_path(t_mlx *disp, int *i, int *j, char **path)

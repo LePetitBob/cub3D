@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 08:48:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 03:46:08 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@
 # define MSG_IMG_FAIL "Error\nImage Failure\n"
 
 # define FOV 75
-# define MOVESPEED 0.2
-# define ROTSPEED 0.2
+# define MOVESPEED 0.032724923
+# define ROTSPEED 0.032724923
 # define WIDTH 1200
 # define HEIGHT 800
 # define texHeight 64
@@ -186,7 +186,6 @@ int		printable(char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *s);
-int		extension_check(char *ext, char *file);
 int		ft_exit_mlx(t_mlx *disp);
 void	print_error(char *str);
 
@@ -203,10 +202,6 @@ void	set_map(t_mlx *disp);
 void	ft_problems(t_mlx *disp);
 void	ft_exit(char *strerr);
 void	reading_init(t_mlx *disp);
-void	err_img(char *msg, t_mlx *disp);
-void	sprite_check(t_mlx *disp, char *path);
-void	create_imgs(t_mlx *disp);
-void	put_minimap(t_mlx *disp);
 void	ft_destroy_exit(char *strerr, t_mlx *disp);
 void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls);
 void	free_tab(char **map);
@@ -214,6 +209,20 @@ void	resize_map(t_mlx *disp);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);
 double	get_normy(int x1, int y1, int x2, int y2);
+
+
+// display/set_screen
+void	put_minimap(t_mlx *disp);
+
+// display/set_images
+int		extension_check(char *ext, char *file);
+void	sprite_check(t_mlx *disp, char *path);
+void	create_imgs(t_mlx *disp);
+void	err_img(char *msg, t_mlx *disp);
+
+// display/wall_find
+int		is_wall_or_door_or_sprite(char c);
+int		is_wall(int pos[2], t_mlx *disp);
 
 // img/create_img
 void	px_put(t_img_data *img, int x, int y, int color);

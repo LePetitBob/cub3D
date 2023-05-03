@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:28:44 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/29 20:03:58 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 04:34:00 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	mv_right(t_mlx *disp, t_math_pos *data)
 
 int	key_hook(int keycode, t_mlx *disp)
 {
+	put_minimap(disp);
 	if (keycode == XK_Escape)
 		ft_exit_mlx(disp);
 	if (keycode == XK_a)
