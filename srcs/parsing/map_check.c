@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 03:15:43 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:30:08 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		map_closed(t_mlx *disp)
 		while (disp->map[i][j])
 		{
 			if (!check_closed(disp, i, j))
-				return (print_error(MSG_OPENMAP), 1);
+				return (print_error(MSG_OPENMAP), 0);
 			++j;
 		}
 		++i;
@@ -45,7 +45,7 @@ int		map_requisites(t_mlx *disp)
 		while (disp->map[i] && disp->map[i][++j])
 		{
 			if (!is_charset(disp->map[i][j], "01 \nNSEW"))
-				return (print_error(MSG_BADMAP), 1);
+				return (print_error(MSG_BADMAP), 0);
 			if (is_charset(disp->map[i][j], "NSEW"))
 			{
 				disp->pos[2] = disp->map[i][j];
@@ -79,8 +79,6 @@ int	valid_color_format(char *s)
 	int	j;
 
 	i = 0;
-	if (ft_strlen(s) > 12 || ft_strlen(s) < 6)
-		return (0);
 	//TODO 			<func------------------------
 	j = i;
 	while (s[i] && is_charset(s[i], "0123456789"))
@@ -106,6 +104,10 @@ int	valid_color_format(char *s)
 			++i;
 	if (i - j <= 0 || i - j > 3)
 		return (0);
+	while (s[i] && s[i] == ' ')
+		++i;
+	if (s[i] != '\n')
+		return (0);
 	return (1);
 }
 
@@ -115,7 +117,6 @@ int get_color(t_mlx *disp, int c)
 	int		res[3];
 	int		i;
 
-	//TODO check that colors are exactly "R,G,B"
 	if (!valid_color_format(disp->line + c))
 		return (-1);
 	color = ft_split(disp->line + c, ',');
@@ -147,8 +148,6 @@ int		map_check(t_mlx *disp)
 	disp->fd = open(disp->mapname, O_RDONLY);
 	if (disp->fd < 0)
 		return (print_error(MSG_OPEN_FAIL_MAP), 0);
-	// if (disp->fd < 0)
-	// 	ft_destroy_exit("Error\nFailed to open map_name\n", disp);
 	set_map(disp);
 	disp->line = get_next_line(disp->fd);
 	disp->height += skip_newlines(disp);
@@ -158,14 +157,12 @@ int		map_check(t_mlx *disp)
 		imgs += check_images(disp);
 		free(disp->line);
 		disp->line = get_next_line(disp->fd);
-		disp->height++;
+		disp->height++; //TODO ADD get_color ici pour récupérer peu importe l'ordre des lignes
 	}
 	if (imgs != 4)
 		return (print_error(MSG_WALL), 0);
 	if (disp->parsing_pb != 0)
 		return (print_error(MSG_PTHMULTIDEF), 0);
-	// if (imgs != 4 || disp->parsing_pb != 0)
-	// 	ft_destroy_exit("Error\nRequires 4 textures for walls\n", disp);//TODO msg for multi def and formissig texture
 	disp->height += skip_newlines(disp);
 	//?     22 ^
 

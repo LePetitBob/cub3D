@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/30 10:55:46 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:01:51 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 		mlx_destroy_image(disp->mlx, walls->wallS.img);
 	if (walls->wallW.img)
 		mlx_destroy_image(disp->mlx, walls->wallW.img);
-	// if (data->img_printed.img)
-	// 	mlx_destroy_image(disp->mlx, data->img_printed.img);
 	if (disp->path_NO)
 		free(disp->path_NO);
 	if (disp->path_SO)
@@ -83,7 +81,8 @@ void	free_tab(char **map)
 int	ft_exit_mlx(t_mlx *disp)
 {
 	destroy_image(disp, &(disp->data), &(disp->walls));
-	mlx_destroy_window(disp->mlx, disp->win);
+	if (disp->win)
+		mlx_destroy_window(disp->mlx, disp->win);
 	mlx_destroy_display(disp->mlx);
 	free(disp->mlx);
 	free_tab(disp->map);

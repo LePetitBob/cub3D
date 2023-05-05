@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 03:46:33 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:25:22 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	check_setupfile_path(t_mlx *disp)
 	skip_newlines(disp);
 	while (disp->line && data != 6)
 	{
-		//TODO GET ORDER HERE
 		if (disp->line && is_charset(disp->line[0], "NSEWFC"))
 			++data;
 		free(disp->line);
@@ -97,14 +96,14 @@ int		cub3D(char **av)
 	disp.mlx = mlx_init();
 	if (!map_check(&disp) || !disp.mlx)
 		ft_exit_mlx(&disp);
-	disp.win = mlx_new_window(disp.mlx, WIDTH,
-			HEIGHT, "Triangle2D");
-	if (!disp.win)
-		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
 	if (!create_wall_images(&disp, &(disp.walls)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp, &(disp.data.img)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
+	disp.win = mlx_new_window(disp.mlx, WIDTH,
+			HEIGHT, "Triangle2D");
+	if (!disp.win)
+		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
 	init_values(&(disp.data), vec2_generating(disp));
 	mlx_loop_hook(disp.mlx, &wall_printer, &disp);
 	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);

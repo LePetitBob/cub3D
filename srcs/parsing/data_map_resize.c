@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:01:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/27 04:47:02 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:00:37 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ int		check_closed(t_mlx *disp, int i, int j)
 	if (disp->map[i][j] == '0')
 	{
 		if (i == 0 || j == 0 || i == disp->height_map - 1 || j == disp->length_map - 1)
-			return (print_error(MSG_OPENMAP), 1);
+			return (0);
 		if (i > 0 && !is_charset(disp->map[i - 1][j], "01"))
-			return (print_error(MSG_OPENMAP), 1);
+			return (0);
 		if (i < disp->height_map - 1 && !is_charset(disp->map[i + 1][j], "01"))
-			return (print_error(MSG_OPENMAP), 1);
+			return (0);
 		if (j > 0 && !is_charset(disp->map[i][j - 1], "01"))
-			return (print_error(MSG_OPENMAP), 1);
+			return (0);
 		if (j < disp->length_map - 1 && !is_charset(disp->map[i][j + 1], "01"))
-			return (print_error(MSG_OPENMAP), 1);
+			return (0);
 	}
 	return (1);
 }
