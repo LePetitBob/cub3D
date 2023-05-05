@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:01:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 12:00:37 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:39:18 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	resize_map(t_mlx *disp)
 		disp->map[i] = s;
 		++i;
 	}
-	// print_tab(disp->map);
 }
 
 int		is_charset(char c, char *s)

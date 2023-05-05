@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/03 03:15:24 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:13:44 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	disp_init_values(t_mlx *disp)
 	disp->path_SO = NULL;
 	disp->path_WE = NULL;
 	disp->path_EA = NULL;
+	disp->map = NULL;
 	disp->pth_m = "./images/bs10.xpm";
 	disp->pth_p = "./images/rs10.xpm";
 	disp->pth_v = "./images/nothingness10.xpm";
@@ -28,6 +29,8 @@ void	disp_init_values(t_mlx *disp)
 	disp->length_map = 0;
 	disp->height_map = 0;
 	disp->tmp = 0;
+	disp->color_f = -1;
+	disp->color_c = -1;
 	disp->is_floor = 0;
 	disp->is_ceiling = 0;
 	disp->parsing_pb = 0;

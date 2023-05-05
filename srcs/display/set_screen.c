@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:41:38 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 18:08:32 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:59:34 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_minimap(t_mlx *disp)
 	int	j;
 
 	y = -1;
-	create_imgs(disp);
+	// create_imgs(disp); //! TODO REMOVE
 	while (disp->map[++y])
 	{
 		x = -1;

@@ -6,16 +6,16 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 12:30:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:23:08 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		map_closed(t_mlx *disp)
+int map_closed(t_mlx *disp)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (disp->map[i])
@@ -33,12 +33,12 @@ int		map_closed(t_mlx *disp)
 	return (0);
 }
 
-int		map_requisites(t_mlx *disp)
+int map_requisites(t_mlx *disp)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
-	i = -1; //TODO = disp->map_begin;
+	i = -1; // TODO = disp->map_begin;
 	while (disp->map[++i] && ft_strcmp(disp->map[i], "\n"))
 	{
 		j = -1;
@@ -59,9 +59,9 @@ int		map_requisites(t_mlx *disp)
 	return (1);
 }
 
-int		skip_newlines(t_mlx *disp)
+int skip_newlines(t_mlx *disp)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (disp->line && disp->line[0] == '\n')
@@ -73,26 +73,26 @@ int		skip_newlines(t_mlx *disp)
 	return (i);
 }
 
-int	valid_color_format(char *s)
+int valid_color_format(char *s)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
-	//TODO 			<func------------------------
+	// TODO 			<func------------------------
 	j = i;
 	while (s[i] && is_charset(s[i], "0123456789"))
-			++i;
+		++i;
 	if (i - j <= 0 || i - j > 3)
 		return (0);
 	if (s[i] == ',')
 		i++;
 	else
 		return (0);
-	//TODO			 -------------------------func>
+	// TODO			 -------------------------func>
 	j = i;
 	while (s[i] && is_charset(s[i], "0123456789"))
-			++i;
+		++i;
 	if (i - j <= 0 || i - j > 3)
 		return (0);
 	if (s[i] == ',')
@@ -101,7 +101,7 @@ int	valid_color_format(char *s)
 		return (0);
 	j = i;
 	while (s[i] && is_charset(s[i], "0123456789"))
-			++i;
+		++i;
 	if (i - j <= 0 || i - j > 3)
 		return (0);
 	while (s[i] && s[i] == ' ')
@@ -113,9 +113,9 @@ int	valid_color_format(char *s)
 
 int get_color(t_mlx *disp, int c)
 {
-	char	**color;
-	int		res[3];
-	int		i;
+	char **color;
+	int res[3];
+	int i;
 
 	if (!valid_color_format(disp->line + c))
 		return (-1);
@@ -137,12 +137,33 @@ int get_color(t_mlx *disp, int c)
 	return (res[0] << 16 | res[1] << 8 | res[2]);
 }
 
-int		map_check(t_mlx *disp)
+void	parse_color(t_mlx *disp, char color)
 {
-	//? 22 v
-	int	imgs;
-	int	i;
-	int	next;
+	int i;
+
+	i = 1;
+	while (disp->line[i] && is_charset(disp->line[i], " "))
+		++i;
+	if (color == 'f')
+		disp->color_f = get_color(disp, i);
+	if (color == 'c')
+		disp->color_c = get_color(disp, i);
+}
+
+int		error_parsing(t_mlx *disp, int imgs)
+{
+	if (imgs != 4)
+		return (print_error(MSG_WALL), 0);
+	if (disp->parsing_pb == PTHMULTIDEF)
+		return (print_error(MSG_PTHMULTIDEF), 0);
+	if (disp->parsing_pb == RGB_INVALID)
+		return (print_error(MSG_RGB_INVALID), 0);
+	return (1);
+}
+
+int	get_data(t_mlx *disp)
+{
+	int imgs;
 
 	reading_init(disp);
 	disp->fd = open(disp->mapname, O_RDONLY);
@@ -152,46 +173,26 @@ int		map_check(t_mlx *disp)
 	disp->line = get_next_line(disp->fd);
 	disp->height += skip_newlines(disp);
 	imgs = 0;
-	while (disp->line && imgs < 4)
+	while (disp->line && (imgs < 4 || disp->color_c == -1 || disp->color_c == -1))
 	{
 		imgs += check_images(disp);
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
-		disp->height++; //TODO ADD get_color ici pour récupérer peu importe l'ordre des lignes
+		if (!ft_strncmp(disp->line, "F ", 2))
+			parse_color(disp, 'f');
+		if (!ft_strncmp(disp->line, "C ", 2))
+			parse_color(disp, 'c');
+		get_new_line(disp);
+		disp->height++;
 	}
-	if (imgs != 4)
-		return (print_error(MSG_WALL), 0);
-	if (disp->parsing_pb != 0)
-		return (print_error(MSG_PTHMULTIDEF), 0);
+	if (!error_parsing(disp, imgs))
+		return (0);
 	disp->height += skip_newlines(disp);
-	//?     22 ^
+	return (1);
+}
 
-	//?     21 v
-	while (disp->line && !ft_strncmp(disp->line, "F ", 2)) // TODO make func
-	{
-		i = 1;
-		while (disp->line[i] && is_charset(disp->line[i], " "))
-			++i;
-		disp->color_f = get_color(disp, i);
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
-	}
-	disp->height += skip_newlines(disp);
-	while (disp->line && !ft_strncmp(disp->line, "C ", 2)) // TODO make func
-	{
-		i = 1;
-		while (disp->line[i] && is_charset(disp->line[i], " "))
-			++i;
-		disp->color_c = get_color(disp, i);
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
-	}
-	if (disp->color_c < 0 || disp->color_f < 0)
-		return (print_error(MSG_RGB_INVALID), 0);
-	disp->height += skip_newlines(disp);
-	//? 21 ^
+void	get_map(t_mlx *disp)
+{
+	int next;
 
-	//? 14 v  (get "int next;")
 	while (disp->line && disp->line[0] != '\n')
 	{
 		if (disp->map_begin == 0)
@@ -202,26 +203,25 @@ int		map_check(t_mlx *disp)
 		if (disp->length_map == 0 || ft_strlen(disp->line) - next > disp->length_map)
 			disp->length_map = ft_strlen(disp->line) - next;
 		disp->map[disp->tmp++] = ft_strndup(disp->line,
-				ft_strlen(disp->line) - next);
+											ft_strlen(disp->line) - next);
 		disp->height++;
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
+		get_new_line(disp);
 	}
-	//? 14 ^
+}
 
-	//? 10 v
+int		map_check(t_mlx *disp)
+{
+	if (!get_data(disp))
+		return (0);
+	get_map(disp);
 	while (disp->line)
 	{
 		if (disp->map_pb == 0 && ft_strcmp(disp->line, "\n"))
 			return (print_error(MSG_AFTERMAP), 0);
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
+		get_new_line(disp);
 	}
-	//? 10 ^
-
 	free(disp->line);
 	close(disp->fd);
-	//TODO clean exit with elements aftermap
 	if (!map_requisites(disp))
 		return (0);
 	if (map_closed(disp))

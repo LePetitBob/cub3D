@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 03:46:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:11:42 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define MSG_IMG_FAIL "Error\nImage Failure\n"
 
 # define FOV 75
-# define MOVESPEED 0.032724923
+# define MOVESPEED 0.2
 # define ROTSPEED 0.032724923
 # define WIDTH 1200
 # define HEIGHT 800
@@ -197,6 +197,8 @@ int		map_requisites(t_mlx *disp);
 int		check_images(t_mlx *disp);
 int		get_img_path(t_mlx *disp, int *i, int *j, char **path);
 int		check_closed(t_mlx *disp, int i, int j);
+int		error_parsing(t_mlx *disp, int imgs);
+int		get_data(t_mlx *disp);
 void	disp_init_values(t_mlx *disp);
 void	set_map(t_mlx *disp);
 void	ft_problems(t_mlx *disp);
@@ -206,6 +208,9 @@ void	ft_destroy_exit(char *strerr, t_mlx *disp);
 void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls);
 void	free_tab(char **map);
 void	resize_map(t_mlx *disp);
+void	parse_color(t_mlx *disp, char color);
+void	get_map(t_mlx *disp);
+void	get_new_line(t_mlx *disp);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);
 double	get_normy(int x1, int y1, int x2, int y2);

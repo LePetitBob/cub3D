@@ -44,7 +44,7 @@ CC =	gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) includes/cub3D.h
 		make -C ./minilibx
 		$(CC) $(OBJ) $(CFLAGS) $(IFLAGS) -o $(NAME)
 

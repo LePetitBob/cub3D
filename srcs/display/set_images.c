@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:46:33 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 04:25:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:59:27 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	err_img(char *msg, t_mlx *disp)
 	exit(1);
 }
 
-void	sprite_check(t_mlx *disp, char *path)
+void	sprite_check(t_mlx *disp, char *path) //! TODO REMOVE
 {
 	int	fd;
 
@@ -59,7 +59,7 @@ void	sprite_check(t_mlx *disp, char *path)
 	close(fd);
 }
 
-void	create_imgs(t_mlx *disp)
+void	create_imgs(t_mlx *disp) //! TODO REMOVE
 {
 	int	img_h;
 	int	img_wdth;

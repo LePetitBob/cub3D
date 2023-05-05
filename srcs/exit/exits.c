@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 12:01:51 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:16:39 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	free_tab(char **map)
 	int	i;
 
 	i = 0;
+	if (map == NULL)
+		return ;
 	while (map[i])
 	{
 		if (map[i])

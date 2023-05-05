@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/30 08:37:59 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 15:09:52 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	wall_printer(t_mlx *map_data)
 		x++;
 	}
 	// map_data->data.img_printed = map_data->data.img;
+	put_minimap(map_data);
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
 		map_data->data.img.img, 0, 0);
 	return (0);

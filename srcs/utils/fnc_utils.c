@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fnc_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:00:30 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/28 16:00:44 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:11:33 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+void	get_new_line(t_mlx *disp)
+{
+	free(disp->line);
+	disp->line = get_next_line(disp->fd);
 }
