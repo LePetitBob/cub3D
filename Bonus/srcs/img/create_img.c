@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/30 08:38:24 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 19:32:21 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	init_imgs(t_mlx *disp, t_pics_add *walls)
 			&(walls->wallN.width), &(walls->wallN.height));
 	walls->wallS.img = mlx_xpm_file_to_image(disp->mlx, disp->path_SO,
 			&(walls->wallS.width), &(walls->wallS.height));
+	walls->floor.img = mlx_xpm_file_to_image(disp->mlx, disp->path_floor,
+			&(walls->floor.width), &(walls->floor.height));
 	if (!(walls->wallE.img) || !(walls->wallN.img) || !(walls->wallS.img)
-		|| !(walls->wallW.img))
+		|| !(walls->wallW.img) || !(walls->floor.img))
 		return (0);
 	return (1);
 }
@@ -60,8 +62,11 @@ int	create_wall_images(t_mlx *disp, t_pics_add *walls)
 	walls->wallS.addr = mlx_get_data_addr((walls->wallS.img),
 			&(walls->wallS.bits_per_pixel), &(walls->wallS.line_length),
 			&(walls->wallS.endian));
+	walls->floor.addr = mlx_get_data_addr((walls->floor.img),
+			&(walls->floor.bits_per_pixel), &(walls->floor.line_length),
+			&(walls->floor.endian));
 	if (!(walls->wallE.addr) || !(walls->wallN.addr) || !(walls->wallS.addr)
-		|| !(walls->wallW.addr))
+		|| !(walls->wallW.addr) || !(walls->floor.addr))
 		return (0);
 	return (1);
 }

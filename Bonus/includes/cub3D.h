@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/02 20:17:49 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 20:09:18 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_pics_add
 	t_img_data	wallS;
 	t_img_data	wallE;
 	t_img_data	wallW;
+	t_img_data	floor;
 }				t_pics_add;
 
 typedef struct s_vec2
@@ -161,6 +162,7 @@ typedef struct s_mlx
 	char	*path_SO;
 	char	*path_WE;
 	char	*path_EA;
+	char	*path_floor;
 	char	*pth_m; //wall blocks for minimap
 	char	*pth_p; //player block for minimap
 	char	*pth_v; //minimap void
@@ -285,6 +287,9 @@ int		borders(t_mlx *disp, int x, int y);
 
 // parsing/checkings/player_pos
 void	player_pos(t_mlx *disp);
+
+// math/floor
+int		fc_casting(t_mlx *disp,  t_math_pos *data, t_img_data *img);
 
 //TODO --> remove
 void	print_tab(char **map);

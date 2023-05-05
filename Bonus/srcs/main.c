@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/02 19:12:25 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/03 19:34:03 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	cub3d(char **av)
 	disp.path_SO = "images/wallS.xpm";
 	disp.path_NO = "images/wallN.xpm";
 	disp.path_WE = "images/wallW.xpm";
+	disp.path_floor = "images/floorTry64.xpm";
 	if (!create_wall_images(&disp, &(disp.walls)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp, &(disp.data.img)))
