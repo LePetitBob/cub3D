@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:47:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/30 11:09:49 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/10 12:39:33 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x)
 	int	y;
 
 	y = 0;
-	while (y < data->drawStart)
+	while (y < data->draw_start)
 	{
 		px_put(img, x, y, map_data.color_c);
 		y++;
 	}
-	y = data->drawEnd;
+	y = data->draw_end;
 	while (y < HEIGHT - 1)
 	{
 		px_put(img, x, y, map_data.color_f);
@@ -33,16 +33,16 @@ void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x)
 void	calc_draw_lines(t_math_pos *data)
 {
 	if (!(data)->side)
-		data->perpWallDist = (data->sideDistX - data->deltaDistX);
+		data->perp_wall_dist = (data->side_distx - data->delta_distx);
 	else
-		data->perpWallDist = (data->sideDistY - data->deltaDistY);
-	data->lineHeight = (int)(HEIGHT / data->perpWallDist);
-	data->drawStart = (-(data->lineHeight)) / 2 + HEIGHT / 2;
-	if (data->drawStart < 0)
-		data->drawStart = 0;
-	data->drawEnd = data->lineHeight / 2 + HEIGHT / 2;
-	if (data->drawEnd >= HEIGHT)
-		data->drawEnd = HEIGHT -1;
+		data->perp_wall_dist = (data->side_disty - data->delta_disty);
+	data->line_height = (int)(HEIGHT / data->perp_wall_dist);
+	data->draw_start = (-(data->line_height)) / 2 + HEIGHT / 2;
+	if (data->draw_start < 0)
+		data->draw_start = 0;
+	data->draw_end = data->line_height / 2 + HEIGHT / 2;
+	if (data->draw_end >= HEIGHT)
+		data->draw_end = HEIGHT -1;
 }
 
 // void	copy_img_add(t_img_data	*img, t_img_data *img_printed)

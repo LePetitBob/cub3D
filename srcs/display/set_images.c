@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:46:33 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 14:59:27 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 11:52:42 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,4 @@ void	err_img(char *msg, t_mlx *disp)
 	free(disp->mlx);
 	free_tab(disp->map);
 	exit(1);
-}
-
-void	sprite_check(t_mlx *disp, char *path) //! TODO REMOVE
-{
-	int	fd;
-
-	fd = open(path, O_RDONLY, __O_NOFOLLOW);
-	if (fd < 0 || !extension_check(".xpm", path))
-		err_img(MSG_PATH, disp);
-	close(fd);
-}
-
-void	create_imgs(t_mlx *disp) //! TODO REMOVE
-{
-	int	img_h;
-	int	img_wdth;
-
-	sprite_check(disp, disp->pth_m); //TODO check fail mlx
-	disp->img_m = mlx_xpm_file_to_image(disp->mlx, disp->pth_m,
-			&img_wdth, &img_h);
-	if (!disp->img_m)
-		err_img(MSG_OPEN_FAIL_XPM, disp);
-	sprite_check(disp, disp->pth_p);
-	disp->img_p = mlx_xpm_file_to_image(disp->mlx, disp->pth_p,
-			&img_wdth, &img_h);
-	if (!disp->img_p)
-		err_img(MSG_OPEN_FAIL_XPM, disp);
-	sprite_check(disp, disp->pth_v);
-	disp->img_v = mlx_xpm_file_to_image(disp->mlx, disp->pth_v,
-			&img_wdth, &img_h);
-	if (!disp->img_v)
-		err_img(MSG_OPEN_FAIL_XPM, disp);
 }

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 18:13:24 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:03:53 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ void	reading_init(t_mlx *disp)
 	disp->height = 1;
 }
 
-int		cub3D(char **av)
+// mlx_hook(disp.win, 2, 1L << 1, key_hook_release, &disp); to set multi button
+int	cub3d(char **av)
 {
 	t_mlx	disp;
-	
+
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
 	disp.mlx = mlx_init();
@@ -98,7 +99,7 @@ int		cub3D(char **av)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
 	init_values(&(disp.data), vec2_generating(disp));
 	mlx_loop_hook(disp.mlx, &wall_printer, &disp);
-	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
+	mlx_hook(disp.win, 2, 1L << 0, key_hook_press, &disp);
 	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);
 	mlx_loop(disp.mlx);
 	return (1);
@@ -110,7 +111,7 @@ int	main(int ac, char **av)
 		return (print_error(MSG_ARGS), 1);
 	if (!extension_check(".cub", av[1]))
 		return (print_error(MSG_EXTENSION), 1);
-	if (!cub3D(av))
+	if (!cub3d(av))
 		return (1);
 	return (0);
 }

@@ -11,7 +11,10 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 vpath %.h $(foreach dir, $(INC_DIR), $(dir):)
 
 SRC =	exits.c					\
+		exits2.c				\
 		map_check.c				\
+		map_parsing_management.c\
+		colors.c				\
 		get_map.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\

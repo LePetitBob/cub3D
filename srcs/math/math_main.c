@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/05 15:09:52 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 12:37:36 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,63 +16,66 @@ void	dda_loop(t_math_pos *data, t_mlx *map_data)
 {
 	while (!(data)->hit)
 	{
-		if (data->sideDistX < data->sideDistY)
+		if (data->side_distx < data->side_disty)
 		{
-			data->sideDistX += data->deltaDistX;
-			data->mapX += data->stepX;
+			data->side_distx += data->delta_distx;
+			data->mapx += data->stepx;
 			data->side = 0;
 		}
 		else
 		{
-			data->sideDistY += data->deltaDistY;
-			data->mapY += data->stepY;
+			data->side_disty += data->delta_disty;
+			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		if (map_data->map[data->mapY][data->mapX] == '1')
+		if (map_data->map[data->mapy][data->mapx] == '1')
 			data->hit = 1;
 	}
 }
 
 void	calc_step_dist(t_math_pos *data)
 {
-	if (data->rayDirX < 0)
+	if (data->ray_dir < 0)
 	{
-		data->stepX = -1;
-		data->sideDistX = (data->posX - data->mapX) * data->deltaDistX;
+		data->stepx = -1;
+		data->side_distx = (data->posx - data->mapx) * data->delta_distx;
 	}
 	else
 	{
-		data->stepX = 1;
-		data->sideDistX = (data->mapX + 1.0 - data->posX) * data->deltaDistX;
+		data->stepx = 1;
+		data->side_distx = (data->mapx + 1.0 - data->posx) * data->delta_distx;
 	}
-	if (data->rayDirY < 0)
+	if (data->ray_diry < 0)
 	{
-		data->stepY = -1;
-		data->sideDistY = (data->posY - data->mapY) * data->deltaDistY;
+		data->stepy = -1;
+		data->side_disty = (data->posy - data->mapy) * data->delta_disty;
 	}
 	else
 	{
-		data->stepY = 1;
-		data->sideDistY = (data->mapY + 1.0 - data->posY) * data->deltaDistY;
+		data->stepy = 1;
+		data->side_disty = (data->mapy + 1.0 - data->posy) * data->delta_disty;
 	}
 }
 
 void	avoid_div_0(t_math_pos *data)
 {
-	data->deltaDistX = fabs(1 / data->rayDirX);
-	data->deltaDistY = fabs(1 / data->rayDirY);
+	data->delta_distx = fabs(1 / data->ray_dir);
+	data->delta_disty = fabs(1 / data->ray_diry);
 	data->hit = 0;
 }
 
 void	cam_dir_val(t_math_pos *data, int x)
 {
-	data->cameraX = 2 * x / (double)(WIDTH) - 1;
-	data->rayDirX = data->dirX + data->planeX * data->cameraX;
-	data->rayDirY = data->dirY + data->planeY * data->cameraX;
-	data->mapX = (int)(data->posX);
-	data->mapY = (int)(data->posY);
+	data->camerax = 2 * x / (double)(WIDTH) - 1;
+	data->ray_dir = data->dirx + data->planex * data->camerax;
+	data->ray_diry = data->diry + data->planey * data->camerax;
+	data->mapx = (int)(data->posx);
+	data->mapy = (int)(data->posy);
 }
 
+	/* to put above mlx_put_img_to_win
+	put_minimap(map_data);
+	*/
 int	wall_printer(t_mlx *map_data)
 {
 	int			x;
@@ -91,8 +94,6 @@ int	wall_printer(t_mlx *map_data)
 		draw_cf(&(map_data->data), &(map_data->data.img), *map_data, x);
 		x++;
 	}
-	// map_data->data.img_printed = map_data->data.img;
-	put_minimap(map_data);
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
 		map_data->data.img.img, 0, 0);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotations.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:01:54 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/29 20:04:24 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:04:19 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void	rt_right(t_math_pos *data)
 {
-	data->oldDirX = data->dirX;
-	data->dirX = (data->dirX) * cos(ROTSPEED) - (data->dirY) * sin(ROTSPEED);
-	data->dirY = (data->oldDirX) * sin(ROTSPEED) + (data->dirY) * cos(ROTSPEED);
-	data->oldPlaneX = data->planeX;
-	data->planeX = (data->planeX) * cos(ROTSPEED) - \
-		(data->planeY) * sin(ROTSPEED);
-	data->planeY = (data->oldPlaneX) * sin(ROTSPEED) + \
-		(data->planeY) * cos(ROTSPEED);
+	data->old_dirx = data->dirx;
+	data->dirx = (data->dirx) * cos(ROTSPEED) - (data->diry) * sin(ROTSPEED);
+	data->diry = (data->old_dirx) * sin(ROTSPEED) + (data->diry) * \
+		cos(ROTSPEED);
+	data->old_planex = data->planex;
+	data->planex = (data->planex) * cos(ROTSPEED) - \
+		(data->planey) * sin(ROTSPEED);
+	data->planey = (data->old_planex) * sin(ROTSPEED) + \
+		(data->planey) * cos(ROTSPEED);
 }
 
 void	rt_left(t_math_pos *data)
 {
-	data->oldDirX = data->dirX;
-	data->dirX = (data->dirX) * cos(-ROTSPEED) - (data->dirY) * sin(-ROTSPEED);
-	data->dirY = (data->oldDirX) * sin(-ROTSPEED) + \
-		(data->dirY) * cos(-ROTSPEED);
-	data->oldPlaneX = data->planeX;
-	data->planeX = (data->planeX) * cos(-ROTSPEED) - \
-		(data->planeY) * sin(-ROTSPEED);
-	data->planeY = (data->oldPlaneX) * sin(-ROTSPEED) + \
-		(data->planeY) * cos(-ROTSPEED);
+	data->old_dirx = data->dirx;
+	data->dirx = (data->dirx) * cos(-ROTSPEED) - (data->diry) * sin(-ROTSPEED);
+	data->diry = (data->old_dirx) * sin(-ROTSPEED) + \
+		(data->diry) * cos(-ROTSPEED);
+	data->old_planex = data->planex;
+	data->planex = (data->planex) * cos(-ROTSPEED) - \
+		(data->planey) * sin(-ROTSPEED);
+	data->planey = (data->old_planex) * sin(-ROTSPEED) + \
+		(data->planey) * cos(-ROTSPEED);
 }
