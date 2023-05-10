@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 12:25:22 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 18:13:24 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	check_setupfile_path(t_mlx *disp)
 
 void	reading_init(t_mlx *disp)
 {
-	int	i;
-
 	disp_set(disp);
 	disp->fd = open(disp->mapname, O_RDONLY);
 	if (disp->fd < 0)
@@ -69,19 +67,13 @@ void	reading_init(t_mlx *disp)
 	check_setupfile_path(disp);
 	while (disp->line && disp->line[0] != '\n')
 	{
-		++i;
 		if (disp->length == 0 || disp->length < ft_strlen(disp->line))
 			disp->length = ft_strlen(disp->line);
 		disp->height_map++;
-		free(disp->line);//TODO factorize free gnl in a simple fct
-		disp->line = get_next_line(disp->fd);
+		get_new_line(disp);
 	}
 	while (disp->line)
-	{
-		++i;
-		free(disp->line);
-		disp->line = get_next_line(disp->fd);
-	}
+		get_new_line(disp);
 	free(disp->line);
 	close(disp->fd);
 	disp->height = 1;

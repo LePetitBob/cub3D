@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 03:15:14 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 05:19:24 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	if (*path)
 	{
 		disp->parsing_pb = PTHMULTIDEF;
-		return (dprintf(2, MSG_PTHMULTIDEF), 1);
+		return (print_error(MSG_PTHMULTIDEF), 1);
 	}
 	while (disp->line[*i + 2] && disp->line[*i + 2] == ' ')
 		++*i;
@@ -40,20 +40,30 @@ int		get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	return (0);
 }
 
-int		check_images(t_mlx *disp)
+void		check_path_color(t_mlx *disp, int *imgs)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
+	while (disp->line[i] && disp->line[i] == ' ')
+		++i;
+	printf("\ncheck colorpath imgs =%d on [%s]\n\n", imgs[0] + imgs[1], disp->line);
+	if (is_charset(disp->line[i], "NSEW"))
+		imgs[0] += 1;
+	else if (is_charset(disp->line[i], "FC"))
+		imgs[1] += 1;
 	if (!ft_strncmp(disp->line + i, "NO ", 3))
-		return (get_img_path(disp, &i, &j, &disp->path_NO));
+		get_img_path(disp, &i, &j, &disp->path_NO);
 	else if (!ft_strncmp(disp->line + i, "SO ", 3))
-		return (get_img_path(disp, &i, &j, &disp->path_SO));
+		get_img_path(disp, &i, &j, &disp->path_SO);
 	else if (!ft_strncmp(disp->line + i, "WE ", 3))
-		return (get_img_path(disp, &i, &j, &disp->path_WE));
+		get_img_path(disp, &i, &j, &disp->path_WE);
 	else if (!ft_strncmp(disp->line + i, "EA ", 3))
-		return (get_img_path(disp, &i, &j, &disp->path_EA));
-	return (0);
+		get_img_path(disp, &i, &j, &disp->path_EA);
+	else if (!ft_strncmp(disp->line + i, "F ", 2))
+		parse_color(disp, 'F');
+	else if (!ft_strncmp(disp->line + i, "C ", 2))
+		parse_color(disp, 'C');
 }

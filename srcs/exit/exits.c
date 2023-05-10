@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 16:16:39 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 05:23:33 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ void	free_tab(char **map)
 	free(map);
 }
 
+void	ft_free_parsing(t_mlx * disp)
+{
+	free(disp->mlx);
+	free(disp->mapname);
+	exit(1);
+}
+
 int	ft_exit_mlx(t_mlx *disp)
 {
 	destroy_image(disp, &(disp->data), &(disp->walls));
@@ -90,4 +97,12 @@ int	ft_exit_mlx(t_mlx *disp)
 	free_tab(disp->map);
 	free(disp->mapname);
 	exit(1);
+}
+
+void	ft_exit_map_read(t_mlx *disp)
+{
+	print_error(MSG_AFTERMAP);
+	while (disp->line)
+		get_new_line(disp);
+	ft_exit_mlx(disp);
 }

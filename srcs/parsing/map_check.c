@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 16:23:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 05:28:18 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,36 +73,32 @@ int skip_newlines(t_mlx *disp)
 	return (i);
 }
 
+int	rgb_format(char *s, int *i)
+{
+	int j;
+
+	j = *i;
+	while (s[*i] && is_charset(s[*i], "0123456789"))
+		++*i;
+	if (*i - j <= 0 || *i - j > 3)
+		return (0);
+	if (s[*i] == ',')
+		++*i;
+	else
+		return (0);
+	return (1);
+}
+
 int valid_color_format(char *s)
 {
 	int i;
-	int j;
 
 	i = 0;
-	// TODO 			<func------------------------
-	j = i;
-	while (s[i] && is_charset(s[i], "0123456789"))
-		++i;
-	if (i - j <= 0 || i - j > 3)
+	if (!rgb_format(s, &i))
 		return (0);
-	if (s[i] == ',')
-		i++;
-	else
+	if (!rgb_format(s, &i))
 		return (0);
-	// TODO			 -------------------------func>
-	j = i;
-	while (s[i] && is_charset(s[i], "0123456789"))
-		++i;
-	if (i - j <= 0 || i - j > 3)
-		return (0);
-	if (s[i] == ',')
-		i++;
-	else
-		return (0);
-	j = i;
-	while (s[i] && is_charset(s[i], "0123456789"))
-		++i;
-	if (i - j <= 0 || i - j > 3)
+	if (!rgb_format(s, &i))
 		return (0);
 	while (s[i] && s[i] == ' ')
 		++i;
@@ -128,10 +124,9 @@ int get_color(t_mlx *disp, int c)
 	while (++i < 3)
 	{
 		if (res[i] < 0 || res[i] > 255)
-		{
 			disp->parsing_pb = RGB_INVALID;
-			return (-1);
-		}
+		if (res[i] < 0 || res[i] > 255)
+			return (-2);
 	}
 	disp->height++;
 	return (res[0] << 16 | res[1] << 8 | res[2]);
@@ -141,29 +136,39 @@ void	parse_color(t_mlx *disp, char color)
 {
 	int i;
 
+	printf("is color : [%s]\n", disp->line);
 	i = 1;
 	while (disp->line[i] && is_charset(disp->line[i], " "))
 		++i;
-	if (color == 'f')
+	if (color == 'F' )
 		disp->color_f = get_color(disp, i);
-	if (color == 'c')
+	if (color == 'C')
 		disp->color_c = get_color(disp, i);
 }
 
-int		error_parsing(t_mlx *disp, int imgs)
+int		error_parsing(t_mlx *disp, int imgs[2])
 {
-	if (imgs != 4)
-		return (print_error(MSG_WALL), 0);
+	if (imgs[0] != 4 || imgs[1] != 2)
+	{
+		print_error(MSG_WALL);
+		ft_free_parsing(disp);
+	}
 	if (disp->parsing_pb == PTHMULTIDEF)
-		return (print_error(MSG_PTHMULTIDEF), 0);
+	{
+		print_error(MSG_PTHMULTIDEF);
+		ft_free_parsing(disp);
+	}
 	if (disp->parsing_pb == RGB_INVALID)
-		return (print_error(MSG_RGB_INVALID), 0);
+	{
+		print_error(MSG_RGB_INVALID);
+		ft_free_parsing(disp);
+	}
 	return (1);
 }
 
 int	get_data(t_mlx *disp)
 {
-	int imgs;
+	int imgs[2];
 
 	reading_init(disp);
 	disp->fd = open(disp->mapname, O_RDONLY);
@@ -172,19 +177,15 @@ int	get_data(t_mlx *disp)
 	set_map(disp);
 	disp->line = get_next_line(disp->fd);
 	disp->height += skip_newlines(disp);
-	imgs = 0;
-	while (disp->line && (imgs < 4 || disp->color_c == -1 || disp->color_c == -1))
+	imgs[0] = 0;
+	imgs[1] = 0;
+	while (disp->line && imgs[0] + imgs[1] < 6)
 	{
-		imgs += check_images(disp);
-		if (!ft_strncmp(disp->line, "F ", 2))
-			parse_color(disp, 'f');
-		if (!ft_strncmp(disp->line, "C ", 2))
-			parse_color(disp, 'c');
+		check_path_color(disp, &imgs[0]);
 		get_new_line(disp);
 		disp->height++;
 	}
-	if (!error_parsing(disp, imgs))
-		return (0);
+	error_parsing(disp, imgs);
 	disp->height += skip_newlines(disp);
 	return (1);
 }
@@ -192,7 +193,9 @@ int	get_data(t_mlx *disp)
 void	get_map(t_mlx *disp)
 {
 	int next;
-
+	// printf("paths :\nNO : {%s}\nSO : {%s}\nWE : {%s}\nEA : {%s}\n", disp->path_NO, disp->path_SO, disp->path_WE, disp->path_EA);
+	printf("f : %x\nc : %x\n", disp->color_f, disp->color_c);
+	write(1, disp->line, ft_strlen(disp->line));
 	while (disp->line && disp->line[0] != '\n')
 	{
 		if (disp->map_begin == 0)
@@ -207,6 +210,7 @@ void	get_map(t_mlx *disp)
 		disp->height++;
 		get_new_line(disp);
 	}
+	// print_tab(disp->map);
 }
 
 int		map_check(t_mlx *disp)
@@ -216,8 +220,8 @@ int		map_check(t_mlx *disp)
 	get_map(disp);
 	while (disp->line)
 	{
-		if (disp->map_pb == 0 && ft_strcmp(disp->line, "\n"))
-			return (print_error(MSG_AFTERMAP), 0);
+		if (ft_strcmp(disp->line, "\n"))
+			ft_exit_map_read(disp);
 		get_new_line(disp);
 	}
 	free(disp->line);

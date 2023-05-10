@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 16:11:42 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 05:03:35 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ typedef struct s_mlx
 	int		player;
 	int		tmp;
 	int		parsing_pb;
-	int		map_pb;
 	int		map_begin;
 	t_math_pos	data;
 	t_pics_add	walls;
@@ -194,11 +193,11 @@ int		skip_newlines(t_mlx *disp);
 int		map_closed(t_mlx *disp);
 int		map_check(t_mlx *disp);
 int		map_requisites(t_mlx *disp);
-int		check_images(t_mlx *disp);
 int		get_img_path(t_mlx *disp, int *i, int *j, char **path);
 int		check_closed(t_mlx *disp, int i, int j);
-int		error_parsing(t_mlx *disp, int imgs);
+int		error_parsing(t_mlx *disp, int imgs[2]);
 int		get_data(t_mlx *disp);
+void	ft_exit_map_read(t_mlx *disp);
 void	disp_init_values(t_mlx *disp);
 void	set_map(t_mlx *disp);
 void	ft_problems(t_mlx *disp);
@@ -211,10 +210,12 @@ void	resize_map(t_mlx *disp);
 void	parse_color(t_mlx *disp, char color);
 void	get_map(t_mlx *disp);
 void	get_new_line(t_mlx *disp);
+void	check_path_color(t_mlx *disp, int *imgs);
 t_vec2	create_vec2(int x1, int y1, int x2, int y2);
 double	get_normx(int x1, int y1, int x2, int y2);
 double	get_normy(int x1, int y1, int x2, int y2);
-
+int		rgb_format(char *s, int *i);
+void	ft_free_parsing(t_mlx * disp);
 
 // display/set_screen
 void	put_minimap(t_mlx *disp);

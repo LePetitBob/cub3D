@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:01:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 14:39:18 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:37:42 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	resize_map(t_mlx *disp)
 	while (i < disp->height_map)
 	{
 		j = 0;
-		s = malloc(sizeof(char) * (disp->length_map + 1));
+		s = malloc(sizeof(char) * (disp->length_map + 1)); // TODO des choses c'est cassé
 		if (!s)
 			ft_destroy_exit(MSG_MALLOC_FAIL, disp);
 		while (disp->map[i][j])

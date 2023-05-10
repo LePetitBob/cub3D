@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/05 16:13:44 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 05:26:51 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	disp_init_values(t_mlx *disp)
 	disp->is_floor = 0;
 	disp->is_ceiling = 0;
 	disp->parsing_pb = 0;
-	disp->map_pb = 0;
 	disp->map_begin = 0;
 }
 
