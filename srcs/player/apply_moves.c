@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:45:29 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 12:45:47 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:23:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	key_hook_press(int keycode, t_mlx *disp)
 		disp->r_left = 1;
 	if (keycode == XK_Right)
 		disp->r_right = 1;
+	if (keycode == XK_Tab)
+		disp->tab = 1;
 	return (0);
 }
 
@@ -62,5 +64,7 @@ int	key_hook_release(int keycode, t_mlx *disp)
 		disp->r_left = 0;
 	if (keycode == XK_Right)
 		disp->r_right = 0;
+	if (keycode == XK_Tab)
+		disp->tab = 0;
 	return (0);
 }

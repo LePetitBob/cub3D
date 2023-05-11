@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 12:38:42 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:17:37 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	cub3d(char **av)
 
 	disp = (t_mlx){0};
 	disp.mapname = ft_strdup(av[1]);
-	disp.mlx = mlx_init();
-	if (!map_check(&disp) || !disp.mlx)
+	if (!map_check(&disp))
 		ft_exit_mlx(&disp);
+	disp.mlx = mlx_init();
 	if (!create_wall_images(&disp, &(disp.walls)))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp, &(disp.data.img)))

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:10:33 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:12:22 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:13:40 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	skip_newlines(t_mlx *disp)
 	return (i);
 }
 
-int	error_parsing(t_mlx *disp, int imgs[2])
+int	error_parsing(t_mlx *disp)
 {
-	if (imgs[0] != 4 || imgs[1] != 2)
+	if (disp->imgs[0] != 4 || disp->imgs[1] != 2)
 	{
 		print_error(MSG_WALL);
 		ft_free_parsing(disp);
@@ -38,7 +38,8 @@ int	error_parsing(t_mlx *disp, int imgs[2])
 		print_error(MSG_PTHMULTIDEF);
 		ft_free_parsing(disp);
 	}
-	if (disp->parsing_pb == RGB_INVALID)
+	if (disp->parsing_pb == RGB_INVALID
+		|| disp->color_c == -2 || disp->color_f == -2)
 	{
 		print_error(MSG_RGB_INVALID);
 		ft_free_parsing(disp);

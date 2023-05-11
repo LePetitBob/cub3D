@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:35:28 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:16:46 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	map_requisites(t_mlx *disp)
 			}
 		}
 	}
+	if (disp->player != 1)
+		return (print_error(MSG_SPAWN_PB), 0);
 	return (1);
 }
 
@@ -78,7 +80,8 @@ int	get_data(t_mlx *disp)
 		get_new_line(disp);
 		disp->height++;
 	}
-	error_parsing(disp, imgs);
+	disp->imgs[0] = imgs[0];
+	disp->imgs[1] = imgs[1];
 	disp->height += skip_newlines(disp);
 	return (1);
 }
@@ -115,6 +118,7 @@ int	map_check(t_mlx *disp)
 			ft_exit_map_read(disp);
 		get_new_line(disp);
 	}
+	error_parsing(disp);
 	free(disp->line);
 	close(disp->fd);
 	if (!map_requisites(disp))

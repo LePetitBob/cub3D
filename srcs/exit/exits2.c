@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:35 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:41:30 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:15:47 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	destroy_image2(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 		mlx_destroy_image(disp->mlx, walls->wall_s.img);
 	if (walls->wall_w.img)
 		mlx_destroy_image(disp->mlx, walls->wall_w.img);
+}
+
+void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
+{
 	if (disp->path_no)
 		free(disp->path_no);
 	if (disp->path_so)
@@ -32,10 +36,6 @@ void	destroy_image2(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 		free(disp->path_ea);
 	if (disp->path_we)
 		free(disp->path_we);
-}
-
-void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
-{
 	if (disp->img_e)
 		mlx_destroy_image(disp->mlx, disp->img_e);
 	if (disp->img_w)

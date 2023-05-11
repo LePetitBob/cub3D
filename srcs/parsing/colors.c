@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:02:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:02:13 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	get_color(t_mlx *disp, int c)
 	int		i;
 
 	if (!valid_color_format(disp->line + c))
-		return (-1);
+		return (-2);
 	color = ft_split(disp->line + c, ',');
 	i = -1;
 	while (++i < 3)

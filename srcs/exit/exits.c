@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 11:58:01 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:13:30 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	ft_destroy_exit(char *strerr, t_mlx *disp)
 
 void	ft_free_parsing(t_mlx *disp)
 {
+	destroy_image(disp, &(disp->data), &(disp->walls));
 	free(disp->mlx);
+	free_tab(disp->map);
 	free(disp->mapname);
 	exit(1);
 }
@@ -40,7 +42,8 @@ int	ft_exit_mlx(t_mlx *disp)
 	destroy_image(disp, &(disp->data), &(disp->walls));
 	if (disp->win)
 		mlx_destroy_window(disp->mlx, disp->win);
-	mlx_destroy_display(disp->mlx);
+	if (disp->mlx)
+		mlx_destroy_display(disp->mlx);
 	free(disp->mlx);
 	free_tab(disp->map);
 	free(disp->mapname);

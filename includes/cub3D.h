@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 12:49:02 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:21:09 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
 # define MSG_OPENMAP "Error\nMap is not closed\n"
 # define MSG_SPAWN_PB "Error\nThere must be exactly one spawn point\n"
 # define MSG_AFTERMAP "Error\nThere must not\
-	 be anything after the map\n"
+ be anything after the map\n"
 # define MSG_RGB_INVALID "Error\nColors must\
-	 be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
+ be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define MSG_OPEN_FAIL_MAP "Error\nFailed ot open map\n"
 # define MSG_OPEN_FAIL_XPM "Error\nMlx_xpm_file_to_image failed\n"
 # define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
@@ -165,6 +165,7 @@ typedef struct s_mlx
 	int			length_map;
 	int			height;
 	int			height_map;
+	int			imgs[2];
 	int			player;
 	int			tmp;
 	int			parsing_pb;
@@ -176,6 +177,7 @@ typedef struct s_mlx
 	int			back;
 	int			r_right;
 	int			r_left;
+	int			tab;
 	t_math_pos	data;
 	t_pics_add	walls;
 }				t_mlx;
@@ -204,7 +206,7 @@ int				map_check(t_mlx *disp);
 int				map_requisites(t_mlx *disp);
 int				get_img_path(t_mlx *disp, int *i, int *j, char **path);
 int				check_closed(t_mlx *disp, int i, int j);
-int				error_parsing(t_mlx *disp, int imgs[2]);
+int				error_parsing(t_mlx *disp);
 int				get_data(t_mlx *disp);
 void			ft_exit_map_read(t_mlx *disp);
 void			disp_init_values(t_mlx *disp);
@@ -250,7 +252,6 @@ int				wall_printer(t_mlx *map_data);
 
 /* init/init */
 void			init_values(t_math_pos *data, t_vec2 player);
-void			init_keys(t_mlx *disp);
 
 /* utils/fnc_utils */
 char			*ft_strchr(const char *s, int c);

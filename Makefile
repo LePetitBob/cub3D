@@ -40,7 +40,7 @@ SRC =	exits.c					\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
-CFLAGS =	-Wall -Wextra -Werror -Lminilibx -lmlx -lX11 -lXext -lm -g
+CFLAGS =	-Wall -Wextra -Werror -Lminilibx -lmlx -lX11 -lXext -lm
 
 IFLAGS =	$(foreach dir, $(INC_DIR), -I $(dir))
 
