@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/11 15:23:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 18:06:49 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ void	cam_dir_val(t_math_pos *data, int x)
 	data->mapy = (int)(data->posy);
 }
 
-	/* to put above mlx_put_img_to_win
-		put_minimap(map_data);
-	*/
 int	wall_printer(t_mlx *map_data)
 {
 	int			x;
