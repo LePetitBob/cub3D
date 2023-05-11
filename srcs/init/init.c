@@ -6,11 +6,22 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/10 12:41:30 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:47:01 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	init_keys(t_mlx *disp)
+{
+	disp->escape = 0;
+	disp->right = 0;
+	disp->left = 0;
+	disp->forward = 0;
+	disp->back = 0;
+	disp->r_right = 0;
+	disp->r_left = 0;
+}
 
 void	disp_init_values(t_mlx *disp)
 {
@@ -35,6 +46,7 @@ void	disp_init_values(t_mlx *disp)
 	disp->is_ceiling = 0;
 	disp->parsing_pb = 0;
 	disp->map_begin = 0;
+	init_keys(disp);
 }
 
 void	init_values(t_math_pos *data, t_vec2 player)

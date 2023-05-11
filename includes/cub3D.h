@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:49:44 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:49:02 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 # define MSG_IMG_FAIL "Error\nImage Failure\n"
 
 # define FOV 75
-# define MOVESPEED 0.2
-# define ROTSPEED 0.032724923
+# define MOVESPEED 0.03
+# define ROTSPEED 0.01
 # define WIDTH 1200
 # define HEIGHT 800
 # define TEX_HEIGHT 64
@@ -169,16 +169,16 @@ typedef struct s_mlx
 	int			tmp;
 	int			parsing_pb;
 	int			map_begin;
+	int			escape;
+	int			right;
+	int			left;
+	int			forward;
+	int			back;
+	int			r_right;
+	int			r_left;
 	t_math_pos	data;
 	t_pics_add	walls;
 }				t_mlx;
-	/* int		escape; */
-	/* int		right; */
-	/* int		left; */
-	/* int		forward; */
-	/* int		back; */
-	/* int		r_right; */
-	/* int		r_left; */
 	/*player pos, [0] = x, [1] = y, [2] = dir */
 
 char			*get_next_line(int fd);
@@ -250,6 +250,7 @@ int				wall_printer(t_mlx *map_data);
 
 /* init/init */
 void			init_values(t_math_pos *data, t_vec2 player);
+void			init_keys(t_mlx *disp);
 
 /* utils/fnc_utils */
 char			*ft_strchr(const char *s, int c);
@@ -269,6 +270,12 @@ void			calc_draw_lines(t_math_pos *data);
 
 /* player/moves */
 int				key_hook_press(int keycode, t_mlx *disp);
+int				key_hook_release(int keycode, t_mlx *disp);
+int				key_apply(t_mlx *disp);
+void			mv_forward(t_mlx *disp, t_math_pos *data);
+void			mv_back(t_mlx *disp, t_math_pos *data);
+void			mv_left(t_mlx *disp, t_math_pos *data);
+void			mv_right(t_mlx *disp, t_math_pos *data);
 
 /* player/rotations */
 void			rt_right(t_math_pos *data);

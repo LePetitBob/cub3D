@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/10 12:37:36 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:08:45 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	wall_printer(t_mlx *map_data)
 	int			x;
 
 	x = 0;
+	key_apply(map_data);
 	while (x < WIDTH)
 	{
 		cam_dir_val(&(map_data->data), x);
