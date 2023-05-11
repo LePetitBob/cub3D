@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2Dvectors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:37:10 by vduriez           #+#    #+#             */
-/*   Updated: 2022/12/12 12:25:10 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/04/30 19:02:27 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,40 @@ t_vec2	create_vec2(int x1, int y1, int x2, int y2)
 	res.norm[0] = sqrt(1 + ((res.dy / res.dx) * (res.dy / res.dx)));
 	res.norm[1] = sqrt(1 + ((res.dy / res.dx) * (res.dy / res.dx)));
 	return (res);
+}
+
+void	dir_player(char d, t_vec2 *player)
+{
+	if (d == 'N')
+	{
+		player->dx = 0;
+		player->dy = -1;
+	}
+	else if (d == 'S')
+	{
+		player->dx = 0;
+		player->dy = 1;
+	}
+	else if (d == 'E')
+	{
+		player->dx = 1;
+		player->dy = 0;
+	}
+	else if (d == 'W')
+	{
+		player->dx = -1;
+		player->dy = 0;
+	}
+}
+
+t_vec2	vec2_generating(t_mlx disp)
+{
+	t_vec2	player;
+
+	player.x1 = (double)(disp.pos)[0] / 10 + 0.5;
+	player.y1 = (double)(disp.pos)[1] / 10 + 0.5;
+	dir_player((disp.pos)[2], &player);
+	return (player);
 }
 
 double	get_normx(int x1, int y1, int x2, int y2)

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 17:16:23 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/16 17:17:36 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 12:16:37 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,42 +72,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	s3[i] = 0;
 	free(s1);
 	return (s3);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n == 0 || !s1 || !s2)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
-		++i;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		++i;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int	printable(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] && s[i])
-	{
-		if (s[i] != '\n' && s[i] < 32)
-			return (0);
-		i++;
-	}
-	return (1);
 }

@@ -1,7 +1,7 @@
-NO ./images/no.xpm
-SO ./images/so.xpm
-WE ./images/we.xpm
-EA ./images/ea.xpm
+NO ./images/wall_n.xpm
+SO ./images/wall_s.xpm
+WE ./images/wall_w.xpm
+EA ./images/wall_e.xpm
 
 F 255,255,25
 C 144,144,252
