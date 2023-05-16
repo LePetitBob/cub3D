@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 18:06:06 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:13:50 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	check_setupfile_path(t_mlx *disp)
 		disp->line = get_next_line(disp->fd);
 	}
 	if (!disp->line || data != 6)
-		ft_destroy_exit("Error\n4 textures and 2 colors are required\n", disp);
+	{
+		print_error("Error\n4 textures and 2 colors are required\n");
+		ft_free_parsing(disp);
+	}
 	skip_newlines(disp);
 }
 

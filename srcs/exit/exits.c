@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 18:09:07 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:14:04 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	ft_free_parsing(t_mlx *disp)
 {
 	destroy_image(disp, &(disp->data), &(disp->walls));
 	free(disp->mlx);
-	free_tab(disp->map);
+	if (disp->map)
+		free_tab(disp->map);
 	free(disp->mapname);
 	exit(1);
 }

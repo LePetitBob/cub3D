@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/10 12:41:30 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:22:30 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	set_map(t_mlx *disp)
 	disp->height = 1;
 	disp->map = malloc(sizeof(char *) * (disp->height_map + 1));
 	if (!disp->map)
-		ft_destroy_exit(MSG_MALLOC_FAIL, disp);
+	{
+		print_error(MSG_MALLOC_FAIL);
+		ft_free_parsing(disp);
+	}
 	disp->map[disp->height_map] = NULL;
 }
 
@@ -66,4 +69,7 @@ void	check_path_color(t_mlx *disp, int *imgs)
 		parse_color(disp, 'F');
 	else if (!ft_strncmp(disp->line + i, "C ", 2))
 		parse_color(disp, 'C');
+	else if (disp->line[i] != '\n')
+		ft_exit_before_map("Error\nBad line\n", disp);
+
 }

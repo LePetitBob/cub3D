@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 15:21:09 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:21:52 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ double			get_normx(int x1, int y1, int x2, int y2);
 double			get_normy(int x1, int y1, int x2, int y2);
 int				rgb_format(char *s, int *i);
 void			ft_free_parsing(t_mlx *disp);
+void			ft_exit_before_map(char *strerr, t_mlx *disp);
 
 /* display/set_screen */
 void			put_minimap(t_mlx *disp);

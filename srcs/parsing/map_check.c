@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 15:16:46 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:53:51 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	map_check(t_mlx *disp)
 	close(disp->fd);
 	if (!map_requisites(disp))
 		return (0);
-	if (map_closed(disp))
+	if (!map_closed(disp))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:53:35 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/11 18:09:11 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:21:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,13 @@ void	free_tab(char **map)
 		i++;
 	}
 	free(map);
+}
+
+void	ft_exit_before_map(char *strerr, t_mlx *disp)
+{
+	if (disp->map)
+		free_tab(disp->map);
+	free(disp->mapname);
+	write(2, strerr, ft_strlen(strerr));
+	exit(2);
 }
