@@ -11,7 +11,10 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 vpath %.h $(foreach dir, $(INC_DIR), $(dir):)
 
 SRC =	exits.c					\
+		exits2.c				\
 		map_check.c				\
+		map_parsing_management.c\
+		colors.c				\
 		get_map.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\
@@ -22,6 +25,17 @@ SRC =	exits.c					\
 		ft_atoi.c				\
 		2Dvectors.c				\
 		data_map_resize.c		\
+		wall_find.c				\
+		create_img.c			\
+		math_main.c				\
+		print_error.c			\
+		fnc_utils.c				\
+		moves.c					\
+		apply_moves.c			\
+		textures.c				\
+		init.c					\
+		drawing.c				\
+		rotations.c				\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
@@ -34,7 +48,7 @@ CC =	gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) includes/cub3D.h
 		make -C ./minilibx
 		$(CC) $(OBJ) $(CFLAGS) $(IFLAGS) -o $(NAME)
 
