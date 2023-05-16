@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/16 14:22:30 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 18:03:20 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	set_map(t_mlx *disp)
 
 int	get_img_path(t_mlx *disp, int *i, int *j, char **path)
 {
+	int	k;
+
+	k = 0;
 	if (*path)
 	{
 		disp->parsing_pb = PTHMULTIDEF;
@@ -36,11 +39,16 @@ int	get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	while (disp->line[*i + *j + 2] && disp->line[*i + *j + 2] != ' '
 		&& disp->line[*i + *j + 2] != '\n')
 		++*j;
-	if (!disp->line[*i + *j + 2] || disp->line[*i + *j + 2] == '\n')
+	while (disp->line[*i + *j + 2 + k] && disp->line[*i + *j + 2 + k] != '\n')
+		++k;
+	if (disp->line[*i + *j + 2 + k] == '\n')
+		k = -1;
+	if (!disp->line[*i + *j + 2] || disp->line[*i + *j + 2] == '\n' || k == -1)
 	{
 		*path = ft_strndup(disp->line + *i + 2, *j);
 		return (1);
 	}
+	disp->parsing_pb = PATH;
 	return (0);
 }
 
@@ -69,7 +77,6 @@ void	check_path_color(t_mlx *disp, int *imgs)
 		parse_color(disp, 'F');
 	else if (!ft_strncmp(disp->line + i, "C ", 2))
 		parse_color(disp, 'C');
-	else if (disp->line[i] != '\n')
-		ft_exit_before_map("Error\nBad line\n", disp);
-
+	else if (disp->line[0] != '\n')
+		disp->parsing_pb = PATH;
 }

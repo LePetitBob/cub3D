@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/16 14:53:51 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/16 17:58:25 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_closed(t_mlx *disp)
 		++i;
 	}
 	resize_map(disp);
-	return (0);
+	return (1);
 }
 
 int	map_requisites(t_mlx *disp)
@@ -83,6 +83,13 @@ int	get_data(t_mlx *disp)
 	disp->imgs[0] = imgs[0];
 	disp->imgs[1] = imgs[1];
 	disp->height += skip_newlines(disp);
+	if (disp->parsing_pb == PATH)
+	{
+		while (disp->line)
+			get_new_line(disp);
+		print_error(MSG_PATH);
+		return (0);
+	}
 	return (1);
 }
 
