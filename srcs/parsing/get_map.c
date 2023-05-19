@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/16 18:03:20 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/19 17:29:22 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 void	set_map(t_mlx *disp)
 {
+	int	i;
+
+	i = 0;
 	disp->height = 1;
 	disp->map = malloc(sizeof(char *) * (disp->height_map + 1));
 	if (!disp->map)
 	{
 		print_error(MSG_MALLOC_FAIL);
 		ft_free_parsing(disp);
+	}
+	while (i < disp->height_map)
+	{
+		disp->map[i] = NULL;
+		++i;
 	}
 	disp->map[disp->height_map] = NULL;
 }
@@ -48,7 +56,7 @@ int	get_img_path(t_mlx *disp, int *i, int *j, char **path)
 		*path = ft_strndup(disp->line + *i + 2, *j);
 		return (1);
 	}
-	disp->parsing_pb = PATH;
+	disp->parsing_pb = INDIC;
 	return (0);
 }
 
@@ -78,5 +86,5 @@ void	check_path_color(t_mlx *disp, int *imgs)
 	else if (!ft_strncmp(disp->line + i, "C ", 2))
 		parse_color(disp, 'C');
 	else if (disp->line[0] != '\n')
-		disp->parsing_pb = PATH;
+		disp->parsing_pb = INDIC;
 }

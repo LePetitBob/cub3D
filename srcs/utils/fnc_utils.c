@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:00:30 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/10 12:16:43 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/19 17:33:38 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,12 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		++i;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+int	ft_set_exit(t_mlx *disp)
+{
+	while (disp->line)
+		get_new_line(disp);
+	print_error(MSG_INDIC);
+	return (0);
 }

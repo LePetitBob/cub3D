@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/16 16:36:27 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/19 17:33:25 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define PATH -1
+# define INDIC -1
 # define WALL -2
 # define PTHMULTIDEF -3
 # define BADMAP -4
@@ -33,7 +33,7 @@
 # define OPEN_FAIL_MAP  -8
 # define OPEN_FAIL_XPM  -9
 
-# define MSG_PATH "Error\nSprite must be an existing .xpm file\n"
+# define MSG_INDIC "Error\nIndicators must be : NO, SO, EA, WE, F and C\n"
 # define MSG_WALL "Error\nRequires 4 textures for walls\n"
 # define MSG_PTHMULTIDEF "Error\nPath must be defined once per textures\n"
 # define MSG_BADMAP "Error\nMap contains wrong characters\n"
@@ -230,6 +230,7 @@ double			get_normy(int x1, int y1, int x2, int y2);
 int				rgb_format(char *s, int *i);
 void			ft_free_parsing(t_mlx *disp);
 void			ft_exit_before_map(char *strerr, t_mlx *disp);
+int				ft_set_exit(t_mlx *disp);
 
 /* display/set_screen */
 void			put_minimap(t_mlx *disp);

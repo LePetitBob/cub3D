@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:01:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/16 14:11:45 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/19 17:30:58 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	resize_map(t_mlx *disp)
 		j = 0;
 		s = malloc(sizeof(char) * (disp->length_map + 1));
 		if (!s)
-		{
-			print_error(MSG_MALLOC_FAIL);
-			ft_free_parsing(disp);
-		}
+			return (print_error(MSG_MALLOC_FAIL), ft_free_parsing(disp));
 		while (disp->map[i][j])
 		{
 			s[j] = disp->map[i][j];
