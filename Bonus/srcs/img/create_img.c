@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/05 17:45:56 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 01:04:54 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	create_image(t_mlx *map_data)
 	img.img = mlx_new_image(map_data->mlx, WIDTH, HEIGHT);
 	if (!(img.img))
 		return (0);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-		&img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), \
+		&(img.line_length), &(img.endian));
 	if (!(img.addr))
 		return (0);
 	return (1);

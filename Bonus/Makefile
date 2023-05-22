@@ -12,7 +12,6 @@ vpath %.h $(foreach dir, $(INC_DIR), $(dir):)
 
 SRC =	exits.c					\
 		map_check.c				\
-		get_map.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\
 		set_images.c			\

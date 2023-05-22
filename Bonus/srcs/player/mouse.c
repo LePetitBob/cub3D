@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:30:18 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:13:24 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:53:53 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	mouse_motion(int x, int y, t_mlx *disp)
 	(void)y;
 	if (x < (disp->x_mloc))
 	{
-		rtm_left(&(disp->data));
+		rtm_left(disp->data);
 	}
 	else if (x > (disp->x_mloc))
 	{
-		rtm_right(&(disp->data));
+		rtm_right(disp->data);
 	}
 	disp->x_mloc = x;
 	return (1);

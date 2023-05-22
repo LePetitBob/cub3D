@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:51:28 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:23:32 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:52:58 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	fc_casting_x(t_mlx *disp, t_math_pos *data, t_img_data *img, int *loc)
 		(texHeight - 1);
 	data->floor_x += data->floor_step_x;
 	data->floor_y += data->floor_stepyy;
-	px_put(img, loc[1], loc[0], px_ext(&(disp->walls.floor), \
+	px_put(img, loc[1], loc[0], px_ext(&(disp->walls->floor), \
 		data->tx, data->ty));
-	px_put(img, loc[1], (HEIGHT - loc[0] - 1), px_ext(&(disp->walls.ceiling), \
+	px_put(img, loc[1], (HEIGHT - loc[0] - 1), px_ext(&(disp->walls->ceiling), \
 		data->tx, data->ty));
 }
 

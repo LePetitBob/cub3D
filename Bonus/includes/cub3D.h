@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:38:43 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:49:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,10 @@ int				key_apply(t_mlx *disp);
 // player/rotations
 void	rt_right(t_math_pos *data);
 void	rt_left(t_math_pos *data);
+void	mv_forward(t_mlx *disp, t_math_pos *data);
+void	mv_back(t_mlx *disp, t_math_pos *data);
+void	mv_left(t_mlx *disp, t_math_pos *data);
+void	mv_right(t_mlx *disp, t_math_pos *data);
 
 // utils/utils
 char	*ft_calloc_so(size_t nmemb, size_t size);

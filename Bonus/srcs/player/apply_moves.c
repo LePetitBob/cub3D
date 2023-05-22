@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:45:29 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:34:25 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:50:48 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	key_apply(t_mlx *disp)
 {	
 	if (disp->left == 1)
-		mv_left(disp, &(disp->data));
+		mv_left(disp, disp->data);
 	if (disp->forward == 1)
-		mv_forward(disp, &(disp->data));
+		mv_forward(disp, disp->data);
 	if (disp->right == 1)
-		mv_right(disp, &(disp->data));
+		mv_right(disp, disp->data);
 	if (disp->back == 1)
-		mv_back(disp, &(disp->data));
+		mv_back(disp, disp->data);
 	if (disp->r_left == 1)
-		rt_left(&(disp->data));
+		rt_left(disp->data);
 	if (disp->r_right == 1)
-		rt_right(&(disp->data));
+		rt_right(disp->data);
 	return (0);
 }
 

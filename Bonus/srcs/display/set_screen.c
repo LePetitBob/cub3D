@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_screen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:41:38 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:41:56 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:48:12 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	put_minimap(t_mlx *disp)
 				{
 					j = -1;
 					while (++j < 10)
-						px_put(disp->data->img), \
+						px_put(disp->data->img, \
 							10 * x + i, 10 * y + j, 0x0000FF);
 				}
 			}
