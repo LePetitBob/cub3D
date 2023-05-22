@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:51:28 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/05 16:21:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:23:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	fc_casting_x(t_mlx *disp, t_math_pos *data, t_img_data *img, int *loc)
 {
-	data->cellX = (int)(data->floorX);
-	data->cellY = (int)(data->floorY);
-	data->tx = (int)(texWidth * (data->floorX - data->cellX)) & (texWidth - 1);
-	data->ty = (int)(texHeight * (data->floorY - data->cellY)) &\
+	data->cell_x = (int)(data->floor_x);
+	data->cell_y = (int)(data->floor_y);
+	data->tx = (int)(texWidth * (data->floor_x - data->cell_x)) & (texWidth - 1);
+	data->ty = (int)(texHeight * (data->floor_y - data->cell_y)) &\
 		(texHeight - 1);
-	data->floorX += data->floorStepX;
-	data->floorY += data->floorStepY;
+	data->floor_x += data->floor_step_x;
+	data->floor_y += data->floor_stepyy;
 	px_put(img, loc[1], loc[0], px_ext(&(disp->walls.floor), \
 		data->tx, data->ty));
 	px_put(img, loc[1], (HEIGHT - loc[0] - 1), px_ext(&(disp->walls.ceiling), \
@@ -34,19 +34,19 @@ int	fc_casting(t_mlx *disp, t_math_pos *data, t_img_data *img)
 	loc[0] = -1;
 	while (++loc[0] < HEIGHT)
 	{
-		data->rayDirX0 = data->dirX - data->planeX;
-		data->rayDirY0 = data->dirY - data->planeY;
-		data->rayDirX1 = data->dirX + data->planeX;
-		data->rayDirY1 = data->dirY + data->planeY;
+		data->ray_dir_x0 = data->dir_x - data->plane_x;
+		data->ray_dir_y0 = data->dir_y - data->plane_y;
+		data->ray_dir_x1 = data->dir_x + data->plane_x;
+		data->ray_dir_y1 = data->dir_y + data->plane_y;
 		data->pos = loc[0] - HEIGHT / 2;
-		data->posZ = 0.5 * HEIGHT;
-		data->rowDistance = data->posZ / data->pos;
-		data->floorStepX = data->rowDistance * (data->rayDirX1 - \
-		data->rayDirX0) / WIDTH;
-		data->floorStepY = data->rowDistance * (data->rayDirY1 - \
-		data->rayDirY0) / WIDTH;
-		data->floorX = data->posX + data->rowDistance * data->rayDirX0;
-		data->floorY = data->posY + data->rowDistance * data->rayDirY0;
+		data->pos_z = 0.5 * HEIGHT;
+		data->row_distance = data->pos_z / data->pos;
+		data->floor_step_x = data->row_distance * (data->ray_dir_x1 - \
+		data->ray_dir_x0) / WIDTH;
+		data->floor_stepyy = data->row_distance * (data->ray_dir_y1 - \
+		data->ray_dir_y0) / WIDTH;
+		data->floor_x = data->pos_x + data->row_distance * data->ray_dir_x0;
+		data->floor_y = data->pos_y + data->row_distance * data->ray_dir_y0;
 		loc[1] = -1;
 		while (++loc[1] < WIDTH)
 			fc_casting_x(disp, data, img, loc);

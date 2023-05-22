@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:28:44 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/03 19:10:22 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:12:14 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 
 void	mv_forward(t_mlx *disp, t_math_pos *data)
 {
-	if ((disp->map)[(int)((data->posY) + \
-		(data->dirY) * MOVESPEED)][(int)(data->posX)] == '0')
-		data->posY += (data->dirY) * MOVESPEED;
-	if ((disp->map)[(int)(data->posY)][(int)((data->posX) + \
-		(data->dirX) * MOVESPEED)] == '0')
-		data->posX += (data->dirX) * MOVESPEED;
+	if ((disp->map)[(int)((data->pos_y) + \
+		(data->dir_y) * MOVESPEED)][(int)(data->pos_x)] == '0')
+		data->pos_y += (data->dir_y) * MOVESPEED;
+	if ((disp->map)[(int)(data->pos_y)][(int)((data->pos_x) + \
+		(data->dir_x) * MOVESPEED)] == '0')
+		data->pos_x += (data->dir_x) * MOVESPEED;
 }
 
 void	mv_back(t_mlx *disp, t_math_pos *data)
 {
-	if ((disp->map)[(int)((data->posY) - \
-		(data->dirY) * MOVESPEED)][(int)(data->posX)] == '0')
-		data->posY -= (data->dirY) * MOVESPEED;
-	if ((disp->map)[(int)(data->posY)][(int)((data->posX) - \
-		(data->dirX) * MOVESPEED)] == '0')
-		data->posX -= (data->dirX) * MOVESPEED;
+	if ((disp->map)[(int)((data->pos_y) - \
+		(data->dir_y) * MOVESPEED)][(int)(data->pos_x)] == '0')
+		data->pos_y -= (data->dir_y) * MOVESPEED;
+	if ((disp->map)[(int)(data->pos_y)][(int)((data->pos_x) - \
+		(data->dir_x) * MOVESPEED)] == '0')
+		data->pos_x -= (data->dir_x) * MOVESPEED;
 }
 
 void	mv_left(t_mlx *disp, t_math_pos *data)
 {
-	if ((disp->map)[(int)((data->posY) - \
-		(data->dirX) * MOVESPEED)][(int)(data->posX)] == '0')
-		data->posY -= (data->dirX) * MOVESPEED;
-	if ((disp->map)[(int)(data->posY)][(int)((data->posX) + \
-		(data->dirY) * MOVESPEED)] == '0')
-		data->posX += (data->dirY) * MOVESPEED;
+	if ((disp->map)[(int)((data->pos_y) - \
+		(data->dir_x) * MOVESPEED)][(int)(data->pos_x)] == '0')
+		data->pos_y -= (data->dir_x) * MOVESPEED;
+	if ((disp->map)[(int)(data->pos_y)][(int)((data->pos_x) + \
+		(data->dir_y) * MOVESPEED)] == '0')
+		data->pos_x += (data->dir_y) * MOVESPEED;
 }
 
 void	mv_right(t_mlx *disp, t_math_pos *data)
 {
-	if ((disp->map)[(int)((data->posY) + \
-		(data->dirX) * MOVESPEED)][(int)(data->posX)] == '0')
-		data->posY += (data->dirX) * MOVESPEED;
-	if ((disp->map)[(int)(data->posY)][(int)((data->posX) - \
-		(data->dirY) * MOVESPEED)] == '0')
-		data->posX -= (data->dirY) * MOVESPEED;
+	if ((disp->map)[(int)((data->pos_y) + \
+		(data->dir_x) * MOVESPEED)][(int)(data->pos_x)] == '0')
+		data->pos_y += (data->dir_x) * MOVESPEED;
+	if ((disp->map)[(int)(data->pos_y)][(int)((data->pos_x) - \
+		(data->dir_y) * MOVESPEED)] == '0')
+		data->pos_x -= (data->dir_y) * MOVESPEED;
 }
 
 int	key_hook(int keycode, t_mlx *disp)

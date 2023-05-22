@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 17:46:10 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:38:43 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@
 # define MSG_OPENMAP "Error\nMap is not closed\n"
 # define MSG_SPAWN_PB "Error\nThere must be exactly one spawn point\n"
 # define MSG_AFTERMAP "Error\nThere must not be anything after the map\n"
-# define MSG_RGB_INVALID "Error\nColors must be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
+# define MSG_RGB_INVALID "Error\nColors must be \
+formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define MSG_OPEN_FAIL_MAP "Error\nFailed to open map\n"
 # define MSG_OPEN_FAIL_XPM "Error\nMlx_xpm_file_to_image failed\n"
-# define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
+# define MSG_EXTENSION "Error\nThe map must be a\
+ file with a \".cub\" extension\n"
 # define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
 # define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
@@ -100,50 +102,50 @@ typedef struct s_vec2
 
 typedef struct s_mat_pos
 {
-	float		rayDirX0;
-	float		rayDirX1;
-	float		rayDirY0;
-	float		rayDirY1;
-	float		posZ;
-	float		rowDistance;
-	float		floorStepX;
-	float		floorStepY;
-	float		floorY;
-	float		floorX;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		oldDirX;
-	double		dirY;
-	double		planeX;
-	double		oldPlaneX;
-	double		planeY;
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	double		wallX;
+	float		ray_dir_x0;
+	float		ray_dir_x1;
+	float		ray_dir_y0;
+	float		ray_dir_y1;
+	float		pos_z;
+	float		row_distance;
+	float		floor_step_x;
+	float		floor_stepyy;
+	float		floor_y;
+	float		floor_x;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		old_dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		old_plane_x;
+	double		plane_y;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	double		wall_x;
 	double		step;
-	double		texPos;
-	int			cellX;
-	int			cellY;
+	double		tex_pos;
+	int			cell_x;
+	int			cell_y;
 	int			tx;
 	int			ty;
-	int			texNum;
+	int			tex_num;
 	int			pos;
-	int			texY;
-	int			texX;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	int			tex_y;
+	int			tex_x;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	int			hit;
 	int			side;
 	t_img_data	*img;
@@ -152,40 +154,48 @@ typedef struct s_mat_pos
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	char	*mapname;
-	char	*line;
-	char	*path_wall;
-	char	*path_ceiling;
-	char	*path_floor;
-	char	*pth_m; //wall blocks for minimap
-	char	*pth_p; //player block for minimap
-	char	*pth_v; //minimap void
-	void	*img_m;
-	void	*img_v;
-	void	*img_p;
-	void	*img_e;
-	void	*img_w;
-	void	*img_n;
-	void	*img_s;
-	int		pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
-	int		is_floor;
-	int		is_ceiling;
-	int		color_f;
-	int		color_c;
-	int		fd;
-	int		length;
-	int		length_map;
-	int		height;
-	int		height_map;
-	int		player;
-	int		tmp;
-	int		parsing_pb;
-	int		map_pb;
-	int		map_begin;
-	int		x_mloc;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	char		*mapname;
+	char		*line;
+	char		*path_wall;
+	char		*path_ceiling;
+	char		*path_floor;
+	char		*pth_m;
+	char		*pth_p;
+	char		*pth_v;
+	void		*img_m;
+	void		*img_v;
+	void		*img_p;
+	void		*img_e;
+	void		*img_w;
+	void		*img_n;
+	void		*img_s;
+	int			pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
+	int			is_floor;
+	int			is_ceiling;
+	int			color_f;
+	int			color_c;
+	int			fd;
+	int			length;
+	int			length_map;
+	int			height;
+	int			height_map;
+	int			player;
+	int			tmp;
+	int			parsing_pb;
+	int			map_pb;
+	int			map_begin;
+	int			x_mloc;
+	int			escape;
+	int			right;
+	int			left;
+	int			forward;
+	int			back;
+	int			r_right;
+	int			r_left;
+	int			tab;
 	t_math_pos	*data;
 	t_pics_add	*walls;
 }				t_mlx;
@@ -259,7 +269,9 @@ void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x);
 void	calc_draw_lines(t_math_pos *data);
 
 // player/moves
-int		key_hook(int keycode, t_mlx *disp);
+int				key_hook_press(int keycode, t_mlx *disp);
+int				key_hook_release(int keycode, t_mlx *disp);
+int				key_apply(t_mlx *disp);
 
 // player/rotations
 void	rt_right(t_math_pos *data);

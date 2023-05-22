@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:30:18 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/05 16:03:05 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:13:24 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	rtm_right(t_math_pos *data)
 {
-	data->oldDirX = data->dirX;
-	data->dirX = (data->dirX) * cos(MROTSPEED) - (data->dirY) * sin(MROTSPEED);
-	data->dirY = (data->oldDirX) * sin(MROTSPEED) + (data->dirY) * \
+	data->old_dir_x = data->dir_x;
+	data->dir_x = (data->dir_x) * cos(MROTSPEED) - (data->dir_y) * sin(MROTSPEED);
+	data->dir_y = (data->old_dir_x) * sin(MROTSPEED) + (data->dir_y) * \
 		cos(MROTSPEED);
-	data->oldPlaneX = data->planeX;
-	data->planeX = (data->planeX) * cos(MROTSPEED) - \
-		(data->planeY) * sin(MROTSPEED);
-	data->planeY = (data->oldPlaneX) * sin(MROTSPEED) + \
-		(data->planeY) * cos(MROTSPEED);
+	data->old_plane_x = data->plane_x;
+	data->plane_x = (data->plane_x) * cos(MROTSPEED) - \
+		(data->plane_y) * sin(MROTSPEED);
+	data->plane_y = (data->old_plane_x) * sin(MROTSPEED) + \
+		(data->plane_y) * cos(MROTSPEED);
 }
 
 void	rtm_left(t_math_pos *data)
 {
-	data->oldDirX = data->dirX;
-	data->dirX = (data->dirX) * cos(-MROTSPEED) - (data->dirY) * \
+	data->old_dir_x = data->dir_x;
+	data->dir_x = (data->dir_x) * cos(-MROTSPEED) - (data->dir_y) * \
 		sin(-MROTSPEED);
-	data->dirY = (data->oldDirX) * sin(-MROTSPEED) + \
-		(data->dirY) * cos(-MROTSPEED);
-	data->oldPlaneX = data->planeX;
-	data->planeX = (data->planeX) * cos(-MROTSPEED) - \
-		(data->planeY) * sin(-MROTSPEED);
-	data->planeY = (data->oldPlaneX) * sin(-MROTSPEED) + \
-		(data->planeY) * cos(-MROTSPEED);
+	data->dir_y = (data->old_dir_x) * sin(-MROTSPEED) + \
+		(data->dir_y) * cos(-MROTSPEED);
+	data->old_plane_x = data->plane_x;
+	data->plane_x = (data->plane_x) * cos(-MROTSPEED) - \
+		(data->plane_y) * sin(-MROTSPEED);
+	data->plane_y = (data->old_plane_x) * sin(-MROTSPEED) + \
+		(data->plane_y) * cos(-MROTSPEED);
 }
 
 int	mouse_motion(int x, int y, t_mlx *disp)

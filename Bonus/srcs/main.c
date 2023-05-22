@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/05 18:00:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:38:09 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int	cub3d(char **av)
 	mlx_loop_hook(disp.mlx, wall_printer, &disp);
 	mlx_mouse_hide(disp.mlx, disp.win);
 	mlx_hook(disp.win, MotionNotify, PointerMotionMask, mouse_motion, &disp);
-	mlx_hook(disp.win, 2, 1L << 0, key_hook, &disp);
+	mlx_hook(disp.win, KeyPress, KeyPressMask, \
+		key_hook_press, &disp);
+	mlx_hook(disp.win, KeyRelease, KeyReleaseMask, \
+		key_hook_release, &disp);
 	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);
 	mlx_loop(disp.mlx);
 	return (1);

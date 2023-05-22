@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/22 21:37:55 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 00:28:10 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
  be anything after the map\n"
 # define MSG_RGB_INVALID "Error\nColors must\
  be formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
-# define MSG_OPEN_FAIL_MAP "Error\nFailed ot open map\n"
+# define MSG_OPEN_FAIL_MAP "Error\nFailed to open map\n"
 # define MSG_OPEN_FAIL_XPM "Error\nMlx_xpm_file_to_image failed\n"
 # define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
 # define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
@@ -101,17 +101,17 @@ typedef struct s_vec2
 
 typedef struct s_mat_pos
 {
-	double		posx;
-	double		posy;
-	double		dirx;
-	double		old_dirx;
-	double		diry;
-	double		planex;
-	double		old_planex;
-	double		planey;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		old_dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		old_plane_x;
+	double		plane_y;
 	double		camerax;
 	double		ray_dir;
-	double		ray_diry;
+	double		ray_dir_y;
 	double		side_distx;
 	double		side_disty;
 	double		delta_distx;
@@ -128,7 +128,7 @@ typedef struct s_mat_pos
 	int			mapx;
 	int			mapy;
 	int			stepx;
-	int			stepy;
+	int			stepyy;
 	int			hit;
 	int			side;
 	t_img_data	img;

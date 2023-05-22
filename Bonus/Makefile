@@ -27,6 +27,7 @@ SRC =	exits.c					\
 		math_main.c				\
 		print_error.c			\
 		fnc_utils.c				\
+		apply_moves.c			\
 		moves.c					\
 		textures.c				\
 		init.c					\
