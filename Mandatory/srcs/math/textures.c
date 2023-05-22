@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:45:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/04/29 20:17:19 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/10 12:43:34 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x)
 {
 	int	y;
 
-	data->step = 1.0 * texHeight / (data->lineHeight);
-	data->texPos = ((data->drawStart) - HEIGHT / 2 + \
-		(data->lineHeight) / 2) * (data->step);
-	y = data->drawStart;
-	while (y < data->drawEnd)
+	data->step = 1.0 * TEX_HEIGHT / (data->line_height);
+	data->tex_pos = ((data->draw_start) - HEIGHT / 2 + \
+		(data->line_height) / 2) * (data->step);
+	y = data->draw_start;
+	while (y < data->draw_end)
 	{
-		data->texY = (int)(data->texPos) & (texHeight - 1);
-		data->texPos += data->step;
-		if (data->side == 1 && data->rayDirY < 0)
-			px_put(img, x, y, px_ext(&(walls->wallN), data->texX, data->texY));
-		else if (data->side == 0 && data->rayDirX > 0)
-			px_put(img, x, y, px_ext(&(walls->wallE), data->texX, data->texY));
-		else if (data->side == 1 && data->rayDirY > 0)
-			px_put(img, x, y, px_ext(&(walls->wallS), data->texX, data->texY));
-		else if (data->side == 0 && data->rayDirX < 0)
-			px_put(img, x, y, px_ext(&(walls->wallW), data->texX, data->texY));
+		data->texy = (int)(data->tex_pos) & (TEX_HEIGHT - 1);
+		data->tex_pos += data->step;
+		if (data->side == 1 && data->ray_diry < 0)
+			px_put(img, x, y, px_ext(&(walls->wall_n), data->texx, data->texy));
+		else if (data->side == 0 && data->ray_dir > 0)
+			px_put(img, x, y, px_ext(&(walls->wall_e), data->texx, data->texy));
+		else if (data->side == 1 && data->ray_diry > 0)
+			px_put(img, x, y, px_ext(&(walls->wall_s), data->texx, data->texy));
+		else if (data->side == 0 && data->ray_dir < 0)
+			px_put(img, x, y, px_ext(&(walls->wall_w), data->texx, data->texy));
 		y++;
 	}
 }
@@ -39,13 +39,13 @@ void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x)
 void	tex_calc(t_math_pos *data)
 {
 	if (data->side == 0)
-		data->wallX = data->posY + data->perpWallDist * data->rayDirY;
+		data->wallx = data->posy + data->perp_wall_dist * data->ray_diry;
 	else
-		data->wallX = data->posX + data->perpWallDist * data->rayDirX;
-	data->wallX -= floor((data->wallX));
-	data->texX = (int)((data->wallX) * (double)texWidth);
-	if (data->side == 0 && data->rayDirX > 0)
-		data->texX = texWidth - (data->texX) - 1;
-	if (data->side == 1 && data->rayDirY < 0)
-		data->texX = texWidth - (data->texX) - 1;
+		data->wallx = data->posx + data->perp_wall_dist * data->ray_dir;
+	data->wallx -= floor((data->wallx));
+	data->texx = (int)((data->wallx) * (double)TEX_WIDTH);
+	if (data->side == 0 && data->ray_dir > 0)
+		data->texx = TEX_WIDTH - (data->texx) - 1;
+	if (data->side == 1 && data->ray_diry < 0)
+		data->texx = TEX_WIDTH - (data->texx) - 1;
 }
