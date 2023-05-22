@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/19 17:33:25 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/22 21:37:55 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define MSG_EXTENSION "Error\nThe map must be a file with a \".cub\" extension\n"
 # define MSG_ARGS "Error\n2 arguments xpected :\n$> ./cub3D map.cub\n"
 # define MSG_MLX_WIN_FAIL "Error\nMlx_create_window failed\n"
+# define MSG_MLX_INIT_FAIL "Error\nMlx_init failed\n"
 # define MSG_MALLOC_FAIL "Error\nMalloc failed\n."
 # define MSG_IMG_FAIL "Error\nImage Failure\n"
 

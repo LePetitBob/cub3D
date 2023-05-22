@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/19 17:29:22 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/19 18:57:39 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_img_path(t_mlx *disp, int *i, int *j, char **path)
 	while (disp->line[*i + *j + 2] && disp->line[*i + *j + 2] != ' '
 		&& disp->line[*i + *j + 2] != '\n')
 		++*j;
-	while (disp->line[*i + *j + 2 + k] && disp->line[*i + *j + 2 + k] != '\n')
+	while (disp->line[*i + *j + 2 + k] && disp->line[*i + *j + 2 + k] == ' ')
 		++k;
 	if (disp->line[*i + *j + 2 + k] == '\n')
 		k = -1;
