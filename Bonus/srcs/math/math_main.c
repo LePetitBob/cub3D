@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/03 20:09:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:55:03 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,22 @@ int	wall_printer(t_mlx *map_data)
 	int			x;
 
 	x = 0;
-	fc_casting(map_data, &(map_data->data), &(map_data->data.img));
+	fc_casting(map_data, map_data->data, map_data->data->img);
 	while (x < WIDTH)
 	{
-		cam_dir_val(&(map_data->data), x);
-		avoid_div_0(&(map_data->data));
-		calc_step_dist(&(map_data->data));
-		dda_loop(&(map_data->data), map_data);
-		calc_draw_lines(&(map_data->data));
-		tex_calc(&(map_data->data));
-		tex_px_inc(&(map_data->data), &(map_data->walls),
-			&(map_data->data.img), x);
+		cam_dir_val(map_data->data, x);
+		avoid_div_0(map_data->data);
+		calc_step_dist(map_data->data);
+		dda_loop(map_data->data, map_data);
+		calc_draw_lines(map_data->data);
+		tex_calc(map_data->data);
+		tex_px_inc(map_data->data, map_data->walls,
+			map_data->data->img, x);
 		// draw_cf(&(map_data->data), &(map_data->data.img), *map_data, x);
 		x++;
 	}
 	// map_data->data.img_printed = map_data->data.img;
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
-		map_data->data.img.img, 0, 0);
+		map_data->data->img->img, 0, 0);
 	return (0);
 }

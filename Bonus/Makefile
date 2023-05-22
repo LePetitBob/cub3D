@@ -38,6 +38,7 @@ SRC =	exits.c					\
 		map_borders.c			\
 		player_pos.c			\
 		floor.c					\
+		mouse.c					\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

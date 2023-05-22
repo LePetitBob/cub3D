@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:45:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/03 19:00:41 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:53:28 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,7 @@ void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x)
 		data->texY = (int)(data->texPos) & (texHeight - 1);
 		data->texPos += data->step;
 		if (data->side == 1 && data->rayDirY < 0)
-			px_put(img, x, y, px_ext(&(walls->wallN), data->texX, data->texY));
-		else if (data->side == 0 && data->rayDirX > 0)
-			px_put(img, x, y, px_ext(&(walls->wallE), data->texX, data->texY));
-		else if (data->side == 1 && data->rayDirY > 0)
-			px_put(img, x, y, px_ext(&(walls->wallS), data->texX, data->texY));
-		else if (data->side == 0 && data->rayDirX < 0)
-			px_put(img, x, y, px_ext(&(walls->wallW), data->texX, data->texY));
+			px_put(img, x, y, px_ext(&(walls->wall), data->texX, data->texY));
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:51:28 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/03 20:18:38 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:21:30 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	fc_casting_x(t_mlx *disp, t_math_pos *data, t_img_data *img, int *loc)
 	data->floorY += data->floorStepY;
 	px_put(img, loc[1], loc[0], px_ext(&(disp->walls.floor), \
 		data->tx, data->ty));
-	px_put(img, loc[1], (HEIGHT - loc[0] - 1), px_ext(&(disp->walls.wallE), \
+	px_put(img, loc[1], (HEIGHT - loc[0] - 1), px_ext(&(disp->walls.ceiling), \
 		data->tx, data->ty));
 }
 

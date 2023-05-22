@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/03 20:09:18 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:46:10 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define FOV 75
 # define MOVESPEED 0.2
 # define ROTSPEED 0.2
+# define MROTSPEED 0.02
 # define WIDTH 1200
 # define HEIGHT 800
 # define texHeight 64
@@ -80,10 +81,8 @@ typedef struct    s_img_data {
 
 typedef struct s_pics_add
 {
-	t_img_data	wallN;
-	t_img_data	wallS;
-	t_img_data	wallE;
-	t_img_data	wallW;
+	t_img_data	wall;
+	t_img_data	ceiling;
 	t_img_data	floor;
 }				t_pics_add;
 
@@ -147,7 +146,7 @@ typedef struct s_mat_pos
 	int			stepY;
 	int			hit;
 	int			side;
-	t_img_data	img;
+	t_img_data	*img;
 	t_img_data	img_printed;
 }				t_math_pos;
 
@@ -158,10 +157,8 @@ typedef struct s_mlx
 	char	**map;
 	char	*mapname;
 	char	*line;
-	char	*path_NO;
-	char	*path_SO;
-	char	*path_WE;
-	char	*path_EA;
+	char	*path_wall;
+	char	*path_ceiling;
 	char	*path_floor;
 	char	*pth_m; //wall blocks for minimap
 	char	*pth_p; //player block for minimap
@@ -188,8 +185,9 @@ typedef struct s_mlx
 	int		parsing_pb;
 	int		map_pb;
 	int		map_begin;
-	t_math_pos	data;
-	t_pics_add	walls;
+	int		x_mloc;
+	t_math_pos	*data;
+	t_pics_add	*walls;
 }				t_mlx;
 
 char	*get_next_line(int fd);
@@ -236,8 +234,8 @@ double	get_normy(int x1, int y1, int x2, int y2);
 
 // img/create_img
 void	px_put(t_img_data *img, int x, int y, int color);
-int		create_image(t_mlx *map_data, t_img_data *img);
-int		create_wall_images(t_mlx *disp, t_pics_add *walls);
+int		create_image(t_mlx *map_data);
+int		create_wall_images(t_mlx *disp);
 unsigned int px_ext(t_img_data *img, int x, int y);
 
 // math/math_main
@@ -290,6 +288,9 @@ void	player_pos(t_mlx *disp);
 
 // math/floor
 int		fc_casting(t_mlx *disp,  t_math_pos *data, t_img_data *img);
+
+// player/mouse
+int		mouse_motion(int x, int y, t_mlx *disp);
 
 //TODO --> remove
 void	print_tab(char **map);
