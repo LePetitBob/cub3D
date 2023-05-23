@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 08:32:32 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 12:21:39 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define HEIGHT 800
 # define texHeight 64
 # define texWidth 64
+# define NUMSPRITE 1
 
 typedef struct s_read
 {
@@ -87,6 +88,8 @@ typedef struct s_pics_add
 	t_img_data	ceiling;
 	t_img_data	floor;
 	t_img_data	door;
+	t_img_data	s_sdk;
+	t_img_data	s_scat[10];
 }				t_pics_add;
 
 typedef struct s_vec2
@@ -100,6 +103,14 @@ typedef struct s_vec2
 	double	len;
 	double	norm[2];
 }				t_vec2;
+
+typedef struct s_sprite_data
+{
+	double	x;
+	double	y;
+	int		texture;
+}				t_sprite_data;
+
 
 typedef struct s_mat_pos
 {
@@ -132,6 +143,21 @@ typedef struct s_mat_pos
 	double			wall_x;
 	double			step;
 	double			tex_pos;
+	double			sprite_x;
+	double			sprite_y;
+	double			inv_det;
+	double			transform_x;
+	double			transform_y;
+	double			z_buffer[WIDTH];
+	double			sprite_distance[NUMSPRITE];
+	int				sprite_order[NUMSPRITE];
+	int				sprite_screen_x;
+	int				sprite_height;
+	int				draw_start_y;
+	int				draw_end_y;
+	int				sprite_width;
+	int				draw_start_x;
+	int				draw_end_x;
 	int				cell_x;
 	int				cell_y;
 	int				tx;
@@ -140,6 +166,9 @@ typedef struct s_mat_pos
 	int				pos;
 	int				tex_y;
 	int				tex_x;
+	int				s_tex_y;
+	int				s_tex_x;
+	int				s_d;
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
@@ -149,8 +178,10 @@ typedef struct s_mat_pos
 	int				step_y;
 	int				hit;
 	int				side;
+	t_img_data		*p_sprites[NUMSPRITE];
 	t_img_data		*img;
 	t_img_data		img_printed;
+	t_sprite_data	sprites[NUMSPRITE];
 	struct s_mlx	*disp;
 }				t_math_pos;
 
@@ -165,6 +196,8 @@ typedef struct s_mlx
 	char		*path_ceiling;
 	char		*path_floor;
 	char		*path_door;
+	char		*path_sdk;
+	char		*path_scat[10];
 	int			pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
 	int			fd;
 	int			length_map;
@@ -183,7 +216,7 @@ typedef struct s_mlx
 	int			r_right;
 	int			r_left;
 	int			tab;
-	int			health;
+	int			cnt;
 	float		shift;
 	t_math_pos	*data;
 	t_pics_add	*walls;
@@ -241,10 +274,10 @@ int		wall_printer(t_mlx *map_data);
 
 // init/init
 void	init_values(t_math_pos *data, t_vec2 player);
-/*
-void	naruto_fov(t_mlx *disp);
-void	unnaruto_fov(t_mlx *disp);
-*/
+void	init_sprites(t_math_pos *data);
+// void	naruto_fov(t_mlx *disp);
+// void	unnaruto_fov(t_mlx *disp);
+
 
 // utils/fnc_utils
 char	*ft_strchr(const char *s, int c);
@@ -304,6 +337,12 @@ void	open_door(t_mlx *disp);
 int		mouse_motion(int x, int y, t_mlx *disp);
 void	rtm_left(t_math_pos *data);
 void	rtm_right(t_math_pos *data);
+
+// math/sprite
+void	sprite_casting(t_mlx *disp, t_math_pos *data, t_sprite_data *sprites);
+
+// img/anim_sprite
+void	anim_s(t_mlx *disp);
 
 //TODO --> remove
 void	print_tab(char **map);

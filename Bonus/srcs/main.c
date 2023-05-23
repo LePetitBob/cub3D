@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 09:10:20 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 12:21:20 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@ int	cub3d(char **av)
 	disp.data = &data;
 	data.disp = &disp;
 	disp.shift = 1;
-	disp.mapname = ft_strdup(av[1]);ba
+	disp.mapname = ft_strdup(av[1]);
+	disp.walls = &walls;
+	disp.data->img = &img;
+	disp.path_wall = "images/wall.xpm";
+	disp.path_ceiling = "images/ceiling.xpm";
+	disp.path_floor = "images/floor.xpm";
+	disp.path_door = "images/door.xpm";
+	disp.path_sdk = "images/sdk.xpm";
+	init_sprites(&data);
 	if (!disp.mapname)
 		return (print_error(MSG_MALLOC_FAIL), 0);
 	disp.mlx = mlx_init();
@@ -33,17 +41,12 @@ int	cub3d(char **av)
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
-	disp.walls = &walls;
-	disp.data->img = &img;
-	disp.path_wall = "images/wall.xpm";
-	disp.path_ceiling = "images/ceiling.xpm";
-	disp.path_floor = "images/floor.xpm";
-	disp.path_door = "images/door.xpm";
 	disp.x_mloc = WIDTH / 2;
 	if (!create_wall_images(&disp))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
+	data.p_sprites[0] = &disp.walls->s_scat[0];
 	init_values(&data, vec2_generating(disp));
 	mlx_loop_hook(disp.mlx, wall_printer, &disp);
 	mlx_mouse_hide(disp.mlx, disp.win);

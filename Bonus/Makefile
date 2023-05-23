@@ -18,6 +18,8 @@ SRC =	exits.c					\
 		ft_itoa.c				\
 		ft_split.c				\
 		ft_atoi.c				\
+		sprite.c				\
+		sprite_anim.c			\
 		2Dvectors.c				\
 		data_map_resize.c		\
 		wall_find.c				\

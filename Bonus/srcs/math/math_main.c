@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 04:19:25 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 10:46:49 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	wall_printer(t_mlx *map_data)
 	int			x;
 
 	x = 0;
+	anim_s(map_data);
 	key_apply(map_data);
 	fc_casting(map_data, map_data->data, map_data->data->img);
 	while (x < WIDTH)
@@ -91,8 +92,10 @@ int	wall_printer(t_mlx *map_data)
 		tex_calc(map_data->data);
 		tex_px_inc(map_data->data, map_data->walls,
 			map_data->data->img, x);
+		map_data->data->z_buffer[x] = map_data->data->perp_wall_dist;
 		x++;
 	}
+	sprite_casting(map_data, map_data->data, map_data->data->sprites);
 	if (map_data->tab == 1)
 		put_minimap(map_data);
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
