@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:13:24 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 06:30:04 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,28 @@ void	init_values(t_math_pos *data, t_vec2 player)
 	else
 		data->plane_x = 0;
 }
+/*
+void	naruto_fov(t_mlx *disp)
+{
+	if (disp->data->plane_y > 0)
+		disp->data->plane_y = (FOV + 10) / (double)100;
+	else if (disp->data->plane_y < 0)
+		disp->data->plane_y = (FOV + 10) / (double)100 * -1;
+	if (disp->data->plane_x > 0)
+		disp->data->plane_x = (FOV + 10) / (double)100;
+	else if (disp->data->plane_x < 0)
+		disp->data->plane_x = (FOV + 10) / (double)100 * -1;
+}
+
+void	unnaruto_fov(t_mlx *disp)
+{
+	if (disp->data->plane_y > 0)
+		disp->data->plane_y = FOV / (double)100;
+	else if (disp->data->plane_y < 0)
+		disp->data->plane_y = FOV / (double)100 * -1;
+	if (disp->data->plane_x > 0)
+		disp->data->plane_x = FOV / (double)100;
+	else if (disp->data->plane_x < 0)
+		disp->data->plane_x = FOV / (double)100 * -1;
+}
+*/

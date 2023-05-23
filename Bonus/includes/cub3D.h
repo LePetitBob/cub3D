@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 06:04:52 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 06:30:53 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,10 @@ int		wall_printer(t_mlx *map_data);
 
 // init/init
 void	init_values(t_math_pos *data, t_vec2 player);
+/*
+void	naruto_fov(t_mlx *disp);
+void	unnaruto_fov(t_mlx *disp);
+*/
 
 // utils/fnc_utils
 char	*ft_strchr(const char *s, int c);
