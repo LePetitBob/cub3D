@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:49:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 02:25:09 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define FOV 75
 # define MOVESPEED 0.2
 # define ROTSPEED 0.2
-# define MROTSPEED 0.02
+# define MROTSPEED 0.04
 # define WIDTH 1200
 # define HEIGHT 800
 # define texHeight 64

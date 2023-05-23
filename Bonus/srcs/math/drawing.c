@@ -6,29 +6,11 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:47:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:19:36 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 02:29:06 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x)
-// {
-// 	int	y;
-
-// 	y = 0;
-// 	while (y < data->draw_start)
-// 	{
-// 		px_put(img, x, y, map_data.color_c);
-// 		y++;
-// 	}
-// 	y = data->draw_end;
-// 	while (y < HEIGHT - 1)
-// 	{
-// 		px_put(img, x, y, map_data.color_f);
-// 		y++;
-// 	}
-// }
 
 void	calc_draw_lines(t_math_pos *data)
 {

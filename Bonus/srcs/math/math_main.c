@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:39:50 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 02:29:07 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	wall_printer(t_mlx *map_data)
 	int			x;
 
 	x = 0;
+	mlx_mouse_move(map_data->mlx, map_data->win, WIDTH / 2, HEIGHT / 2);
 	key_apply(map_data);
 	fc_casting(map_data, map_data->data, map_data->data->img);
 	while (x < WIDTH)
@@ -90,12 +91,10 @@ int	wall_printer(t_mlx *map_data)
 		tex_calc(map_data->data);
 		tex_px_inc(map_data->data, map_data->walls,
 			map_data->data->img, x);
-		// draw_cf(&(map_data->data), &(map_data->data.img), *map_data, x);
 		x++;
 	}
 	if (map_data->tab == 1)
 		put_minimap(map_data);
-	// map_data->data.img_printed = map_data->data.img;
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
 		map_data->data->img->img, 0, 0);
 	return (0);

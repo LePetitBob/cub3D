@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:38:09 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 02:25:25 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	cub3d(char **av)
 {
 	t_mlx	disp;
 	t_math_pos	data;
-
+	t_pics_add walls;
+	t_img_data img;
+	
 	disp = (t_mlx){0};
 	disp.data = &data;
 	disp.mapname = ft_strdup(av[1]);
@@ -29,10 +31,12 @@ int	cub3d(char **av)
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
+	disp.walls = &walls;
+	disp.data->img = &img;
 	disp.path_wall = "images/wall.xpm";
 	disp.path_ceiling = "images/ceiling.xpm";
 	disp.path_floor = "images/floor.xpm";
-	disp.x_mloc = 600;
+	disp.x_mloc = WIDTH / 2;
 	if (!create_wall_images(&disp))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	if (!create_image(&disp))
