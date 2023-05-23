@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:30:18 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:53:53 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 03:20:02 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ int	mouse_motion(int x, int y, t_mlx *disp)
 	{
 		rtm_right(disp->data);
 	}
-	disp->x_mloc = x;
+	mlx_mouse_move(disp->mlx, disp->win, WIDTH / 2, HEIGHT / 2);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:45:29 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:50:48 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 05:11:01 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	key_hook_press(int keycode, t_mlx *disp)
 		disp->r_right = 1;
 	if (keycode == XK_Tab)
 		disp->tab = 1;
+	if (keycode == XK_e)
+		open_door(disp);
 	return (0);
 }
 

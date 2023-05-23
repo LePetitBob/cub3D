@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:31:29 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 01:46:19 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 05:15:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	fill_map(t_mlx *disp, char *str, int y)
 	(disp->map)[y][i] = ' ';
 	while (++i < disp->length_map)
 		(disp->map)[y][i] = ' ';
+	disp->map[y][i] = 0;
 	return (1);
 }
 
@@ -104,9 +105,10 @@ int	initialize_map(t_mlx *disp)
 	int	i;
 
 	i = 0;
-	disp->map = malloc(sizeof(char *) * (disp->height_map));
+	disp->map = malloc(sizeof(char *) * (disp->height_map + 1));
 	if (!(disp->map))
 		return (print_error(MSG_MALLOC_FAIL), 0);
+	disp->map[disp->height_map] = NULL;
 	while (i < disp->height_map)
 	{
 		(disp->map)[i] = ft_calloc_so(disp->length_map, sizeof(char));

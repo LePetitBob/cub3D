@@ -14,7 +14,6 @@ SRC =	exits.c					\
 		map_check.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\
-		set_images.c			\
 		set_screen.c			\
 		ft_itoa.c				\
 		ft_split.c				\
@@ -28,6 +27,7 @@ SRC =	exits.c					\
 		fnc_utils.c				\
 		apply_moves.c			\
 		moves.c					\
+		door.c					\
 		textures.c				\
 		init.c					\
 		drawing.c				\
@@ -51,7 +51,7 @@ CC =	gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) includes/cub3D.h
 		make -C ./minilibx
 		$(CC) $(OBJ) $(CFLAGS) $(IFLAGS) -o $(NAME)
 

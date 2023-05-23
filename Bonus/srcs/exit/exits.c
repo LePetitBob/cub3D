@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/22 23:38:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 03:47:05 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,10 @@ void	ft_destroy_exit(char *strerr, t_mlx *disp)
 
 void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 {
-	if (disp->img_e)
-		mlx_destroy_image(disp->mlx, disp->img_e);
-	if (disp->img_w)
-		mlx_destroy_image(disp->mlx, disp->img_w);
-	if (disp->img_n)
-		mlx_destroy_image(disp->mlx, disp->img_n);
-	if (disp->img_s)
-		mlx_destroy_image(disp->mlx, disp->img_s);
-	if (disp->img_m)
-		mlx_destroy_image(disp->mlx, disp->img_m);
-	if (disp->img_p)
-		mlx_destroy_image(disp->mlx, disp->img_p);
-	if (disp->img_v)
-		mlx_destroy_image(disp->mlx, disp->img_v);
 	if (data->img->img)
 		mlx_destroy_image(disp->mlx, data->img->img);
 	if (walls->wall.img)
 		mlx_destroy_image(disp->mlx, walls->wall.img);
-	// if (data->img_printed.img)
-	// 	mlx_destroy_image(disp->mlx, data->img_printed.img);
-	// if (disp->path_NO)
-	// 	free(disp->path_NO);
-	// if (disp->path_SO)
-	// 	free(disp->path_SO);
-	// if (disp->path_EA)
-	// 	free(disp->path_EA);
-	// if (disp->path_WE)
-	// 	free(disp->path_WE);
 }
 
 void	free_tab(char **map)

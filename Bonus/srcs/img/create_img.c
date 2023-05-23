@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 02:18:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 04:13:43 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	init_imgs(t_mlx *disp, t_pics_add *walls)
 			&(walls->ceiling.width), &(walls->ceiling.height));
 	walls->floor.img = mlx_xpm_file_to_image(disp->mlx, disp->path_ceiling,
 			&(walls->floor.width), &(walls->floor.height));
-	if (!(walls->wall.img) || !(walls->ceiling.img) || !(walls->floor.img))
+	walls->door.img = mlx_xpm_file_to_image(disp->mlx, disp->path_door,
+			&(walls->door.width), &(walls->door.height));
+	if (!(walls->wall.img) || !(walls->ceiling.img)
+		|| !(walls->floor.img) || !(walls->door.img))
 		return (0);
 	return (1);
 }
@@ -54,7 +57,11 @@ int	create_wall_images(t_mlx *disp)
 	disp->walls->floor.addr = mlx_get_data_addr((disp->walls->floor.img),
 			&(disp->walls->floor.bits_per_pixel), &(disp->walls->floor.line_length),
 			&(disp->walls->floor.endian));
-	if (!(disp->walls->wall.addr) || !(disp->walls->ceiling.addr) || !(disp->walls->floor.addr))
+	disp->walls->door.addr = mlx_get_data_addr((disp->walls->door.img),
+			&(disp->walls->door.bits_per_pixel), &(disp->walls->door.line_length),
+			&(disp->walls->door.endian));
+	if (!(disp->walls->wall.addr) || !(disp->walls->ceiling.addr)
+		|| !(disp->walls->floor.addr) || !(disp->walls->door.addr))
 		return (0);
 	return (1);
 }

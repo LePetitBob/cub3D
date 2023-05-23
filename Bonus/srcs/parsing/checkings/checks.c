@@ -6,11 +6,26 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:52:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 01:53:33 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 03:53:28 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	extension_check(char *ext, char *file)
+{
+	int	j;
+
+	j = 0;
+	while (file[j])
+		j++;
+	if (j <= 4)
+		return (0);
+	j -= 4;
+	if (!ft_strncmp(file + j, ext, 5) && file[j - 1] != '/')
+		return (1);
+	return (0);
+}
 
 int	block_wrong_file(char *str)
 {
@@ -56,3 +71,4 @@ int	can_open(t_mlx *disp)
 		return (0);
 	return (1);
 }
+

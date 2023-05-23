@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 02:29:07 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 04:19:25 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	dda_loop(t_math_pos *data, t_mlx *map_data)
 			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (map_data->map[data->map_y][data->map_x] == '1')
+		if (map_data->map[data->map_y][data->map_x] == '1'
+			|| map_data->map[data->map_y][data->map_x] == 'F')
 			data->hit = 1;
 	}
 }
@@ -78,7 +79,6 @@ int	wall_printer(t_mlx *map_data)
 	int			x;
 
 	x = 0;
-	mlx_mouse_move(map_data->mlx, map_data->win, WIDTH / 2, HEIGHT / 2);
 	key_apply(map_data);
 	fc_casting(map_data, map_data->data, map_data->data->img);
 	while (x < WIDTH)
