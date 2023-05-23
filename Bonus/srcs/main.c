@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 06:07:17 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 09:10:20 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cub3d(char **av)
 	disp.data = &data;
 	data.disp = &disp;
 	disp.shift = 1;
-	disp.mapname = ft_strdup(av[1]);
+	disp.mapname = ft_strdup(av[1]);ba
 	if (!disp.mapname)
 		return (print_error(MSG_MALLOC_FAIL), 0);
 	disp.mlx = mlx_init();

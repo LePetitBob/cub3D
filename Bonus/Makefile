@@ -14,7 +14,7 @@ SRC =	exits.c					\
 		map_check.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\
-		set_screen.c			\
+		minimap.c				\
 		ft_itoa.c				\
 		ft_split.c				\
 		ft_atoi.c				\
