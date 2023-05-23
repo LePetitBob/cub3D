@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:45:19 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 03:49:58 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:59:39 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x)
 				px_put(img, x, y, px_ext(&(walls->door), data->tex_x, data->tex_y));
 			else if (data->side == 0 && data->ray_dir_x < 0)
 				px_put(img, x, y, px_ext(&(walls->door), data->tex_x, data->tex_y));
+		}
+		else if (data->disp->map[data->map_y][data->map_x] == '2')
+		{
+			if (data->side == 1 && data->ray_dir_y < 0)
+				px_put(img, x, y, px_ext(&(walls->shrekw), data->tex_x, data->tex_y));
+			else if (data->side == 0 && data->ray_dir_x > 0)
+				px_put(img, x, y, px_ext(&(walls->shrekw), data->tex_x, data->tex_y));
+			else if (data->side == 1 && data->ray_dir_y > 0)
+				px_put(img, x, y, px_ext(&(walls->shrekw), data->tex_x, data->tex_y));
+			else if (data->side == 0 && data->ray_dir_x < 0)
+				px_put(img, x, y, px_ext(&(walls->shrekw), data->tex_x, data->tex_y));
 		}
 		y++;
 	}

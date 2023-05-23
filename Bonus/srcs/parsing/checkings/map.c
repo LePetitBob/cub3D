@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:31:29 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 05:15:32 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:46:08 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	char_checker(t_mlx *disp)
 		x = -1;
 		while (++x < (disp->length_map))
 		{
-			if (!is_in("FO 10NSWE", (disp->map)[y][x]))
+			if (!is_in("FO 120NSWE", (disp->map)[y][x]))
 				return (print_error(MSG_CHAR), 0);
 			if (!borders(disp, x, y))
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 10:46:49 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:01:12 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	dda_loop(t_math_pos *data, t_mlx *map_data)
 			data->side = 1;
 		}
 		if (map_data->map[data->map_y][data->map_x] == '1'
-			|| map_data->map[data->map_y][data->map_x] == 'F')
+			|| map_data->map[data->map_y][data->map_x] == 'F'
+			|| map_data->map[data->map_y][data->map_x] == '2')
 			data->hit = 1;
 	}
 }
@@ -95,7 +96,7 @@ int	wall_printer(t_mlx *map_data)
 		map_data->data->z_buffer[x] = map_data->data->perp_wall_dist;
 		x++;
 	}
-	sprite_casting(map_data, map_data->data, map_data->data->sprites);
+	sprite_casting(map_data->data, map_data->data->sprites);
 	if (map_data->tab == 1)
 		put_minimap(map_data);
 	mlx_put_image_to_window(map_data->mlx, map_data->win,
