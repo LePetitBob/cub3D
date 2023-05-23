@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:45:29 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 06:30:35 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 12:04:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	key_apply(t_mlx *disp)
 		rt_left(disp->data);
 	if (disp->r_right == 1)
 		rt_right(disp->data);
-	return (0);
-}
-/*
 	if (disp->shift == 1.5)
 		naruto_fov(disp);
 	if (disp->shift == 1)
 		unnaruto_fov(disp);
-*/
+	return (0);
+}
+
+
 
 int	key_hook_press(int keycode, t_mlx *disp)
 {
