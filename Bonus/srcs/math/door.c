@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 04:21:40 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 05:40:37 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 05:58:27 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	close_door(t_mlx *disp, int dir)
 		return ;
 		}
 	}
-	print_tab(disp->map);
 }
 
 void	open_door(t_mlx *disp)

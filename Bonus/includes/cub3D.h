@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 04:46:55 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 06:04:52 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef struct s_mlx
 	int			r_right;
 	int			r_left;
 	int			tab;
+	float		shift;
 	t_math_pos	*data;
 	t_pics_add	*walls;
 }				t_mlx;
