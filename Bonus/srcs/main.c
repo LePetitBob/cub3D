@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 12:17:39 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:33:31 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	init(t_mlx *disp, t_math_pos *data, t_pics_add *walls, t_img_data *img)
+{
+	
+	disp->shift = 1;
+	disp->data = data;
+	data->disp = disp;
+	disp->walls = walls;
+	disp->data->img = img;
+	disp->path_wall = "images/wall.xpm";
+	disp->path_ceiling = "images/ceiling.xpm";
+	disp->path_floor = "images/floor.xpm";
+	disp->path_door = "images/door.xpm";
+	disp->path_sdk = "images/sdk.xpm";
+	init_sprites(data);
+}
 
 int	cub3d(char **av)
 {
@@ -20,18 +36,11 @@ int	cub3d(char **av)
 	t_img_data img;
 	
 	disp = (t_mlx){0};
-	disp.data = &data;
-	data.disp = &disp;
-	disp.shift = 1;
+	data = (t_math_pos){0};
+	walls = (t_pics_add){0};
+	img = (t_img_data){0};
 	disp.mapname = ft_strdup(av[1]);
-	disp.walls = &walls;
-	disp.data->img = &img;
-	disp.path_wall = "images/wall.xpm";
-	disp.path_ceiling = "images/ceiling.xpm";
-	disp.path_floor = "images/floor.xpm";
-	disp.path_door = "images/door.xpm";
-	disp.path_sdk = "images/sdk.xpm";
-	init_sprites(&data);
+	init(&disp, &data, &walls, &img);
 	if (!disp.mapname)
 		return (print_error(MSG_MALLOC_FAIL), 0);
 	disp.mlx = mlx_init();
@@ -48,8 +57,8 @@ int	cub3d(char **av)
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	data.p_sprites[0] = &disp.walls->s_scat[0];
 	init_values(&data, vec2_generating(disp));
-	mlx_loop_hook(disp.mlx, wall_printer, &disp);
 	mlx_mouse_hide(disp.mlx, disp.win);
+	mlx_loop_hook(disp.mlx, wall_printer, &disp);
 	mlx_hook(disp.win, MotionNotify, PointerMotionMask, mouse_motion, &disp);
 	mlx_hook(disp.win, KeyPress, KeyPressMask, \
 		key_hook_press, &disp);
