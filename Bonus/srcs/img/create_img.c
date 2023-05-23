@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 11:21:29 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:03:57 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,12 @@ int	init_imgs(t_mlx *disp, t_pics_add *walls)
 			&(walls->floor.width), &(walls->floor.height));
 	walls->door.img = mlx_xpm_file_to_image(disp->mlx, disp->path_door,
 			&(walls->door.width), &(walls->door.height));
+	walls->shrekw.img = mlx_xpm_file_to_image(disp->mlx, disp->path_shrekw,
+			&(walls->shrekw.width), &(walls->shrekw.height));
 	walls->s_sdk.img = mlx_xpm_file_to_image(disp->mlx, disp->path_sdk,
 			&(walls->s_sdk.width), &(walls->s_sdk.height));
+	walls->s_slego.img = mlx_xpm_file_to_image(disp->mlx, disp->path_slego,
+			&(walls->s_slego.width), &(walls->s_slego.height));
 	scatman(disp, walls);
 	if (!(walls->wall.img) || !(walls->ceiling.img)
 		|| !(walls->floor.img) || !(walls->door.img) || !(walls->s_sdk.img))
@@ -91,11 +95,18 @@ int	create_wall_images(t_mlx *disp)
 	disp->walls->door.addr = mlx_get_data_addr((disp->walls->door.img),
 			&(disp->walls->door.bits_per_pixel), &(disp->walls->door.line_length),
 			&(disp->walls->door.endian));
+	disp->walls->shrekw.addr = mlx_get_data_addr((disp->walls->shrekw.img),
+			&(disp->walls->shrekw.bits_per_pixel), &(disp->walls->shrekw.line_length),
+			&(disp->walls->shrekw.endian));
 	disp->walls->s_sdk.addr = mlx_get_data_addr((disp->walls->s_sdk.img),
 			&(disp->walls->s_sdk.bits_per_pixel), &(disp->walls->s_sdk.line_length),
 			&(disp->walls->s_sdk.endian));
+	disp->walls->s_slego.addr = mlx_get_data_addr((disp->walls->s_slego.img),
+			&(disp->walls->s_slego.bits_per_pixel), &(disp->walls->s_slego.line_length),
+			&(disp->walls->s_slego.endian));
 	if (!(disp->walls->wall.addr) || !(disp->walls->ceiling.addr)
-		|| !(disp->walls->floor.addr) || !(disp->walls->door.addr) || !(disp->walls->s_sdk.addr))
+		|| !(disp->walls->floor.addr) || !(disp->walls->door.addr)
+		|| !(disp->walls->s_sdk.addr) || !(disp->walls->s_slego.addr))
 		return (0);
 	return (1);
 }

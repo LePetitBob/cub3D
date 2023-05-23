@@ -6,7 +6,11 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/23 16:33:31 by vduriez          ###   ########.fr       */
+=======
+/*   Updated: 2023/05/23 17:03:01 by ajeanne          ###   ########.fr       */
+>>>>>>> d5061d972de13593a1d29de8a01847db6f93e164
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +60,8 @@ int	cub3d(char **av)
 	if (!create_image(&disp))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
 	data.p_sprites[0] = &disp.walls->s_scat[0];
+	data.p_sprites[1] = &disp.walls->s_sdk;
+	data.p_sprites[2] = &disp.walls->s_slego;
 	init_values(&data, vec2_generating(disp));
 	mlx_mouse_hide(disp.mlx, disp.win);
 	mlx_loop_hook(disp.mlx, wall_printer, &disp);

@@ -6,18 +6,32 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:57:13 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 10:49:43 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:09:28 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// void	sort_sprites(int *order, double *dist, int amount)
-// {
-	
-// }
+void	sort_sprites(t_math_pos *data)
+{
+	int	i;
+	int j;
 
-void	sprite_casting(t_mlx *disp, t_math_pos *data, t_sprite_data *sprites)
+	i = -1;
+	j = 0;
+	while (++i < NUMSPRITE)
+	{
+		if (i + 1 < NUMSPRITE && data->sprite_distance[data->sprite_order[i]] < data->sprite_distance[data->sprite_order[i + 1]])
+		{
+			j = data->sprite_order[i];
+			data->sprite_order[i] = data->sprite_order[i + 1];
+			data->sprite_order[i + 1] = j;
+			i = -1;
+		}
+	}
+}
+
+void	sprite_casting(t_math_pos *data, t_sprite_data *sprites)
 {
 	int	i;
 	int	stripe;
@@ -30,8 +44,7 @@ void	sprite_casting(t_mlx *disp, t_math_pos *data, t_sprite_data *sprites)
 		data->sprite_distance[i] = ((data->pos_x - sprites[i].x) * (data->pos_x - sprites[i].x) + (data->pos_y - sprites[i].y) * (data->pos_y - sprites[i].y));
 		i++;
 	}
-	printf("dist = %f - cnt = %d\n", data->sprite_distance[0], disp->cnt);
-	// sort_sprites(data->sprite_order, data->sprite_distance);
+	sort_sprites(data);
 	//fntc cut
 	i = 0;
 	while (i < NUMSPRITE)
@@ -71,8 +84,8 @@ void	sprite_casting(t_mlx *disp, t_math_pos *data, t_sprite_data *sprites)
 				{
 					data->s_d = (y) * 256 - HEIGHT * 128 + data->sprite_height * 128;
 					data->s_tex_y = ((data->s_d * texHeight) / data->sprite_height) / 256;
-					if (px_ext(data->p_sprites[0], data->s_tex_x, data->s_tex_y) != 16777215)
-						px_put(data->img, stripe, y, px_ext(data->p_sprites[0], data->s_tex_x, data->s_tex_y));
+					if (px_ext(data->p_sprites[data->sprites[data->sprite_order[i]].texture], data->s_tex_x, data->s_tex_y) != 16777215)
+						px_put(data->img, stripe, y, px_ext(data->p_sprites[data->sprites[data->sprite_order[i]].texture], data->s_tex_x, data->s_tex_y));
 					y++;
 				}
 			}

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 14:48:35 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:23:23 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define HEIGHT 800
 # define texHeight 64
 # define texWidth 64
-# define NUMSPRITE 1
+# define NUMSPRITE 3
 
 typedef struct s_read
 {
@@ -88,7 +88,9 @@ typedef struct s_pics_add
 	t_img_data	ceiling;
 	t_img_data	floor;
 	t_img_data	door;
+	t_img_data	shrekw;
 	t_img_data	s_sdk;
+	t_img_data	s_slego;
 	t_img_data	s_scat[10];
 }				t_pics_add;
 
@@ -196,7 +198,9 @@ typedef struct s_mlx
 	char		*path_ceiling;
 	char		*path_floor;
 	char		*path_door;
+	char		*path_shrekw;
 	char		*path_sdk;
+	char		*path_slego;
 	char		*path_scat[10];
 	int			pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
 	int			fd;
@@ -339,7 +343,7 @@ void	rtm_left(t_math_pos *data);
 void	rtm_right(t_math_pos *data);
 
 // math/sprite
-void	sprite_casting(t_mlx *disp, t_math_pos *data, t_sprite_data *sprites);
+void	sprite_casting(t_math_pos *data, t_sprite_data *sprites);
 
 // img/anim_sprite
 void	anim_s(t_mlx *disp);

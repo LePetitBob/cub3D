@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 12:39:13 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:19:26 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	init_sprites(t_math_pos *data)
 	{
 		if (i == 0)
 			data->sprites[i] = (t_sprite_data){9.5, 9.5, 0};
+		else if (i == 1)
+			data->sprites[i] = (t_sprite_data){5.5, 9.5, 1};
+		else if (i == 2)
+			data->sprites[i] = (t_sprite_data){15.5, 9.5, 2};
 		i++;
 	}
 }
