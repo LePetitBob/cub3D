@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_borders.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 18:26:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/02 18:31:21 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:37:21 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,24 @@ int	borders(t_mlx *disp, int x, int y)
 	}
 	if (!in_borders(disp, x, y))
 		return (0);
+	return (1);
+}
+
+int	check_closed(t_mlx *disp, int i, int j)
+{
+	if (disp->map[i][j] == '0')
+	{
+		if (i == 0 || j == 0 || i == disp->height_map - 1
+			|| j == disp->length_map - 1)
+			return (0);
+		if (i > 0 && !is_charset(disp->map[i - 1][j], "01"))
+			return (0);
+		if (i < disp->height_map - 1 && !is_charset(disp->map[i + 1][j], "01"))
+			return (0);
+		if (j > 0 && !is_charset(disp->map[i][j - 1], "01"))
+			return (0);
+		if (j < disp->length_map - 1 && !is_charset(disp->map[i][j + 1], "01"))
+			return (0);
+	}
 	return (1);
 }

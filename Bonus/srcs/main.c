@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 17:25:06 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:32:50 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init(t_mlx *disp, t_math_pos *data, t_pics_add *walls, t_img_data *img)
 	disp->path_floor = "images/floor.xpm";
 	disp->path_door = "images/door.xpm";
 	disp->path_sdk = "images/sdk.xpm";
+	disp->path_shrekw = "images/shrekw.xpm";
+	disp->path_slego = "images/sshrekf.xpm";
 	init_sprites(data);
 }
 
