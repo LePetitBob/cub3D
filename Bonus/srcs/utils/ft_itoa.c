@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:58:05 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/21 22:28:53 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/10 12:26:10 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,4 @@ char	*ft_free(char *s)
 {
 	free(s);
 	return (NULL);
-}
-
-void	print_tab(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		write(1, map[i], ft_strlen(map[i]));
-		write(1, "\n", 1);
-		++i;
-	}
-	write(1, "\n", 1);
 }

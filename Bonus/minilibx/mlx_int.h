@@ -73,7 +73,7 @@ typedef struct	s_win_list
 	GC					gc;
 	struct s_win_list	*next;
 	int					(*mouse_hook)();
-	int					(*key_hook)();
+	int					(*key_hook_press)();
 	int					(*expose_hook)();
 	void				*mouse_param;
 	void				*key_param;

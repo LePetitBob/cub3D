@@ -6,7 +6,11 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:41:38 by vduriez           #+#    #+#             */
+<<<<<<< HEAD:Mandatory/srcs/display/set_screen.c
 /*   Updated: 2023/05/23 00:26:55 by vduriez          ###   ########.fr       */
+=======
+/*   Updated: 2023/05/11 15:24:39 by vduriez          ###   ########.fr       */
+>>>>>>> main:srcs/display/set_screen.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +26,13 @@ void	put_player(t_mlx *disp)
 	{
 		j = -1;
 		while (++j < 10)
+<<<<<<< HEAD:Mandatory/srcs/display/set_screen.c
 			px_put(&(disp->data.img), 10 * (int)disp->data.pos_x + i, \
 				10 * (int)disp->data.pos_y + j, 0xFF0000);
+=======
+			px_put(&(disp->data.img), 10 * (int)disp->data.posx + i, \
+				10 * (int)disp->data.posy + j, 0xFF0000);
+>>>>>>> main:srcs/display/set_screen.c
 	}
 }
 
