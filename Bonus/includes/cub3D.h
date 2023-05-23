@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 17:23:23 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:06:55 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_pics_add
 	t_img_data	floor;
 	t_img_data	door;
 	t_img_data	shrekw;
+	t_img_data	berniew;
 	t_img_data	s_sdk;
 	t_img_data	s_slego;
 	t_img_data	s_scat[10];
@@ -199,6 +200,7 @@ typedef struct s_mlx
 	char		*path_floor;
 	char		*path_door;
 	char		*path_shrekw;
+	char		*path_berniew;
 	char		*path_sdk;
 	char		*path_slego;
 	char		*path_scat[10];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 17:25:06 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:19:39 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	init(t_mlx *disp, t_math_pos *data, t_pics_add *walls, t_img_data *img)
 	disp->path_ceiling = "images/ceiling.xpm";
 	disp->path_floor = "images/floor.xpm";
 	disp->path_door = "images/door.xpm";
+	disp->path_shrekw = "images/shrekw.xpm";
+	disp->path_slego = "images/sshrekf.xpm";
 	disp->path_sdk = "images/sdk.xpm";
+	disp->path_berniew = "images/berniew.xpm";
 	init_sprites(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 17:01:12 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:10:59 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	dda_loop(t_math_pos *data, t_mlx *map_data)
 		}
 		if (map_data->map[data->map_y][data->map_x] == '1'
 			|| map_data->map[data->map_y][data->map_x] == 'F'
-			|| map_data->map[data->map_y][data->map_x] == '2')
+			|| map_data->map[data->map_y][data->map_x] == '2'
+			|| map_data->map[data->map_y][data->map_x] == '3')
 			data->hit = 1;
 	}
 }

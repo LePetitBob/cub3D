@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 17:03:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:08:05 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	init_imgs(t_mlx *disp, t_pics_add *walls)
 			&(walls->door.width), &(walls->door.height));
 	walls->shrekw.img = mlx_xpm_file_to_image(disp->mlx, disp->path_shrekw,
 			&(walls->shrekw.width), &(walls->shrekw.height));
+	walls->berniew.img = mlx_xpm_file_to_image(disp->mlx, disp->path_berniew,
+			&(walls->berniew.width), &(walls->berniew.height));
 	walls->s_sdk.img = mlx_xpm_file_to_image(disp->mlx, disp->path_sdk,
 			&(walls->s_sdk.width), &(walls->s_sdk.height));
 	walls->s_slego.img = mlx_xpm_file_to_image(disp->mlx, disp->path_slego,
@@ -104,6 +106,9 @@ int	create_wall_images(t_mlx *disp)
 	disp->walls->s_slego.addr = mlx_get_data_addr((disp->walls->s_slego.img),
 			&(disp->walls->s_slego.bits_per_pixel), &(disp->walls->s_slego.line_length),
 			&(disp->walls->s_slego.endian));
+	disp->walls->berniew.addr = mlx_get_data_addr((disp->walls->berniew.img),
+			&(disp->walls->berniew.bits_per_pixel), &(disp->walls->berniew.line_length),
+			&(disp->walls->berniew.endian));
 	if (!(disp->walls->wall.addr) || !(disp->walls->ceiling.addr)
 		|| !(disp->walls->floor.addr) || !(disp->walls->door.addr)
 		|| !(disp->walls->s_sdk.addr) || !(disp->walls->s_slego.addr))
