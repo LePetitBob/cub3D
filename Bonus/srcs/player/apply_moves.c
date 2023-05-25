@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:45:29 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 12:38:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:31:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	key_apply(t_mlx *disp)
 	// 	naruto_fov(disp);
 	// if (disp->shift == 1)
 	// 	unnaruto_fov(disp);
-
-
 
 int	key_hook_press(int keycode, t_mlx *disp)
 {

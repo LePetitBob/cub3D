@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:30:18 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 03:20:02 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:31:20 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	rtm_right(t_math_pos *data)
 {
 	data->old_dir_x = data->dir_x;
-	data->dir_x = (data->dir_x) * cos(MROTSPEED) - (data->dir_y) * sin(MROTSPEED);
+	data->dir_x = (data->dir_x) * cos(MROTSPEED) - \
+		(data->dir_y) * sin(MROTSPEED);
 	data->dir_y = (data->old_dir_x) * sin(MROTSPEED) + (data->dir_y) * \
 		cos(MROTSPEED);
 	data->old_plane_x = data->plane_x;

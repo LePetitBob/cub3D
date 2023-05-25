@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 18:36:47 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:34:59 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_pics_add
 	t_img_data	shrekw;
 	t_img_data	berniew;
 	t_img_data	s_sdk;
-	t_img_data	s_slego;
+	t_img_data	s_sshrekf;
 	t_img_data	s_scat[10];
 }				t_pics_add;
 
@@ -202,7 +202,7 @@ typedef struct s_mlx
 	char		*path_shrekw;
 	char		*path_berniew;
 	char		*path_sdk;
-	char		*path_slego;
+	char		*path_sshrekf;
 	char		*path_scat[10];
 	int			pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
 	int			fd;
@@ -316,6 +316,8 @@ void	mv_right(t_mlx *disp, t_math_pos *data);
 char	*ft_calloc_so(size_t nmemb, size_t size);
 char	*gnl_corrector(char *str);
 int		is_in(char *str, char c);
+void	*xpm_to_img(t_mlx *disp, char *path, t_img_data *img);
+char	*img_add(t_img_data *img);
 
 // *********************
 // *       BONUS       *

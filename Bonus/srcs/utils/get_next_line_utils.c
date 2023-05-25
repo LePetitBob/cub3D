@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 17:16:23 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/16 17:17:36 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:32:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,4 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		++i;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int	printable(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] && s[i])
-	{
-		if (s[i] != '\n' && s[i] < 32)
-			return (0);
-		i++;
-	}
-	return (1);
 }

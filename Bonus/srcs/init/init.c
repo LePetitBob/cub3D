@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:06:43 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 18:32:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:29:44 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_values(t_math_pos *data, t_vec2 player)
 void	init_sprites(t_math_pos *data)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < NUMSPRITE)
 	{

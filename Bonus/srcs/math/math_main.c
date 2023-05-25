@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:56:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 18:10:59 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:13:11 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	calc_stepydist(t_math_pos *data)
 	else
 	{
 		data->step_x = 1;
-		data->side_dist_x = (data->map_x + 1.0 - data->pos_x) * data->delta_dist_x;
+		data->side_dist_x = (data->map_x + 1.0 - data->pos_x) * \
+			data->delta_dist_x;
 	}
 	if (data->ray_dir_y < 0)
 	{
@@ -56,7 +57,8 @@ void	calc_stepydist(t_math_pos *data)
 	else
 	{
 		data->step_y = 1;
-		data->side_dist_y = (data->map_y + 1.0 - data->pos_y) * data->delta_dist_y;
+		data->side_dist_y = (data->map_y + 1.0 - data->pos_y) * \
+			data->delta_dist_y;
 	}
 }
 

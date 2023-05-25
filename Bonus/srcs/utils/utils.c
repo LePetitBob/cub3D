@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 12:38:24 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 17:21:41 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:29:57 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,15 @@ int	is_in(char *str, char c)
 		i++;
 	}
 	return (0);
+}
+
+void	*xpm_to_img(t_mlx *disp, char *path, t_img_data *img)
+{
+	return (mlx_xpm_file_to_image(disp->mlx, path, &img->width, &img->height));
+}
+
+char	*img_add(t_img_data *img)
+{
+	return (mlx_get_data_addr(img->img, \
+			&img->bits_per_pixel, &img->line_length, &img->endian));
 }

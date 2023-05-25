@@ -21,7 +21,6 @@ SRC =	exits.c					\
 		sprite.c				\
 		sprite_anim.c			\
 		2Dvectors.c				\
-		wall_find.c				\
 		create_img.c			\
 		math_main.c				\
 		print_error.c			\
@@ -35,11 +34,13 @@ SRC =	exits.c					\
 		rotations.c				\
 		checks.c				\
 		utils.c					\
+		utils1.c				\
 		map.c					\
 		map_borders.c			\
 		player_pos.c			\
 		floor.c					\
 		mouse.c					\
+		px.c					\
 		main.c		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

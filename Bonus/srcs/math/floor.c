@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:51:28 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 00:52:58 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:12:46 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	fc_casting_x(t_mlx *disp, t_math_pos *data, t_img_data *img, int *loc)
 {
 	data->cell_x = (int)(data->floor_x);
 	data->cell_y = (int)(data->floor_y);
-	data->tx = (int)(texWidth * (data->floor_x - data->cell_x)) & (texWidth - 1);
+	data->tx = (int)(texWidth * (data->floor_x - data->cell_x)) & \
+		(texWidth - 1);
 	data->ty = (int)(texHeight * (data->floor_y - data->cell_y)) &\
 		(texHeight - 1);
 	data->floor_x += data->floor_step_x;

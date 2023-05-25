@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_find.c                                        :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 13:42:10 by vduriez           #+#    #+#             */
-/*   Updated: 2023/04/25 17:47:14 by vduriez          ###   ########.fr       */
+/*   Created: 2023/05/25 16:31:51 by ajeanne           #+#    #+#             */
+/*   Updated: 2023/05/25 16:32:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	is_wall(int pos[2], t_mlx *disp)
+int	printable(char *s)
 {
-	if (!disp->map[pos[0]][pos[1]])
-		return (-1);
-	if (disp->map[pos[0]][pos[1]] == '1')// TODO check if sprite ordoor too
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i])
+	{
+		if (s[i] != '\n' && s[i] < 32)
+			return (0);
+		i++;
+	}
+	return (1);
 }
