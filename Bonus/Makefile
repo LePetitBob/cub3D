@@ -21,7 +21,6 @@ SRC =	exits.c					\
 		sprite.c				\
 		sprite_anim.c			\
 		2Dvectors.c				\
-		data_map_resize.c		\
 		wall_find.c				\
 		create_img.c			\
 		math_main.c				\
