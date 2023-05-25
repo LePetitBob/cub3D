@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:52:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 16:29:26 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:13:35 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@ int	extension_check(char *ext, char *file)
 	return (0);
 }
 
-int	block_wrong_file(char *str)
+int	block_wrong_file(char *str, t_mlx *disp)
 {
-	while (*str == ' ')
+	while (is_in(" ", *str))
 		str++;
 	if (*str != '1')
+	{
+		while (str)
+		{
+			free(str);
+			str = get_next_line(disp->fd);
+		}
 		return (print_error(MSG_BADMAP), 0);
+	}
 	return (1);
 }
 
@@ -45,13 +52,13 @@ int	set_map_data(t_mlx *disp)
 	str = gnl_corrector(get_next_line(disp->fd));
 	if (!str)
 		return (print_error(MSG_BADMAP), 0);
-	if (!block_wrong_file(str))
+	if (!block_wrong_file(str, disp))
 		return (0);
 	while (str)
 	{
 		(disp->height_map)++;
-		if (disp->length_map < ft_strlen(str))
-			disp->length_map = ft_strlen(str);
+		if (disp->length_map < ft_strlen(str) + 1)
+			disp->length_map = ft_strlen(str) + 1;
 		free(str);
 		str = gnl_corrector(get_next_line(disp->fd));
 	}

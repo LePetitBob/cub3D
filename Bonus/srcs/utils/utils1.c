@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:31:51 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 16:32:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:56:14 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,10 @@ int	printable(char *s)
 		i++;
 	}
 	return (1);
+}
+
+void	check_destroy(void *mlx, void *img)
+{
+	if (img)
+		mlx_destroy_image(mlx, img);
 }

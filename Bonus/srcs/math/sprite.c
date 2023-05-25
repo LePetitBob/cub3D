@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:57:13 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 16:11:43 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:57:08 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sprite_casting2(t_math_pos *data, int i, int stripe)
 	while (y < data->draw_end_y)
 	{
 		data->s_d = (y) * 256 - HEIGHT * 128 + data->sprite_height * 128;
-		data->s_tex_y = ((data->s_d * texHeight) / data->sprite_height) / 256;
+		data->s_tex_y = ((data->s_d * TEX_HEIGHT) / data->sprite_height) / 256;
 		if (px_ext(data->p_sprites[sd], data->s_tex_x, data->s_tex_y) != \
 			16777215)
 			px_put(data->img, stripe, y, \
@@ -87,7 +87,7 @@ void	sprite_casting3(t_math_pos *data, int i)
 	while (stripe < data->draw_end_x)
 	{
 		data->s_tex_x = (int)(256 * (stripe - (-(data->sprite_width) / 2 + \
-			data->sprite_screen_x)) * texWidth / data->sprite_width) / 256;
+			data->sprite_screen_x)) * TEX_WIDTH / data->sprite_width) / 256;
 		if (data->transform_y > 0 && stripe > 0 && stripe < WIDTH && \
 			data->transform_y < data->z_buffer[stripe])
 		{

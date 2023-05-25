@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:59:03 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/25 16:29:13 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:56:03 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,20 @@ void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls)
 
 	if (data->img && data->img->img)
 		mlx_destroy_image(disp->mlx, data->img->img);
-	if (walls->wall.img)
-		mlx_destroy_image(disp->mlx, walls->wall.img);
+	check_destroy(disp->mlx, walls->wall.img);
+	check_destroy(disp->mlx, walls->floor.img);
+	check_destroy(disp->mlx, walls->ceiling.img);
+	check_destroy(disp->mlx, walls->door.img);
 	if (walls->s_scat[0].img != NULL)
 	{
 		i = -1;
 		while (++i < 10)
-			mlx_destroy_image(disp->mlx, walls->s_scat[i].img);
+			check_destroy(disp->mlx, walls->s_scat[i].img);
 	}
+	check_destroy(disp->mlx, walls->s_sdk.img);
+	check_destroy(disp->mlx, walls->s_sshrekf.img);
+	check_destroy(disp->mlx, walls->shrekw.img);
+	check_destroy(disp->mlx, walls->berniew.img);
 }
 
 void	free_tab(char **map)

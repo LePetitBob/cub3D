@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:38:11 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:24:14 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	disp_set(t_mlx *disp)
 	{
 		free(sample);
 		free(disp->mapname);
-		ft_exit("Error\nMap contains unfit characters\n");
+		ft_exit("Error\nMap file contains unfit characters\n");
 	}
 	free(sample);
 	disp_init_values(disp);

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:14:49 by vduriez           #+#    #+#             */
-/*   Updated: 2023/02/23 06:26:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:21:18 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sum * sign);
+}
+
+void	print_tab(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		write(1, map[i], ft_strlen(map[i]));
+		write(1, "\n", 1);
+		++i;
+	}
+	write(1, "\n", 1);
 }

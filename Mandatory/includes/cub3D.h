@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 00:28:10 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:21:29 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,5 +284,7 @@ void			mv_right(t_mlx *disp, t_math_pos *data);
 /* player/rotations */
 void			rt_right(t_math_pos *data);
 void			rt_left(t_math_pos *data);
+
+void			print_tab(char **map);
 
 #endif

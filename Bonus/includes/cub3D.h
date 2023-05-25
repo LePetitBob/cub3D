@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/25 15:34:59 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:05:57 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define MROTSPEED 0.02
 # define WIDTH 1200
 # define HEIGHT 800
-# define texHeight 64
-# define texWidth 64
+# define TEX_HEIGHT 64
+# define TEX_WIDTH 64
 # define NUMSPRITE 3
 
 typedef struct s_read
@@ -72,15 +72,16 @@ typedef struct s_read
 	char	*line;
 }				t_read;
 
-typedef struct    s_img_data {
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
+typedef struct s_img_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		height;
 	int		width;
-}                t_img_data;
+}				t_img_data;
 
 typedef struct s_pics_add
 {
@@ -113,7 +114,6 @@ typedef struct s_sprite_data
 	double	y;
 	int		texture;
 }				t_sprite_data;
-
 
 typedef struct s_mat_pos
 {
@@ -204,7 +204,7 @@ typedef struct s_mlx
 	char		*path_sdk;
 	char		*path_sshrekf;
 	char		*path_scat[10];
-	int			pos[3];	//player pos, [0] = x, [1] = y, [2] = dir
+	int			pos[3];
 	int			fd;
 	int			length_map;
 	int			height_map;
@@ -228,76 +228,74 @@ typedef struct s_mlx
 	t_pics_add	*walls;
 }				t_mlx;
 
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_free(char *s);
-char	*ft_strdup(const char *s1);
-char	*ft_itoa(int n);
-char	*ft_strndup(const char *s1, int size);
-int		ft_atoi(const char *str);
-char	**ft_split(char const *str, char c);
+char			*get_next_line(int fd);
+char			*ft_strjoin(char *s1, char *s2);
+char			*ft_free(char *s);
+char			*ft_strdup(const char *s1);
+char			*ft_itoa(int n);
+char			*ft_strndup(const char *s1, int size);
+int				ft_atoi(const char *str);
+char			**ft_split(char const *str, char c);
+void			print_tab(char **map);
 
-int		printable(char *s);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_strlen(char *s);
-int		extension_check(char *ext, char *file);
-int		ft_exit_mlx(t_mlx *disp);
-void	print_error(char *str);
+int				printable(char *s);
+int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strlen(char *s);
+int				extension_check(char *ext, char *file);
+int				ft_exit_mlx(t_mlx *disp);
+void			print_error(char *str);
 
-int		is_charset(char c, char *s);
-int		skip_newlines(t_mlx *disp);
-int		map_closed(t_mlx *disp);
-int		map_check(t_mlx *disp);
-int		map_requisites(t_mlx *disp);
-int		check_images(t_mlx *disp);
-int		get_img_path(t_mlx *disp, int *i, int *j, char **path);
-int		check_closed(t_mlx *disp, int i, int j);
-void	disp_init_values(t_mlx *disp);
-void	set_map(t_mlx *disp);
-void	ft_problems(t_mlx *disp);
-void	ft_exit(char *strerr);
-void	reading_init(t_mlx *disp);
-void	sprite_check(t_mlx *disp, char *path);
-void	create_imgs(t_mlx *disp);
-void	put_minimap(t_mlx *disp);
-void	ft_destroy_exit(char *strerr, t_mlx *disp);
-void	destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls);
-void	free_tab(char **map);
-void	resize_map(t_mlx *disp);
-t_vec2	create_vec2(int x1, int y1, int x2, int y2);
-double	get_normx(int x1, int y1, int x2, int y2);
-double	get_normy(int x1, int y1, int x2, int y2);
+int				is_charset(char c, char *s);
+int				skip_newlines(t_mlx *disp);
+int				map_closed(t_mlx *disp);
+int				map_check(t_mlx *disp);
+int				map_requisites(t_mlx *disp);
+int				get_img_path(t_mlx *disp, int *i, int *j, char **path);
+int				check_closed(t_mlx *disp, int i, int j);
+void			disp_init_values(t_mlx *disp);
+void			set_map(t_mlx *disp);
+void			ft_exit(char *strerr);
+void			reading_init(t_mlx *disp);
+void			put_minimap(t_mlx *disp);
+void			ft_destroy_exit(char *strerr, t_mlx *disp);
+void			destroy_image(t_mlx *disp, t_math_pos *data, t_pics_add	*walls);
+void			free_tab(char **map);
+void			resize_map(t_mlx *disp);
+t_vec2			create_vec2(int x1, int y1, int x2, int y2);
+double			get_normx(int x1, int y1, int x2, int y2);
+double			get_normy(int x1, int y1, int x2, int y2);
 
 // img/create_img
-void	px_put(t_img_data *img, int x, int y, int color);
-int		create_image(t_mlx *map_data);
-int		create_wall_images(t_mlx *disp);
-unsigned int px_ext(t_img_data *img, int x, int y);
+void			px_put(t_img_data *img, int x, int y, int color);
+int				create_image(t_mlx *map_data);
+int				create_wall_images(t_mlx *disp);
+unsigned int	px_ext(t_img_data *img, int x, int y);
 
 // math/math_main
-int		wall_printer(t_mlx *map_data);
+int				wall_printer(t_mlx *map_data);
 
 // init/init
-void	init_values(t_math_pos *data, t_vec2 player);
-void	init_sprites(t_math_pos *data);
+void			init_values(t_math_pos *data, t_vec2 player);
+void			init_sprites(t_math_pos *data);
 // void	naruto_fov(t_mlx *disp);
 // void	unnaruto_fov(t_mlx *disp);
 
-
 // utils/fnc_utils
-char	*ft_strchr(const char *s, int c);
+char			*ft_strchr(const char *s, int c);
 
 // math/2Dverctors
-t_vec2	vec2_generating(t_mlx disp);
+t_vec2			vec2_generating(t_mlx disp);
 
 // math/textures
-void	tex_px_inc(t_math_pos *data, t_pics_add *walls, t_img_data *img, int x);
-void	tex_calc(t_math_pos *data);
+void			tex_px_inc(t_math_pos *data, \
+t_pics_add *walls, t_img_data *img, int x);
+void			tex_calc(t_math_pos *data);
 
 // math/drawing
-void	draw_cf(t_math_pos *data, t_img_data *img, t_mlx map_data, int x);
-void	calc_draw_lines(t_math_pos *data);
+void			draw_cf(t_math_pos *data, \
+t_img_data *img, t_mlx map_data, int x);
+void			calc_draw_lines(t_math_pos *data);
 
 // player/moves
 int				key_hook_press(int keycode, t_mlx *disp);
@@ -305,54 +303,54 @@ int				key_hook_release(int keycode, t_mlx *disp);
 int				key_apply(t_mlx *disp);
 
 // player/rotations
-void	rt_right(t_math_pos *data);
-void	rt_left(t_math_pos *data);
-void	mv_forward(t_mlx *disp, t_math_pos *data);
-void	mv_back(t_mlx *disp, t_math_pos *data);
-void	mv_left(t_mlx *disp, t_math_pos *data);
-void	mv_right(t_mlx *disp, t_math_pos *data);
+void			rt_right(t_math_pos *data);
+void			rt_left(t_math_pos *data);
+void			mv_forward(t_mlx *disp, t_math_pos *data);
+void			mv_back(t_mlx *disp, t_math_pos *data);
+void			mv_left(t_mlx *disp, t_math_pos *data);
+void			mv_right(t_mlx *disp, t_math_pos *data);
+
+// utils/utils1
+void			check_destroy(void *mlx, void *img);
 
 // utils/utils
-char	*ft_calloc_so(size_t nmemb, size_t size);
-char	*gnl_corrector(char *str);
-int		is_in(char *str, char c);
-void	*xpm_to_img(t_mlx *disp, char *path, t_img_data *img);
-char	*img_add(t_img_data *img);
+char			*ft_calloc_so(size_t nmemb, size_t size);
+char			*gnl_corrector(char *str);
+int				is_in(char *str, char c);
+void			*xpm_to_img(t_mlx *disp, char *path, t_img_data *img);
+char			*img_add(t_img_data *img);
 
 // *********************
 // *       BONUS       *
 // *********************
 
 // parsing/checkings/checks
-int		can_open(t_mlx *disp);
+int				can_open(t_mlx *disp);
 
 // parsing/checkings/checks
-int		initialize_map(t_mlx *disp);
+int				initialize_map(t_mlx *disp);
 
 // parsing/checkings/map_borders
-int		borders(t_mlx *disp, int x, int y);
+int				borders(t_mlx *disp, int x, int y);
 
 // parsing/checkings/player_pos
-void	player_pos(t_mlx *disp);
+void			player_pos(t_mlx *disp);
 
 // math/floor
-int		fc_casting(t_mlx *disp,  t_math_pos *data, t_img_data *img);
+int				fc_casting(t_mlx *disp, t_math_pos *data, t_img_data *img);
 
 // math/door
-void	open_door(t_mlx *disp);
+void			open_door(t_mlx *disp);
 
 // player/mouse
-int		mouse_motion(int x, int y, t_mlx *disp);
-void	rtm_left(t_math_pos *data);
-void	rtm_right(t_math_pos *data);
+int				mouse_motion(int x, int y, t_mlx *disp);
+void			rtm_left(t_math_pos *data);
+void			rtm_right(t_math_pos *data);
 
 // math/sprite
-void	sprite_casting(t_math_pos *data, t_sprite_data *sprites);
+void			sprite_casting(t_math_pos *data, t_sprite_data *sprites);
 
 // img/anim_sprite
-void	anim_s(t_mlx *disp);
-
-//TODO --> remove
-void	print_tab(char **map);
+void			anim_s(t_mlx *disp);
 
 #endif

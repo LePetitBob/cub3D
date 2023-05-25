@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:29:46 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 16:07:35 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:43:25 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ int	map_check(t_mlx *disp)
 	if (!can_open(disp))
 		return (0);
 	player_pos(disp);
-	return (print_error("OK\n"), 1);
+	return (1);
 }

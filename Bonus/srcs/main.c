@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:57:50 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/25 15:52:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:51:29 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
 void	init(t_mlx *disp, t_math_pos *data, t_pics_add *walls, t_img_data *img)
 {
-	
 	disp->shift = 1;
 	disp->data = data;
 	data->disp = disp;
@@ -30,15 +28,32 @@ void	init(t_mlx *disp, t_math_pos *data, t_pics_add *walls, t_img_data *img)
 	disp->path_sdk = "images/sdk.xpm";
 	disp->path_berniew = "images/berniew.xpm";
 	init_sprites(data);
+	data->p_sprites[0] = &disp->walls->s_scat[0];
+	data->p_sprites[1] = &disp->walls->s_sdk;
+	data->p_sprites[2] = &disp->walls->s_sshrekf;
+	disp->x_mloc = WIDTH / 2;
+}
+
+void	start_loop(t_mlx *disp)
+{
+	mlx_mouse_hide(disp->mlx, disp->win);
+	mlx_loop_hook(disp->mlx, wall_printer, disp);
+	mlx_hook(disp->win, MotionNotify, PointerMotionMask, mouse_motion, disp);
+	mlx_hook(disp->win, KeyPress, KeyPressMask, \
+		key_hook_press, disp);
+	mlx_hook(disp->win, KeyRelease, KeyReleaseMask, \
+		key_hook_release, disp);
+	mlx_hook(disp->win, 17, 1L << 17, ft_exit_mlx, disp);
+	mlx_loop(disp->mlx);
 }
 
 int	cub3d(char **av)
 {
-	t_mlx	disp;
+	t_mlx		disp;
 	t_math_pos	data;
-	t_pics_add walls;
-	t_img_data img;
-	
+	t_pics_add	walls;
+	t_img_data	img;
+
 	disp = (t_mlx){0};
 	data = (t_math_pos){0};
 	walls = (t_pics_add){0};
@@ -54,24 +69,10 @@ int	cub3d(char **av)
 			HEIGHT, "Triangle2D");
 	if (!disp.win)
 		ft_destroy_exit(MSG_MLX_WIN_FAIL, &disp);
-	disp.x_mloc = WIDTH / 2;
-	if (!create_wall_images(&disp))
+	if (!create_wall_images(&disp) ||!create_image(&disp))
 		ft_destroy_exit(MSG_IMG_FAIL, &disp);
-	if (!create_image(&disp))
-		ft_destroy_exit(MSG_IMG_FAIL, &disp);
-	data.p_sprites[0] = &disp.walls->s_scat[0];
-	data.p_sprites[1] = &disp.walls->s_sdk;
-	data.p_sprites[2] = &disp.walls->s_sshrekf;
 	init_values(&data, vec2_generating(disp));
-	mlx_mouse_hide(disp.mlx, disp.win);
-	mlx_loop_hook(disp.mlx, wall_printer, &disp);
-	mlx_hook(disp.win, MotionNotify, PointerMotionMask, mouse_motion, &disp);
-	mlx_hook(disp.win, KeyPress, KeyPressMask, \
-		key_hook_press, &disp);
-	mlx_hook(disp.win, KeyRelease, KeyReleaseMask, \
-		key_hook_release, &disp);
-	mlx_hook(disp.win, 17, 1L << 17, ft_exit_mlx, &disp);
-	mlx_loop(disp.mlx);
+	start_loop(&disp);
 	return (1);
 }
 

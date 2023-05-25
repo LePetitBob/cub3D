@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_screen.c                                       :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:41:38 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/23 08:23:26 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:54:47 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,14 @@ void	put_minimap(t_mlx *disp)
 	y = -1;
 	while (disp->map[++y])
 	{
-		x = -1;
-		while (disp->map[y][++x])
+		x = 0;
+		while (disp->map[y][x])
 		{
-			if (disp->map[y][x] == '1')
+			if (is_in("123", disp->map[y][x]))
 				put_walls(disp, x, y);
 			if (disp->map[y][x] == 'F' || disp->map[y][x] == 'O')
 				put_doors(disp, x, y);
+			++x;
 		}
 	}
 	put_player(disp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:31:29 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/23 18:09:35 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:02:57 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	fill_map(t_mlx *disp, char *str, int y)
 	(disp->map)[y][i] = ' ';
 	while (++i < disp->length_map)
 		(disp->map)[y][i] = ' ';
-	disp->map[y][i] = 0;
 	return (1);
 }
 
