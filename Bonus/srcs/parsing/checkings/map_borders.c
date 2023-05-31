@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_borders.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 18:26:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 14:16:08 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:40:00 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ int	borders(t_mlx *disp, int x, int y)
 
 int	check_closed(t_mlx *disp, int i, int j)
 {
-	if (disp->map[i][j] == '0')
+	if (is_in("0FO23NESW", disp->map[i][j]))
 	{
 		if (i == 0 || j == 0 || i == disp->height_map - 1
 			|| j == disp->length_map - 1)
 			return (0);
-		if (i > 0 && !is_in("01", disp->map[i - 1][j]))
+		if (i > 0 && !is_in("0FO123NSEW", disp->map[i - 1][j]))
 			return (0);
-		if (i < disp->height_map - 1 && !is_in("01", disp->map[i + 1][j]))
+		if (i < disp->height_map - 1
+			&& !is_in("0FO123NSEW", disp->map[i + 1][j]))
 			return (0);
-		if (j > 0 && !is_in("01", disp->map[i][j - 1]))
+		if (j > 0 && !is_in("0FO123NSEW", disp->map[i][j - 1]))
 			return (0);
-		if (j < disp->length_map - 1 && !is_in("01", disp->map[i][j + 1]))
+		if (j < disp->length_map - 1
+			&& !is_in("0FO123NSEW", disp->map[i][j + 1]))
 			return (0);
 	}
 	return (1);

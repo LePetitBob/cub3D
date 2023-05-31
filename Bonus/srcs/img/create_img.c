@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 15:51:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:05:41 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	scatman(t_mlx *disp)
 	{
 		disp->walls->s_scat[i].img = xpm_to_img(disp, disp->path_scat[i], \
 			&disp->walls->s_scat[i]);
+		if (!disp->walls->s_scat[i].img || disp->tmp == -1)
+			return (1);
 		disp->walls->s_scat[i].addr = img_add(&disp->walls->s_scat[i]);
-		if (!disp->walls->s_scat[i].img || !disp->walls->s_scat[i].addr)
+		if (!disp->walls->s_scat[i].addr)
 			return (1);
 	}
 	i = -1;
@@ -41,6 +43,7 @@ int	scatman(t_mlx *disp)
 
 int	init_imgs(t_mlx *disp, t_pics_add *walls)
 {
+	disp ->tmp = 0;
 	walls->wall.img = xpm_to_img(disp, disp->path_wall, &walls->wall);
 	walls->ceiling.img = xpm_to_img(disp, disp->path_ceiling, \
 		&walls->ceiling);
@@ -55,13 +58,14 @@ int	init_imgs(t_mlx *disp, t_pics_add *walls)
 		return (0);
 	if (!(walls->wall.img) || !(walls->ceiling.img) || !(walls->floor.img)
 		|| !(walls->door.img) || !(walls->s_sdk.img) || !(walls->shrekw.img)
-		|| !(walls->berniew.img) || !(walls->s_sshrekf.img))
+		|| !(walls->berniew.img) || !(walls->s_sshrekf.img) || disp->tmp == -1)
 		return (0);
 	return (1);
 }
 
 int	create_wall_images(t_mlx *disp)
 {
+	disp->tmp = 0;
 	if (!init_imgs(disp, disp->walls))
 		return (0);
 	disp->walls->wall.addr = img_add(&disp->walls->wall);
@@ -75,7 +79,8 @@ int	create_wall_images(t_mlx *disp)
 	if (!(disp->walls->wall.addr) || !(disp->walls->ceiling.addr)
 		|| !(disp->walls->floor.addr) || !(disp->walls->door.addr)
 		|| !(disp->walls->s_sdk.addr) || !(disp->walls->shrekw.addr)
-		|| !(disp->walls->s_sshrekf.addr) || !(disp->walls->berniew.addr))
+		|| !(disp->walls->s_sshrekf.addr) || !(disp->walls->berniew.addr)
+		|| disp->tmp == -1)
 		return (0);
 	return (1);
 }

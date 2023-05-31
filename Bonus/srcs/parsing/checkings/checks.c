@@ -6,11 +6,31 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:52:15 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 18:13:35 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:36:35 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	map_closed(t_mlx *disp)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (disp->map[i])
+	{
+		j = 0;
+		while (disp->map[i][j])
+		{
+			if (!check_closed(disp, i, j))
+				return (print_error(MSG_OPENMAP), 0);
+			++j;
+		}
+		++i;
+	}
+	return (1);
+}
 
 int	extension_check(char *ext, char *file)
 {
@@ -29,9 +49,12 @@ int	extension_check(char *ext, char *file)
 
 int	block_wrong_file(char *str, t_mlx *disp)
 {
-	while (is_in(" ", *str))
-		str++;
-	if (*str != '1')
+	char	*tmp;
+
+	tmp = str;
+	while (is_in(" ", *tmp))
+		tmp++;
+	if (*tmp != '1')
 	{
 		while (str)
 		{
@@ -63,7 +86,10 @@ int	set_map_data(t_mlx *disp)
 		str = gnl_corrector(get_next_line(disp->fd));
 	}
 	if (close(disp->fd) == -1)
+	{
+		printf("COUILLE\n");
 		return (print_error(MSG_OPENMAP), 0);
+	}
 	if (!initialize_map(disp))
 		return (0);
 	return (1);

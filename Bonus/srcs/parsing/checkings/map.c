@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:31:29 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/25 18:02:57 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:41:23 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,29 @@ int	fill_map(t_mlx *disp, char *str, int y)
 
 int	set_up_map(t_mlx *disp)
 {
-	int		i;
 	char	*str;
 
-	i = 0;
+	disp->tmp = -1;
 	str = gnl_corrector(get_next_line(disp->fd));
 	if (!str)
 		return (print_error(MSG_BADMAP), 0);
 	while (str)
 	{
-		if (!fill_map(disp, str, i))
+		if (!fill_map(disp, str, ++disp->tmp))
+		{
+			while (str)
+			{
+				free(str);
+				str = get_next_line(disp->fd);
+			}
 			return (0);
+		}
 		free(str);
 		str = gnl_corrector(get_next_line(disp->fd));
-		i++;
 	}
 	if (close(disp->fd) == -1)
 		return (print_error(MSG_OPENMAP), 0);
-	if (!char_checker(disp))
+	if (!char_checker(disp) || !map_closed(disp))
 		return (0);
 	return (1);
 }
