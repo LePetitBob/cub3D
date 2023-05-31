@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 04:07:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/05/31 14:09:07 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:59:56 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ unsigned int	px_ext(t_img_data *img, int x, int y)
 int	init_imgs(t_mlx *disp, t_pics_add *walls)
 {
 	disp->tmp = 0;
-	walls->wall_n.img = xpm_to_img(disp, disp->path_ea, &walls->wall_n);
-	walls->wall_s.img = xpm_to_img(disp, disp->path_ea, &walls->wall_s);
+	walls->wall_n.img = xpm_to_img(disp, disp->path_no, &walls->wall_n);
+	walls->wall_s.img = xpm_to_img(disp, disp->path_so, &walls->wall_s);
 	walls->wall_e.img = xpm_to_img(disp, disp->path_ea, &walls->wall_e);
-	walls->wall_w.img = xpm_to_img(disp, disp->path_ea, &walls->wall_w);
+	walls->wall_w.img = xpm_to_img(disp, disp->path_we, &walls->wall_w);
 	if (!(walls->wall_e.img) || !(walls->wall_n.img) || !(walls->wall_s.img)
 		|| !(walls->wall_w.img) || disp->tmp == -1)
 		return (0);
