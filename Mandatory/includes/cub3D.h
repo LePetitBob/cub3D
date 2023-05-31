@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:13:02 by vduriez           #+#    #+#             */
-/*   Updated: 2023/05/25 18:21:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:57:40 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ int				rgb_format(char *s, int *i);
 void			ft_free_parsing(t_mlx *disp);
 void			ft_exit_before_map(char *strerr, t_mlx *disp);
 int				ft_set_exit(t_mlx *disp);
+void			*xpm_to_img(t_mlx *disp, char *path, t_img_data *wall);
 
 /* display/set_screen */
 void			put_minimap(t_mlx *disp);

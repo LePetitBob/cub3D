@@ -30,6 +30,7 @@ SRC =	exits.c					\
 		math_main.c				\
 		print_error.c			\
 		fnc_utils.c				\
+		fnc_utils2.c			\
 		moves.c					\
 		apply_moves.c			\
 		textures.c				\
