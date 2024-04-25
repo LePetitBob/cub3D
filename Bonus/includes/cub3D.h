@@ -54,13 +54,24 @@ formated as follows :\n[0 to 255],[0 to 255],[0 to 255]\n"
 # define MSG_CHAR "Error\nCharacters must be 1 / 0 / N / S / W / E\n"
 
 # define FOV 75
-# define MOVESPEED 0.17
-# define ROTSPEED 0.2
-# define MROTSPEED 0.02
+
+/*Speed Mac*/
+// # define MOVESPEED 0.17
+// # define ROTSPEED 0.2
+// # define WIDTH 1200
+// # define HEIGHT 800
+// # define TEX_HEIGHT 64
+// # define TEX_WIDTH 64
+
+/*Speed Dell*/
+# define MOVESPEED 0.05
+# define ROTSPEED 0.03
 # define WIDTH 1200
 # define HEIGHT 800
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
+
+# define MROTSPEED 0.02
 # define NUMSPRITE 3
 
 typedef struct s_read
